@@ -56,20 +56,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.e("MapsActivity", "Can't find style. Error: ", e);
         }
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in the CS lab and move the camera
         LatLng meysci = new LatLng(41.869559, -88.096015);
+        mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
 
-        // Create a LatLngBounds that includes the city of Adelaide in Australia.
+        // Create a LatLngBounds that includes the Campus of Wheaton.
         LatLngBounds WHEATON = new LatLngBounds(
-                new LatLng(-35.0, 138.58), new LatLng(-34.9, 138.61));
-        // Constrain the camera target to the Adelaide bounds.
+                new LatLng(41.864417, -88.103536), new LatLng(41.873451, -88.088258));
+        // Constrain the camera target to the Wheaton.
         mMap.setLatLngBoundsForCameraTarget(WHEATON);
 
         // Set a preference for minimum and maximum zoom.
-        mMap.setMinZoomPreference(9.0f);
-        mMap.setMaxZoomPreference(14.0f);
+        mMap.setMinZoomPreference(15.5f);
+        mMap.setMaxZoomPreference(18.5f);
 
-        mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(meysci));
+        // Set center point for the map at startup
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(WHEATON.getCenter(), 15.5f));
+
+
+
     }
+
+
+
 }
