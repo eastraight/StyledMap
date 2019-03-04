@@ -10,6 +10,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.MapStyleOptions;
 
@@ -57,6 +58,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng meysci = new LatLng(41.869559, -88.096015);
+
+        // Create a LatLngBounds that includes the city of Adelaide in Australia.
+        LatLngBounds WHEATON = new LatLngBounds(
+                new LatLng(-35.0, 138.58), new LatLng(-34.9, 138.61));
+        // Constrain the camera target to the Adelaide bounds.
+        mMap.setLatLngBoundsForCameraTarget(WHEATON);
+
+        // Set a preference for minimum and maximum zoom.
+        mMap.setMinZoomPreference(8.0f);
+        mMap.setMaxZoomPreference(14.0f);
 
         mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(meysci));
