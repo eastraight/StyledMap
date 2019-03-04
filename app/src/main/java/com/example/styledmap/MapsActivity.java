@@ -66,7 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setLatLngBoundsForCameraTarget(WHEATON);
 
         // Set a preference for minimum and maximum zoom.
-        mMap.setMinZoomPreference(8.0f);
+        mMap.setMinZoomPreference(9.0f);
         mMap.setMaxZoomPreference(14.0f);
 
         mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
