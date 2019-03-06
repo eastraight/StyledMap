@@ -16,7 +16,7 @@
     </style>
 
     <style name="ActionBarThemeOverlay">
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
     <style name="ActionBarPopupThemeOverlay">
