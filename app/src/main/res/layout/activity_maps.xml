@@ -15,9 +15,28 @@
         style="@style/HeaderBar"
         app:theme="@style/ActionBarThemeOverlay"
         app:popupTheme="@style/ActionBarPopupThemeOverlay"
-        android:elevation="4dp" />
+        android:elevation="4dp">
 
-    
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/parking_toggle"
+            android:backgroundTint="@color/colorAccent"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/building_toggle"
+            android:backgroundTint="@color/colorAccent"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/housing_toggle"
+            android:backgroundTint="@color/colorAccent"/>
+
+    </android.support.v7.widget.Toolbar>
+
+
 
 </fragment>
 

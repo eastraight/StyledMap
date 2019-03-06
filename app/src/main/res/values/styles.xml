@@ -14,7 +14,11 @@
 
     <style name="HeaderBar">
         <item name="android:background">@color/colorPrimary</item>
+        <item name="android:titleTextStyle">@style/NoTitleText</item>
+    </style>
 
+    <style name="NoTitleText">
+        <item name="android:textSize">0sp</item>
     </style>
 
     <style name="ActionBarThemeOverlay">

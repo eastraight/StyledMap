@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Styled Map</string>
     <string name="title_activity_maps">Map</string>
+    <string name="parking_toggle">Parking</string>
+    <string name="building_toggle">Buildings</string>
+    <string name="housing_toggle">Housing</string>
 </resources>
