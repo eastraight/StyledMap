@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,6 +25,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private Toolbar mTopToolbar;
 
+
+    private Button parkingToggle;
+    private Button buildingToggle;
+    private Button housingToggle;
+
+
     @Override
     //create instance
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,32 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mTopToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+        //Below code to add Toast to toggle buttons.
+        parkingToggle = findViewById(R.id.parking_toggle);
+        parkingToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Parking is filtered", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        buildingToggle = findViewById(R.id.building_toggle);
+        buildingToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Buildings are filtered", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        housingToggle = findViewById(R.id.housing_toggle);
+        housingToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Housing is filtered", Toast.LENGTH_LONG).show();
+            }
+        });
         }
 
 

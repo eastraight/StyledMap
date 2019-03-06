@@ -18,17 +18,20 @@
         android:elevation="4dp">
 
         <Button
+            android:id="@+id/parking_toggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/parking_toggle"
             android:backgroundTint="@color/colorAccent"/>
         <Button
+            android:id="@+id/building_toggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/building_toggle"
             android:backgroundTint="@color/colorAccent"/>
 
         <Button
+            android:id="@+id/housing_toggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/housing_toggle"
