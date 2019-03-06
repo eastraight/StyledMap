@@ -35,7 +35,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mTopToolbar);
-    }
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
 
 
     @Override
