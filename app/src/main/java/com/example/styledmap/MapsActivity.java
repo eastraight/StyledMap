@@ -1,8 +1,13 @@
 package com.example.styledmap;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Looper;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -11,7 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.location.Location;
 
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,9 +29,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polygon;
-import com.google.android.gms.maps.model.PolygonOptions;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -34,7 +49,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button buildingToggle;
     private Button housingToggle;
 
-    private Polygon[] buildingPolygons;
+
+    /* Object used to receive location updates */
+    private FusedLocationProviderClient mFusedLocationClient;
+    /* Object that defines important parameters regarding location request. */
+    private LocationRequest locationRequest;
+
 
     @Override
     //create instance
@@ -49,8 +69,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setSupportActionBar(mTopToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        //adjust size later
-        buildingPolygons = new Polygon[11];
 
         //Below code to add Toast to toggle buttons.
         parkingToggle = findViewById(R.id.parking_toggle);
@@ -65,22 +83,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         buildingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //The following if block toggles all the polygons of type "building" into visibility and out.
-                if(buildingPolygons[0].isVisible()){
-                    for(Polygon g: buildingPolygons)
-                        if(g == null){
-                            break;
-                        } else {
-                            g.setVisible(false);
-                        }
-                } else {
-                    for(Polygon g: buildingPolygons)
-                        if(g == null){
-                            break;
-                        } else {
-                            g.setVisible(true);
-                        }
-                }
+                Toast.makeText(getApplicationContext(), "Buildings are filtered", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -91,6 +94,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Toast.makeText(getApplicationContext(), "Housing is filtered", Toast.LENGTH_LONG).show();
             }
         });
+
+
+        //location stuff:
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        locationRequest = LocationRequest.create();
+        locationRequest.setInterval(5000); // 5 second delay between each request
+        locationRequest.setFastestInterval(5000); // 5 seconds fastest time in between each request
+        locationRequest.setSmallestDisplacement(10); // 10 meters minimum displacement for new location request
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // enables GPS high accuracy location requests
+
+        sendUpdatedLocationMessage();
     }
 
 
@@ -146,12 +161,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         // Add a marker in the CS lab and move the camera
-        LatLng meysci = new LatLng(41.869559, -88.096015);
-        mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
+        // LatLng meysci = new LatLng(41.869559, -88.096015);
+        // mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
 
         // Create a LatLngBounds that includes the Campus of Wheaton.
         LatLngBounds WHEATON = new LatLngBounds(
-                new LatLng(41.864417, -88.103536), new LatLng(41.873451, -88.088258));
+                new LatLng(41.865395, -88.103472), new LatLng(41.873451, -88.088258));
         // Constrain the camera target to the Wheaton.
         mMap.setLatLngBoundsForCameraTarget(WHEATON);
 
@@ -162,21 +177,52 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Set center point for the map at startup
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(WHEATON.getCenter(), 15.5f));
 
-        buildingSetup(mMap);
+        Log.d("ONMAP", "onmap is complete");
+
+
     }
 
-    private void buildingSetup(GoogleMap mMap){
 
 
-        //the first polygon for testing and demo (MeySci)
-        PolygonOptions testOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
-        testOpt.strokeWidth(0);
-        testOpt.fillColor(Color.BLUE);
-        Polygon test = mMap.addPolygon(testOpt);
-        test.setVisible(false);
-        buildingPolygons[0] = test;
 
-        //insert more buildings here
+    /*
+        (This method from github user kaushikravikumar, RealtimeTaxiAndroidDemo project)
+
+        Checks user's location permission to see whether user has granted access to fine location and coarse location.
+        If not it will request these permissions.
+
+     */
+    public void checkPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        ) {//Can add more as per requirement
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    123);
+        }
     }
+
+    /*
+    This method gets user's current location
+ */
+    private void sendUpdatedLocationMessage() {
+        Log.d("SEND", "sendUpdatedLocationMessage() in process");
+        mFusedLocationClient.requestLocationUpdates(locationRequest, new LocationCallback() {
+
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                Location location = locationResult.getLastLocation();
+
+                Log.d("ONLOCATIONRESULT", "reached onLocationResult");
+
+                // Add a marker on the user's current location
+                LatLng youAreHere = new LatLng(location.getLatitude(), location.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(youAreHere).title("You are here"));
+
+            }
+        }, Looper.myLooper());
+    }
+
 
 }
