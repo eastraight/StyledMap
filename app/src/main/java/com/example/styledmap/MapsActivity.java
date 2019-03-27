@@ -1,6 +1,7 @@
 package com.example.styledmap;
 
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
+
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -30,6 +34,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button buildingToggle;
     private Button housingToggle;
 
+    private Polygon[] buildingPolygons;
 
     @Override
     //create instance
@@ -44,6 +49,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setSupportActionBar(mTopToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        //adjust size later
+        buildingPolygons = new Polygon[11];
 
         //Below code to add Toast to toggle buttons.
         parkingToggle = findViewById(R.id.parking_toggle);
@@ -58,7 +65,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         buildingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Buildings are filtered", Toast.LENGTH_LONG).show();
+                //The following if block toggles all the polygons of type "building" into visibility and out.
+                if(buildingPolygons[0].isVisible()){
+                    for(Polygon g: buildingPolygons)
+                        if(g == null){
+                            break;
+                        } else {
+                            g.setVisible(false);
+                        }
+                } else {
+                    for(Polygon g: buildingPolygons)
+                        if(g == null){
+                            break;
+                        } else {
+                            g.setVisible(true);
+                        }
+                }
             }
         });
 
@@ -69,7 +91,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Toast.makeText(getApplicationContext(), "Housing is filtered", Toast.LENGTH_LONG).show();
             }
         });
-        }
+    }
 
 
     @Override
@@ -140,10 +162,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Set center point for the map at startup
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(WHEATON.getCenter(), 15.5f));
 
-
-
+        buildingSetup(mMap);
     }
 
+    private void buildingSetup(GoogleMap mMap){
 
+
+        //the first polygon for testing and demo (MeySci)
+        PolygonOptions testOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
+        testOpt.strokeWidth(0);
+        testOpt.fillColor(Color.BLUE);
+        Polygon test = mMap.addPolygon(testOpt);
+        test.setVisible(false);
+        buildingPolygons[0] = test;
+
+        //insert more buildings here
+    }
 
 }
