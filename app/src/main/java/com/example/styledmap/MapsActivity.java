@@ -23,6 +23,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 
+import java.util.HashMap;
+import java.util.Map;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -34,8 +36,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button buildingToggle;
     private Button housingToggle;
 
-    private Polygon[] buildingPolygons;
-    private Building[] allBuildings;
+    private HashMap<String, Building> buildings;
+    private HashMap<String, Housing> housing;
+    private HashMap<String, Parking> parking;
+    private Building[] allLocations;
 
     @Override
     //create instance
@@ -50,16 +54,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setSupportActionBar(mTopToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+
+        buildings = new HashMap<>();
+        parking= new HashMap<>();
+        housing = new HashMap<>();
         //adjust size later
-        buildingPolygons = new Polygon[11];
-        allBuildings = new Building[20];
+        allLocations = new Building[20];
 
         //Below code to add Toast to toggle buttons.
         parkingToggle = findViewById(R.id.parking_toggle);
         parkingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Parking is filtered", Toast.LENGTH_LONG).show();
+                for (Parking g : parking.values()) {
+                    if (g.getShape().isVisible()) {
+                        g.getShape().setVisible(false);
+                    } else {
+                        g.getShape().setVisible(true);
+                    }
+                }
             }
         });
 
@@ -67,21 +80,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         buildingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //The following if block toggles all the polygons of type "building" into visibility and out.
-                if(buildingPolygons[0].isVisible()){
-                    for(Polygon g: buildingPolygons)
-                        if(g == null){
-                            break;
-                        } else {
-                            g.setVisible(false);
-                        }
-                } else {
-                    for(Polygon g: buildingPolygons)
-                        if(g == null){
-                            break;
-                        } else {
-                            g.setVisible(true);
-                        }
+                //The following loop toggles all the polygons of type "building" into visibility and out.
+
+                for (Building g : buildings.values()) {
+                    if (g.getShape().isVisible()) {
+                        g.getShape().setVisible(false);
+                    } else {
+                        g.getShape().setVisible(true);
+                    }
                 }
             }
         });
@@ -90,7 +96,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         housingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Housing is filtered", Toast.LENGTH_LONG).show();
+                for (Housing g : housing.values()) {
+                    if (g.getShape().isVisible()) {
+                        g.getShape().setVisible(false);
+                    } else {
+                        g.getShape().setVisible(true);
+                    }
+                }
             }
         });
     }
@@ -164,28 +176,30 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Set center point for the map at startup
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(WHEATON.getCenter(), 15.5f));
 
-        buildingSetup(mMap);
+        locationSetup(mMap);
     }
 
-    private void buildingSetup(GoogleMap mMap){
+    private void locationSetup(GoogleMap mMap){
 
+        int highlight = Color.parseColor("#ff9326");
+        PolygonOptions polyOpt;
+        Polygon poly;
+        Building insert;
 
         /*
         *the first polygon for testing and demo (MeySci)
         * replace "examplePoly" with new name for building
         */
-
         //Defining coordinates of the polygon
-        PolygonOptions examplePoly = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
-        //Only replace the name "example poly" for the next two lines
-        examplePoly.strokeWidth(0);
-        examplePoly.fillColor(Color.BLUE);
-        //for a new building, do not say "Polygon test" just say "test".  Otherwise copy exactly
-        Polygon test = mMap.addPolygon(examplePoly);
-        test.setVisible(false);
-        buildingPolygons[0] = test;
-        Building meyer = new GeneralBuilding(test, "Meyer Science Center");
-        allBuildings[0]= meyer;
+        polyOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
+        //Do not adjust the following 4 lines
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(highlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        insert = new Building(poly, "Meyer Science Center");  //change name
+        buildings.put("Meyer",insert);  //change key
+        allLocations[0]= insert;
 
         //insert more buildings here
     }
