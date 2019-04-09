@@ -170,11 +170,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void buildingSetup(GoogleMap mMap){
 
 
-        //the first polygon for testing and demo (MeySci)
-        PolygonOptions testOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
-        testOpt.strokeWidth(0);
-        testOpt.fillColor(Color.BLUE);
-        Polygon test = mMap.addPolygon(testOpt);
+        /*
+        *the first polygon for testing and demo (MeySci)
+        * replace "examplePoly" with new name for building
+        */
+
+        //Defining coordinates of the polygon
+        PolygonOptions examplePoly = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
+        //Only replace the name "example poly" for the next two lines
+        examplePoly.strokeWidth(0);
+        examplePoly.fillColor(Color.BLUE);
+        //for a new building, do not say "Polygon test" just say "test".  Otherwise copy exactly
+        Polygon test = mMap.addPolygon(examplePoly);
         test.setVisible(false);
         buildingPolygons[0] = test;
         Building meyer = new GeneralBuilding(test, "Meyer Science Center");
