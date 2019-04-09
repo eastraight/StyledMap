@@ -66,6 +66,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         parkingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for(Building b : buildings.values()){
+                    b.getShape().setVisible(false);
+                }
+                for(Housing h : housing.values()){
+                    h.getShape().setVisible(false);
+                }
                 for (Parking g : parking.values()) {
                     if (g.getShape().isVisible()) {
                         g.getShape().setVisible(false);
@@ -80,6 +86,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         buildingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for(Parking b : parking.values()){
+                    b.getShape().setVisible(false);
+                }
+                for(Housing h : housing.values()){
+                    h.getShape().setVisible(false);
+                }
                 //The following loop toggles all the polygons of type "building" into visibility and out.
 
                 for (Building g : buildings.values()) {
@@ -96,6 +108,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         housingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for(Building b : buildings.values()){
+                    b.getShape().setVisible(false);
+                }
+                for(Parking h : parking.values()){
+                    h.getShape().setVisible(false);
+                }
                 for (Housing g : housing.values()) {
                     if (g.getShape().isVisible()) {
                         g.getShape().setVisible(false);
@@ -199,6 +217,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setVisible(false);
         insert = new Building(poly, "Meyer Science Center");  //change name
         buildings.put("Meyer",insert);  //change key
+        allLocations[0]= insert;
+
+
+        polyOpt = new PolygonOptions().add(new LatLng(41.869160, -88.097786), new LatLng(41.869158, -88.097972), new LatLng(41.869118, -88.097971), new LatLng(41.869121, -88.098089), new LatLng(41.868636, -88.098079), new LatLng(41.868639, -88.097766),new LatLng(41.869160, -88.097786));
+        //Do not adjust the following 4 lines
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(highlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        insert = new Building(poly, "Student Services Building");  //change name
+        buildings.put("StudentServices",insert);  //change key
         allLocations[0]= insert;
 
         //insert more buildings here
