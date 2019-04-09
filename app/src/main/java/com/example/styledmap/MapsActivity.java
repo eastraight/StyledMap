@@ -35,6 +35,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button housingToggle;
 
     private Polygon[] buildingPolygons;
+    private Building[] allBuildings;
 
     @Override
     //create instance
@@ -51,6 +52,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //adjust size later
         buildingPolygons = new Polygon[11];
+        allBuildings = new Building[20];
 
         //Below code to add Toast to toggle buttons.
         parkingToggle = findViewById(R.id.parking_toggle);
@@ -175,6 +177,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Polygon test = mMap.addPolygon(testOpt);
         test.setVisible(false);
         buildingPolygons[0] = test;
+        Building meyer = new GeneralBuilding(test, "Meyer Science Center");
+        allBuildings[0]= meyer;
 
         //insert more buildings here
     }
