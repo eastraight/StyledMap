@@ -18,7 +18,7 @@ import android.widget.SearchView;
 public class SearchActivity extends AppCompatActivity {
         public void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.Search);
+            setContentView(R.layout.search);
         }
     }
 
