@@ -11,6 +11,7 @@ public class Housing extends LocationSpaces {
         super.shape = shape;
         super.name = name;
         this.category = category;
+        super.type = "h";
     }
 
     //insert file parser/retriever here

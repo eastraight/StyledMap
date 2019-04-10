@@ -9,6 +9,7 @@ public class Building extends LocationSpaces {
     public Building(Polygon shape, String name){
         super.shape = shape;
         super.name = name;
+        super.type = "b";
     }
 
     //insert file parser/retriever here

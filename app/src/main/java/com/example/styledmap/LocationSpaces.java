@@ -6,6 +6,7 @@ public abstract class LocationSpaces {
 
     protected Polygon shape;
     protected String name;
+    protected String type;
 
     public Polygon getShape(){
         return shape;
@@ -13,4 +14,5 @@ public abstract class LocationSpaces {
     public String getName(){
         return name;
     }
+    public String getType() { return type; }
 }

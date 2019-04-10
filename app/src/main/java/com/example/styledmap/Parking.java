@@ -7,5 +7,6 @@ public class Parking extends LocationSpaces {
     public Parking(Polygon shape, String name){
         super.shape = shape;
         super.name = name;
+        super.type = "p";
     }
 }
