@@ -9,7 +9,11 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -68,12 +72,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button parkingToggle;
     private Button buildingToggle;
     private Button housingToggle;
+    private MenuItem diningButton;
 
     private HashMap<String, Building> buildings;
     private HashMap<String, Housing> housing;
     private HashMap<String, Parking> parking;
     private LocationSpaces[] allLocations;
-
+    private DrawerLayout drawerLayout;
 
     //private static final Context ContextCompat = checkPermission
 
@@ -94,8 +99,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mTopToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
+        drawerLayout = findViewById(R.id.drawer_layout);
+        diningButton = findViewById(R.id.dining_button);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        menuItem.setChecked(true);
+                        int id = menuItem.getItemId();
+                        drawerLayout.closeDrawers();
+                        switch (id) {
+                            case R.id.dining_button:
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wheaton.cafebonappetit.com/"));
+                                startActivity(browserIntent);
+                                return true;
+                        }
+                        return true;
+                    }
+                });
         buildings = new HashMap<>();
         parking= new HashMap<>();
         housing = new HashMap<>();
@@ -146,6 +169,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         });
+//        diningButton = findViewById(R.id.dining_button);
+//        diningButton.setMenuItemClickListener(new MenuItem.OnMenuItemClickListener())
 
         //location stuff:
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -159,7 +184,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         sendUpdatedLocationMessage();
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -177,8 +201,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_favorite) {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wheaton.cafebonappetit.com/"));
-            startActivity(browserIntent);
+            drawerLayout.openDrawer(GravityCompat.END);
+            //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wheaton.cafebonappetit.com/"));
+            //startActivity(browserIntent);
             return true;
         }
 
