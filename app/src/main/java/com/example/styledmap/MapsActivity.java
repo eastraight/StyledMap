@@ -59,7 +59,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         parking= new HashMap<>();
         housing = new HashMap<>();
         //adjust size later
-        allLocations = new Location[20];
+        allLocations = new Location[100];
 
         //Below code to add Toast to toggle buttons.
         parkingToggle = findViewById(R.id.parking_toggle);
@@ -249,7 +249,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         numBuildings++;
 
         //Initializing Blanchard Parking Lot 2
-        polyOpt = new PolygonOptions().add(new LatLng(41.868379, -88.098382), new LatLng(41.868326, -88.098956), new LatLng(41.868622, -88.098960), new LatLng(41.868610, -88.098467), new LatLng(41.868588, -88.097944), new LatLng(41.868435, -88.097897));
+        polyOpt = new PolygonOptions().add(new LatLng(41.868563, -88.100200), new LatLng(41.868359, -88.100168), new LatLng(41.868369, -88.100878), new LatLng(41.868509, -88.100921));
         polyOpt.strokeWidth(0);
         polyOpt.fillColor(pHighlight);
         poly = mMap.addPolygon(polyOpt);
@@ -259,7 +259,27 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         allLocations[numBuildings]= pInsert;
         numBuildings++;
 
+        polyOpt = new PolygonOptions().add(new LatLng(41.868399, -88.101160), new LatLng(41.868399, -88.101086), new LatLng(41.867504, -88.101084), new LatLng(41.867492, -88.101141));
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(pHighlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(poly, "North Washington Parking");
+        parking.put("NWashingtonParking",pInsert);
+        allLocations[numBuildings]= pInsert;
+        numBuildings++;
+
         //insert more buildings here
+
+        polyOpt = new PolygonOptions().add(new LatLng(41.869177, -88.098268), new LatLng(41.869175, -88.098102), new LatLng(41.868767, -88.098107), new LatLng(41.868766, -88.098259), new LatLng(41.868912, -88.098259), new LatLng(41.868926, -88.098323), new LatLng(41.868997, -88.098330), new LatLng(41.869019, -88.098270));
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(hHighlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        hInsert = new Housing(poly, "Williston Hall", "Upperclassmen");
+        housing.put("Williston",hInsert);
+        allLocations[numBuildings]= pInsert;
+        numBuildings++;
     }
 
 }
