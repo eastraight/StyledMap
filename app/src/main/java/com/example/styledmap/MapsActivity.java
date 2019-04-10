@@ -39,7 +39,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private HashMap<String, Building> buildings;
     private HashMap<String, Housing> housing;
     private HashMap<String, Parking> parking;
-    private Building[] allLocations;
+    private Location[] allLocations;
 
     @Override
     //create instance
@@ -59,7 +59,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         parking= new HashMap<>();
         housing = new HashMap<>();
         //adjust size later
-        allLocations = new Building[20];
+        allLocations = new Location[20];
 
         //Below code to add Toast to toggle buttons.
         parkingToggle = findViewById(R.id.parking_toggle);
@@ -199,10 +199,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void locationSetup(GoogleMap mMap){
 
-        int highlight = Color.parseColor("#ff9326");
+        int bHighlight = Color.parseColor("#ff9326");
+        int pHighlight = Color.parseColor("#26358D");
+        int hHighlight = Color.parseColor("#4d5cdd");
         PolygonOptions polyOpt;
         Polygon poly;
-        Building insert;
+        Building bInsert;
+        Parking pInsert;
+        Housing hInsert;
+
+        int numBuildings = 0;
 
         /*
         *the first polygon for testing and demo (MeySci)
@@ -212,23 +218,46 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
         //Do not adjust the following 4 lines
         polyOpt.strokeWidth(0);
-        polyOpt.fillColor(highlight);
+        polyOpt.fillColor(bHighlight);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        insert = new Building(poly, "Meyer Science Center");  //change name
-        buildings.put("Meyer",insert);  //change key
-        allLocations[0]= insert;
+        bInsert = new Building(poly, "Meyer Science Center");  //change name
+        buildings.put("Meyer",bInsert);  //change key
+        allLocations[numBuildings]= bInsert;
+        numBuildings++;
 
-
+        //Initializing the Student Services Building
         polyOpt = new PolygonOptions().add(new LatLng(41.869160, -88.097786), new LatLng(41.869158, -88.097972), new LatLng(41.869118, -88.097971), new LatLng(41.869121, -88.098089), new LatLng(41.868636, -88.098079), new LatLng(41.868639, -88.097766),new LatLng(41.869160, -88.097786));
-        //Do not adjust the following 4 lines
         polyOpt.strokeWidth(0);
-        polyOpt.fillColor(highlight);
+        polyOpt.fillColor(bHighlight);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        insert = new Building(poly, "Student Services Building");  //change name
-        buildings.put("StudentServices",insert);  //change key
-        allLocations[0]= insert;
+        bInsert = new Building(poly, "Student Services Building");
+        buildings.put("StudentServices",bInsert);
+        allLocations[numBuildings]= bInsert;
+        numBuildings++;
+
+        //Initializing Blanchard Parking Lot 1
+        polyOpt = new PolygonOptions().add(new LatLng(41.868379, -88.098382), new LatLng(41.868326, -88.098956), new LatLng(41.868622, -88.098960), new LatLng(41.868610, -88.098467), new LatLng(41.868588, -88.097944), new LatLng(41.868435, -88.097897));
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(pHighlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(poly, "Blanchard Parking I");
+        parking.put("BlanchardParkingI",pInsert);
+        allLocations[numBuildings]= pInsert;
+        numBuildings++;
+
+        //Initializing Blanchard Parking Lot 2
+        polyOpt = new PolygonOptions().add(new LatLng(41.868379, -88.098382), new LatLng(41.868326, -88.098956), new LatLng(41.868622, -88.098960), new LatLng(41.868610, -88.098467), new LatLng(41.868588, -88.097944), new LatLng(41.868435, -88.097897));
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(pHighlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(poly, "Blanchard Parking II");
+        parking.put("BlanchardParking2",pInsert);
+        allLocations[numBuildings]= pInsert;
+        numBuildings++;
 
         //insert more buildings here
     }
