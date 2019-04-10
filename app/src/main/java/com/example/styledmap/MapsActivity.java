@@ -234,7 +234,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void locationSetup(GoogleMap mMap){
-        int campusOutLine = Color.argb(0, 255, 147, 38);
+//        int campusOutLine = Color.argb(0, 255, 147, 38);
         int bHighlightOrange = Color.argb(200, 255, 147, 38);
         int pHighlightGrey = Color.argb(200, 64, 64, 64);
         int hHighlightBlue = Color.argb(255, 38, 53, 141);
@@ -248,18 +248,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         int numLocations = 0;
 
         //Campus outline
-        //Meyer Science Center
-        polyOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
-        //Do not adjust the following 4 lines
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(poly, "Meyer Science Center");  //change name
-        buildings.put("Meyer",bInsert);  //change key
-        allLocations[numLocations]= bInsert;
-        numLocations++;
-
+//        //Meyer Science Center
+//        polyOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
+//        //Do not adjust the following 4 lines
+//        polyOpt.strokeWidth(0);
+//        polyOpt.fillColor(bHighlightOrange);
+//        poly = mMap.addPolygon(polyOpt);
+//        poly.setVisible(true);
+//
 
 
 

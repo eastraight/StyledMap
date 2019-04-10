@@ -6,6 +6,7 @@
     tools:context=".MainActivity">
 
     <item
+        android:title="Hamburger"
         android:id="@+id/action_favorite"
         android:icon="@drawable/ic_dehaze_black_24dp"
         android:orderInCategory="300"
