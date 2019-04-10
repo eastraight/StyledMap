@@ -233,7 +233,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void locationSetup(GoogleMap mMap){
         int campusOutLine = Color.argb(0, 255, 147, 38);
         int bHighlightOrange = Color.argb(200, 255, 147, 38);
-        int pHighlightGrey = Color.argb(0, 64, 64, 64);
+        int pHighlightGrey = Color.argb(200, 64, 64, 64);
         int hHighlightBlue = Color.argb(255, 38, 53, 141);
         PolygonOptions polyOpt;
         Polygon poly;
@@ -244,6 +244,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         int strokeWidth = 0;
         int numBuildings = 0;
 
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------
+        // Building Section
 
         //Meyer Science Center
         polyOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
@@ -280,8 +283,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         numBuildings++;
 
 
-
         //--------------------------------------------------------------------------------------------------------------------------------------------------
+        //Parking Section
 
 
         //Initializing Blanchard Parking Lot 1
@@ -318,9 +321,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         numBuildings++;
 
 
-
         //--------------------------------------------------------------------------------------------------------------------------------------------------
-
+        // Housing Section
 
 
         polyOpt = new PolygonOptions().add(new LatLng(41.869177, -88.098268), new LatLng(41.869175, -88.098102), new LatLng(41.868767, -88.098107), new LatLng(41.868766, -88.098259), new LatLng(41.868912, -88.098259), new LatLng(41.868926, -88.098323), new LatLng(41.868997, -88.098330), new LatLng(41.869019, -88.098270));
