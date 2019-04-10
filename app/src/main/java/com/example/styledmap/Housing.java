@@ -2,7 +2,7 @@ package com.example.styledmap;
 
 import com.google.android.gms.maps.model.Polygon;
 
-public class Housing extends Location {
+public class Housing extends LocationSpaces {
 
     //private File description;
     private String category;

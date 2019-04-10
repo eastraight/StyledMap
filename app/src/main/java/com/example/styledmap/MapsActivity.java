@@ -1,8 +1,13 @@
 package com.example.styledmap;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Looper;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -22,6 +28,31 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
+
+import android.location.Location;
+
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +70,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private HashMap<String, Building> buildings;
     private HashMap<String, Housing> housing;
     private HashMap<String, Parking> parking;
-    private Location[] allLocations;
+    private LocationSpaces[] allLocations;
+
+
+    //private static final Context ContextCompat = checkPermission
+
+    /* Object used to receive location updates */
+    private FusedLocationProviderClient mFusedLocationClient;
+    /* Object that defines important parameters regarding location request. */
+    private LocationRequest locationRequest;
 
     @Override
     //create instance
@@ -59,7 +98,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         parking= new HashMap<>();
         housing = new HashMap<>();
         //adjust size later
-        allLocations = new Location[100];
+        allLocations = new LocationSpaces[100];
 
         //Below code to add Toast to toggle buttons.
         parkingToggle = findViewById(R.id.parking_toggle);
@@ -123,6 +162,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         });
+
+        //location stuff:
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        locationRequest = LocationRequest.create();
+        locationRequest.setInterval(5000); // 5 second delay between each request
+        locationRequest.setFastestInterval(5000); // 5 seconds fastest time in between each request
+        locationRequest.setSmallestDisplacement(10); // 10 meters minimum displacement for new location request
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // enables GPS high accuracy location requests
+
+        sendUpdatedLocationMessage();
+
     }
 
 
@@ -178,8 +229,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         // Add a marker in the CS lab and move the camera
-        LatLng meysci = new LatLng(41.869559, -88.096015);
-        mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
+        //LatLng meysci = new LatLng(41.869559, -88.096015);
+        //mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
 
         // Create a LatLngBounds that includes the Campus of Wheaton.
         LatLngBounds WHEATON = new LatLngBounds(
@@ -307,5 +358,57 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         allLocations[numBuildings]= pInsert;
         numBuildings++;
     }
+
+
+
+
+    /*
+    (This method from github user kaushikravikumar, RealtimeTaxiAndroidDemo project)
+    Needs to be modified for our code
+
+    Checks user's location permission to see whether user has granted access to fine location and coarse location.
+    If not it will request these permissions.
+
+ */
+    /*
+    public void checkPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//Can add more as per requirement
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    123);
+        }
+    }
+    */
+
+    /*
+    This method gets user's current location
+ */
+    private void sendUpdatedLocationMessage() {
+        Log.d("SEND", "sendUpdatedLocationMessage() in process");
+        mFusedLocationClient.requestLocationUpdates(locationRequest, new LocationCallback() {
+
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                Location location = locationResult.getLastLocation();
+
+                Log.d("ONLOCATIONRESULT", "reached onLocationResult");
+
+                // Add a marker on the user's current location
+                LatLng youAreHere = new LatLng(location.getLatitude(), location.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(youAreHere).title("You are here"));
+
+            }
+        }, Looper.myLooper());
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
