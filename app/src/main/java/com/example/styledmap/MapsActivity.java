@@ -12,6 +12,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -28,26 +29,16 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 
 import android.location.Location;
-
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -79,6 +70,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private HashMap<String, Parking> parking;
     private LocationSpaces[] allLocations;
     private DrawerLayout drawerLayout;
+
+    private Marker youAreHere;
+
 
     //private static final Context ContextCompat = checkPermission
 
@@ -256,6 +250,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(WHEATON.getCenter(), 15.5f));
 
         locationSetup(mMap);
+
+        // location marker:
+        youAreHere = mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(41.869559, -88.096015))
+                .title("You are here")
+                //.icon(BitmapDescriptorFactory.fromResource(NAME OF ICON HERE))
+                );
+        youAreHere.setVisible(false);
     }
 
     private void locationSetup(GoogleMap mMap){
@@ -411,11 +413,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
     */
 
+
     /*
     This method gets user's current location
  */
     private void sendUpdatedLocationMessage() {
         Log.d("SEND", "sendUpdatedLocationMessage() in process");
+
         mFusedLocationClient.requestLocationUpdates(locationRequest, new LocationCallback() {
 
             @Override
@@ -423,18 +427,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Location location = locationResult.getLastLocation();
 
                 Log.d("ONLOCATIONRESULT", "reached onLocationResult");
-
                 // Add a marker on the user's current location
-                LatLng youAreHere = new LatLng(location.getLatitude(), location.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(youAreHere).title("You are here"));
-
+                LatLng whereYouAre = new LatLng(location.getLatitude(), location.getLongitude());
+                youAreHere.setPosition(whereYouAre);
+                youAreHere.setVisible(true);
             }
         }, Looper.myLooper());
+
+
     }
-
-
-
-
 
 
 
