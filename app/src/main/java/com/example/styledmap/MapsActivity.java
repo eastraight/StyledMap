@@ -242,7 +242,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Housing hInsert;
 
         int strokeWidth = 0;
-        int numBuildings = 0;
+        int numLocations = 0;
+
+        //Campus outline
+        //Meyer Science Center
+        polyOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
+        //Do not adjust the following 4 lines
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(poly, "Meyer Science Center");  //change name
+        buildings.put("Meyer",bInsert);  //change key
+        allLocations[numLocations]= bInsert;
+        numLocations++;
+
+
+
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------
 
 
         //Meyer Science Center
@@ -254,8 +272,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setVisible(false);
         bInsert = new Building(poly, "Meyer Science Center");  //change name
         buildings.put("Meyer",bInsert);  //change key
-        allLocations[numBuildings]= bInsert;
-        numBuildings++;
+        allLocations[numLocations]= bInsert;
+        numLocations++;
 
         //Student Services Building
         polyOpt = new PolygonOptions().add(new LatLng(41.869160, -88.097786), new LatLng(41.869158, -88.097972), new LatLng(41.869118, -88.097971), new LatLng(41.869121, -88.098089), new LatLng(41.868636, -88.098079), new LatLng(41.868639, -88.097766),new LatLng(41.869160, -88.097786));
@@ -265,8 +283,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setVisible(false);
         bInsert = new Building(poly, "Student Services Building");
         buildings.put("StudentServices",bInsert);
-        allLocations[numBuildings]= bInsert;
-        numBuildings++;
+        allLocations[numLocations]= bInsert;
+        numLocations++;
 
         //Adams Hall
         polyOpt = new PolygonOptions().add(new LatLng(41.869286, -88.100006), new LatLng(41.869194, -88.100006), new LatLng(41.869192, -88.100045), new LatLng(41.869035, -88.100044), new LatLng(41.869035, -88.099936), new LatLng(41.868987, -88.099942),new LatLng(41.868991, -88.099775), new LatLng(41.869035,-88.099797), new LatLng(41.869037, -88.099692), new LatLng(41.869193, -88.099692), new LatLng(41.869195, -88.099730), new LatLng(41.869286, -88.099732), new LatLng(41.869288, -88.099799), new LatLng(41.869296, -88.099801), new LatLng(41.869294, -88.099936), new LatLng(41.869287, -88.099937));
@@ -276,8 +294,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setVisible(false);
         bInsert = new Building(poly, "Adams Hall");
         buildings.put("AdamsHall",bInsert);
-        allLocations[numBuildings]= bInsert;
-        numBuildings++;
+        allLocations[numLocations]= bInsert;
+        numLocations++;
 
 
 
@@ -292,8 +310,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setVisible(false);
         pInsert = new Parking(poly, "Blanchard Parking I");
         parking.put("BlanchardParkingI",pInsert);
-        allLocations[numBuildings]= pInsert;
-        numBuildings++;
+        allLocations[numLocations]= bInsert;
+        numLocations++;
 
         //Initializing Blanchard Parking Lot 2
         polyOpt = new PolygonOptions().add(new LatLng(41.868563, -88.100200), new LatLng(41.868359, -88.100168), new LatLng(41.868369, -88.100878), new LatLng(41.868509, -88.100921));
@@ -303,8 +321,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setVisible(false);
         pInsert = new Parking(poly, "Blanchard Parking II");
         parking.put("BlanchardParking2",pInsert);
-        allLocations[numBuildings]= pInsert;
-        numBuildings++;
+        allLocations[numLocations]= bInsert;
+        numLocations++;
 
         //North Washington Parking
         polyOpt = new PolygonOptions().add(new LatLng(41.868399, -88.101160), new LatLng(41.868399, -88.101086), new LatLng(41.867504, -88.101084), new LatLng(41.867492, -88.101141));
@@ -314,8 +332,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setVisible(false);
         pInsert = new Parking(poly, "North Washington Parking");
         parking.put("NWashingtonParking",pInsert);
-        allLocations[numBuildings]= pInsert;
-        numBuildings++;
+        allLocations[numLocations]= bInsert;
+        numLocations++;
 
 
 
@@ -330,8 +348,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setVisible(false);
         hInsert = new Housing(poly, "Williston Hall", "Upperclassmen");
         housing.put("Williston",hInsert);
-        allLocations[numBuildings]= pInsert;
-        numBuildings++;
+        allLocations[numLocations]= bInsert;
+        numLocations++;
 
         polyOpt = new PolygonOptions().add(new LatLng(41.873356, -88.096951), new LatLng(41.872813, -88.096946), new LatLng(41.872813, -88.096557), new LatLng(41.873372, -88.096571), new LatLng(41.873367, -88.096357), new LatLng(41.872650, -88.096363), new LatLng(41.872657, -88.097130), new LatLng(41.873372, -88.097123));
         polyOpt.strokeWidth(0);
@@ -340,8 +358,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setVisible(false);
         hInsert = new Housing(poly, "Fischer Hall", "Underclassmen");
         housing.put("Fischer",hInsert);
-        allLocations[numBuildings]= pInsert;
-        numBuildings++;
+        allLocations[numLocations]= bInsert;
+        numLocations++;
     }
 
 
