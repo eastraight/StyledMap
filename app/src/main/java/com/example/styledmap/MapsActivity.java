@@ -255,7 +255,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         youAreHere = mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(41.869559, -88.096015))
                 .title("You are here")
-                //.icon(BitmapDescriptorFactory.fromResource(NAME OF ICON HERE))
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                 );
         youAreHere.setVisible(false);
     }
