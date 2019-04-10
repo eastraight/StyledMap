@@ -2,7 +2,7 @@ package com.example.styledmap;
 
 import com.google.android.gms.maps.model.Polygon;
 
-public abstract class Location {
+public abstract class LocationSpaces {
 
     protected Polygon shape;
     protected String name;
