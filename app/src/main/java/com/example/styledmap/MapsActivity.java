@@ -2,9 +2,11 @@ package com.example.styledmap;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
@@ -175,7 +177,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_favorite) {
-            Toast.makeText(MapsActivity.this, "Insert drop-down menu here", Toast.LENGTH_LONG).show();
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wheaton.cafebonappetit.com/"));
+            startActivity(browserIntent);
             return true;
         }
 

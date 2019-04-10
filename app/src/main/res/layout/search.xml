@@ -18,6 +18,6 @@
 
         <meta-data
             android:name="android.app.searchable"
-            android:resource="@xml/searchable" />
+            android:resource="@layout/searchable" />
     </activity>
 </android.support.constraint.ConstraintLayout>
