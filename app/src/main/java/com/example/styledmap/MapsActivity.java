@@ -113,7 +113,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 });
 
-        allLocations = new LocationSpaces[100];
+        allLocations = new HashMap<>();
 
         //Below code to add Toast to toggle buttons.
         parkingToggle = findViewById(R.id.parking_toggle);
