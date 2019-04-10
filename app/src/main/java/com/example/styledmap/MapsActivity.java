@@ -63,7 +63,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button parkingToggle;
     private Button buildingToggle;
     private Button housingToggle;
-    private MenuItem diningButton;
 
     private HashMap<String, LocationSpaces> allLocations;
     private DrawerLayout drawerLayout;
@@ -87,20 +86,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        mTopToolbar =  findViewById(R.id.my_toolbar);
         setSupportActionBar(mTopToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         allLocations = new HashMap<>();
         drawerLayout = findViewById(R.id.drawer_layout);
-        diningButton = findViewById(R.id.dining_button);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
-                        menuItem.setChecked(true);
+                        //menuItem.setChecked(true);
                         int id = menuItem.getItemId();
                         drawerLayout.closeDrawers();
                         switch (id) {
@@ -112,7 +109,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         return true;
                     }
                 });
-
         allLocations = new HashMap<>();
 
         //Below code to add Toast to toggle buttons.
@@ -192,7 +188,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_favorite) {
             drawerLayout.openDrawer(GravityCompat.END);
