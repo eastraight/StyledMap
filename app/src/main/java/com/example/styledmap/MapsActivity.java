@@ -1,13 +1,8 @@
 package com.example.styledmap;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Looper;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,11 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import android.location.Location;
 
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,15 +20,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -49,12 +36,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button buildingToggle;
     private Button housingToggle;
 
-
-    /* Object used to receive location updates */
-    private FusedLocationProviderClient mFusedLocationClient;
-    /* Object that defines important parameters regarding location request. */
-    private LocationRequest locationRequest;
-
+    private HashMap<String, Building> buildings;
+    private HashMap<String, Housing> housing;
+    private HashMap<String, Parking> parking;
+    private Location[] allLocations;
 
     @Override
     //create instance
@@ -70,12 +55,30 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
+        buildings = new HashMap<>();
+        parking= new HashMap<>();
+        housing = new HashMap<>();
+        //adjust size later
+        allLocations = new Location[100];
+
         //Below code to add Toast to toggle buttons.
         parkingToggle = findViewById(R.id.parking_toggle);
         parkingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Parking is filtered", Toast.LENGTH_LONG).show();
+                for(Building b : buildings.values()){
+                    b.getShape().setVisible(false);
+                }
+                for(Housing h : housing.values()){
+                    h.getShape().setVisible(false);
+                }
+                for (Parking g : parking.values()) {
+                    if (g.getShape().isVisible()) {
+                        g.getShape().setVisible(false);
+                    } else {
+                        g.getShape().setVisible(true);
+                    }
+                }
             }
         });
 
@@ -83,7 +86,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         buildingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Buildings are filtered", Toast.LENGTH_LONG).show();
+                for(Parking b : parking.values()){
+                    b.getShape().setVisible(false);
+                }
+                for(Housing h : housing.values()){
+                    h.getShape().setVisible(false);
+                }
+                //The following loop toggles all the polygons of type "building" into visibility and out.
+
+                for (Building g : buildings.values()) {
+                    if (g.getShape().isVisible()) {
+                        g.getShape().setVisible(false);
+                    } else {
+                        g.getShape().setVisible(true);
+                    }
+                }
             }
         });
 
@@ -91,21 +108,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         housingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Housing is filtered", Toast.LENGTH_LONG).show();
+                for(Building b : buildings.values()){
+                    b.getShape().setVisible(false);
+                }
+                for(Parking h : parking.values()){
+                    h.getShape().setVisible(false);
+                }
+                for (Housing g : housing.values()) {
+                    if (g.getShape().isVisible()) {
+                        g.getShape().setVisible(false);
+                    } else {
+                        g.getShape().setVisible(true);
+                    }
+                }
             }
         });
-
-
-        //location stuff:
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
-        locationRequest = LocationRequest.create();
-        locationRequest.setInterval(5000); // 5 second delay between each request
-        locationRequest.setFastestInterval(5000); // 5 seconds fastest time in between each request
-        locationRequest.setSmallestDisplacement(10); // 10 meters minimum displacement for new location request
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // enables GPS high accuracy location requests
-
-        sendUpdatedLocationMessage();
     }
 
 
@@ -161,12 +178,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         // Add a marker in the CS lab and move the camera
-        // LatLng meysci = new LatLng(41.869559, -88.096015);
-        // mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
+        LatLng meysci = new LatLng(41.869559, -88.096015);
+        mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
 
         // Create a LatLngBounds that includes the Campus of Wheaton.
         LatLngBounds WHEATON = new LatLngBounds(
-                new LatLng(41.865395, -88.103472), new LatLng(41.873451, -88.088258));
+                new LatLng(41.864417, -88.103536), new LatLng(41.873451, -88.088258));
         // Constrain the camera target to the Wheaton.
         mMap.setLatLngBoundsForCameraTarget(WHEATON);
 
@@ -177,52 +194,92 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Set center point for the map at startup
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(WHEATON.getCenter(), 15.5f));
 
-        Log.d("ONMAP", "onmap is complete");
-
-
+        locationSetup(mMap);
     }
 
+    private void locationSetup(GoogleMap mMap){
 
+        int bHighlight = Color.parseColor("#ff9326");
+        int pHighlight = Color.parseColor("#26358D");
+        int hHighlight = Color.parseColor("#4d5cdd");
+        PolygonOptions polyOpt;
+        Polygon poly;
+        Building bInsert;
+        Parking pInsert;
+        Housing hInsert;
 
+        int numBuildings = 0;
 
-    /*
-        (This method from github user kaushikravikumar, RealtimeTaxiAndroidDemo project)
+        /*
+        *the first polygon for testing and demo (MeySci)
+        * replace "examplePoly" with new name for building
+        */
+        //Defining coordinates of the polygon
+        polyOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
+        //Do not adjust the following 4 lines
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(bHighlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(poly, "Meyer Science Center");  //change name
+        buildings.put("Meyer",bInsert);  //change key
+        allLocations[numBuildings]= bInsert;
+        numBuildings++;
 
-        Checks user's location permission to see whether user has granted access to fine location and coarse location.
-        If not it will request these permissions.
+        //Initializing the Student Services Building
+        polyOpt = new PolygonOptions().add(new LatLng(41.869160, -88.097786), new LatLng(41.869158, -88.097972), new LatLng(41.869118, -88.097971), new LatLng(41.869121, -88.098089), new LatLng(41.868636, -88.098079), new LatLng(41.868639, -88.097766),new LatLng(41.869160, -88.097786));
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(bHighlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(poly, "Student Services Building");
+        buildings.put("StudentServices",bInsert);
+        allLocations[numBuildings]= bInsert;
+        numBuildings++;
 
-     */
-    public void checkPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-        ) {//Can add more as per requirement
+        //Initializing Blanchard Parking Lot 1
+        polyOpt = new PolygonOptions().add(new LatLng(41.868379, -88.098382), new LatLng(41.868326, -88.098956), new LatLng(41.868622, -88.098960), new LatLng(41.868610, -88.098467), new LatLng(41.868588, -88.097944), new LatLng(41.868435, -88.097897));
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(pHighlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(poly, "Blanchard Parking I");
+        parking.put("BlanchardParkingI",pInsert);
+        allLocations[numBuildings]= pInsert;
+        numBuildings++;
 
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                    123);
-        }
+        //Initializing Blanchard Parking Lot 2
+        polyOpt = new PolygonOptions().add(new LatLng(41.868563, -88.100200), new LatLng(41.868359, -88.100168), new LatLng(41.868369, -88.100878), new LatLng(41.868509, -88.100921));
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(pHighlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(poly, "Blanchard Parking II");
+        parking.put("BlanchardParking2",pInsert);
+        allLocations[numBuildings]= pInsert;
+        numBuildings++;
+
+        polyOpt = new PolygonOptions().add(new LatLng(41.868399, -88.101160), new LatLng(41.868399, -88.101086), new LatLng(41.867504, -88.101084), new LatLng(41.867492, -88.101141));
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(pHighlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(poly, "North Washington Parking");
+        parking.put("NWashingtonParking",pInsert);
+        allLocations[numBuildings]= pInsert;
+        numBuildings++;
+
+        //insert more buildings here
+
+        polyOpt = new PolygonOptions().add(new LatLng(41.869177, -88.098268), new LatLng(41.869175, -88.098102), new LatLng(41.868767, -88.098107), new LatLng(41.868766, -88.098259), new LatLng(41.868912, -88.098259), new LatLng(41.868926, -88.098323), new LatLng(41.868997, -88.098330), new LatLng(41.869019, -88.098270));
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(hHighlight);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        hInsert = new Housing(poly, "Williston Hall", "Upperclassmen");
+        housing.put("Williston",hInsert);
+        allLocations[numBuildings]= pInsert;
+        numBuildings++;
     }
-
-    /*
-    This method gets user's current location
- */
-    private void sendUpdatedLocationMessage() {
-        Log.d("SEND", "sendUpdatedLocationMessage() in process");
-        mFusedLocationClient.requestLocationUpdates(locationRequest, new LocationCallback() {
-
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                Location location = locationResult.getLastLocation();
-
-                Log.d("ONLOCATIONRESULT", "reached onLocationResult");
-
-                // Add a marker on the user's current location
-                LatLng youAreHere = new LatLng(location.getLatitude(), location.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(youAreHere).title("You are here"));
-
-            }
-        }, Looper.myLooper());
-    }
-
 
 }
