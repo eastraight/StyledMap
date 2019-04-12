@@ -351,7 +351,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         // Housing Section
 
-
+        // Williston Hall
         polyOpt = new PolygonOptions().add(new LatLng(41.869177, -88.098268), new LatLng(41.869175, -88.098102), new LatLng(41.868767, -88.098107), new LatLng(41.868766, -88.098259), new LatLng(41.868912, -88.098259), new LatLng(41.868926, -88.098323), new LatLng(41.868997, -88.098330), new LatLng(41.869019, -88.098270));
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(hHighlightBlue);
@@ -360,6 +360,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         hInsert = new Housing(poly, "Williston Hall", "Upperclassmen");
         allLocations.put(hInsert.getName(),hInsert);
 
+        // McManis-Evans Hall
+        polyOpt = new PolygonOptions().add(new LatLng(41.870430, -88.097756), new LatLng(41.870303, -88.097757), new LatLng(41.870318, -88.097816), new LatLng(41.870089, -88.097813), new LatLng(41.870083, -88.097743), new LatLng(41.869952, -88.097743), new LatLng(41.869971, -88.097816),
+                new LatLng(41.869744, -88.097810), new LatLng(41.869743, -88.097764), new LatLng(41.869625, -88.097767), new LatLng(41.869620, -88.098018), new LatLng(41.869741, -88.098017), new LatLng(41.869743, -88.097967), new LatLng(41.869967, -88.097968),
+                new LatLng(41.869955, -88.098004), new LatLng(41.870080, -88.098003), new LatLng(41.870089, -88.097966), new LatLng(41.870316, -88.097963), new LatLng(41.870317, -88.098017), new LatLng(41.870432, -88.098016), new LatLng(41.870430, -88.097756));
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(hHighlightBlue);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        hInsert = new Housing(poly, "McManis-Evans Hall", "Upperclassmen");
+        allLocations.put(hInsert.getName(),hInsert);
+
+        // Fischer Hall
         polyOpt = new PolygonOptions().add(new LatLng(41.873356, -88.096951), new LatLng(41.872813, -88.096946), new LatLng(41.872813, -88.096557), new LatLng(41.873372, -88.096571), new LatLng(41.873367, -88.096357), new LatLng(41.872650, -88.096363), new LatLng(41.872657, -88.097130), new LatLng(41.873372, -88.097123));
         polyOpt.strokeWidth(0);
         polyOpt.fillColor(hHighlightBlue);
@@ -367,6 +379,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setVisible(false);
         hInsert = new Housing(poly, "Fischer Hall", "Underclassmen");
         allLocations.put(hInsert.getName(),hInsert);
+
+        // Smith-Traber Hall
+        polyOpt = new PolygonOptions().add(new LatLng(41.870361, -88.094306), new LatLng(41.870321, -88.094452), new LatLng(41.870687, -88.094663), new LatLng(41.870660, -88.094756), new LatLng(41.870625, -88.094819), new LatLng(41.870667, -88.094875), new LatLng(41.870708, -88.094824), new LatLng(41.870754, -88.094853),
+                new LatLng(41.870789, -88.094928), new LatLng(41.870780, -88.094963), new LatLng(41.870977, -88.095076), new LatLng(41.870992, -88.095040), new LatLng(41.871037, -88.095064), new LatLng(41.871094, -88.094885), new LatLng(41.871049, -88.094859), new LatLng(41.871067, -88.094813), new LatLng(41.870875, -88.094703),
+                new LatLng(41.870905, -88.094613), new LatLng(41.870843, -88.094573), new LatLng(41.870826, -88.094616), new LatLng(41.870763, -88.094572), new LatLng(41.870930, -88.094061), new LatLng(41.870814, -88.093996), new LatLng(41.870666, -88.094485), new LatLng(41.870361, -88.094306));
+        polyOpt.strokeWidth(0);
+        polyOpt.fillColor(hHighlightBlue);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        hInsert = new Housing(poly, "Smith-Traber Hall", "Underclassmen");
+        allLocations.put(hInsert.getName(),hInsert);
+
     }
 
 
