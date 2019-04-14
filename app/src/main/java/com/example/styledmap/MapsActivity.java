@@ -315,6 +315,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         bInsert = new Building(poly, "Adams Hall");
         allLocations.put(bInsert.getName(),bInsert);
 
+        //Armeding/Conserve
+        polyOpt = new PolygonOptions().add( new LatLng(41.870289, -88.098995), new LatLng(41.870289, -88.098779), new LatLng(41.870391, -88.098777), new LatLng(41.870393, -88.098736), new LatLng(41.870572, -88.098736), new LatLng(41.870579, -88.098591), new LatLng(41.870460, -88.098590), new LatLng(41.870465, -88.098462), new LatLng(41.870423, -88.098455), new LatLng(41.870423, -88.098305), new LatLng(41.870468, -88.098305), new LatLng(41.870465, -88.098166), new LatLng(41.870550, -88.098171), new LatLng(41.870552, -88.097931), new LatLng(41.870687, -88.097931), new LatLng(41.870687, -88.098171), new LatLng(41.870728, -88.098171), new LatLng(41.870727, -88.098586), new LatLng(41.870684, -88.098590), new LatLng(41.870681, -88.099040), new LatLng(41.870392, -88.099035), new LatLng(41.870390, -88.099004));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(poly, "Convservatory");
+        allLocations.put(bInsert.getName(),bInsert);
+
+        //Memorial Student Center
+        polyOpt = new PolygonOptions().add( new LatLng(41.869025, -88.098800), new LatLng(41.869029, -88.098650), new LatLng(41.869065, -88.098651), new LatLng(41.869072, -88.098532), new LatLng(41.869215, -88.098540), new LatLng(41.869217, -88.098657), new LatLng(41.869258, -88.098657), new LatLng(41.869253, -88.098811), new LatLng(41.869212, -88.098812), new LatLng(41.869208, -88.098930), new LatLng(41.869067, -88.098923), new LatLng(41.869066, -88.098803));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(poly, "MemorialStudentCenter");
+        allLocations.put(bInsert.getName(),bInsert);
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
@@ -364,7 +381,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt = new PolygonOptions().add(new LatLng(41.870430, -88.097756), new LatLng(41.870303, -88.097757), new LatLng(41.870318, -88.097816), new LatLng(41.870089, -88.097813), new LatLng(41.870083, -88.097743), new LatLng(41.869952, -88.097743), new LatLng(41.869971, -88.097816),
                 new LatLng(41.869744, -88.097810), new LatLng(41.869743, -88.097764), new LatLng(41.869625, -88.097767), new LatLng(41.869620, -88.098018), new LatLng(41.869741, -88.098017), new LatLng(41.869743, -88.097967), new LatLng(41.869967, -88.097968),
                 new LatLng(41.869955, -88.098004), new LatLng(41.870080, -88.098003), new LatLng(41.870089, -88.097966), new LatLng(41.870316, -88.097963), new LatLng(41.870317, -88.098017), new LatLng(41.870432, -88.098016), new LatLng(41.870430, -88.097756));
-        polyOpt.strokeWidth(0);
+        polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
@@ -373,7 +390,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // Fischer Hall
         polyOpt = new PolygonOptions().add(new LatLng(41.873356, -88.096951), new LatLng(41.872813, -88.096946), new LatLng(41.872813, -88.096557), new LatLng(41.873372, -88.096571), new LatLng(41.873367, -88.096357), new LatLng(41.872650, -88.096363), new LatLng(41.872657, -88.097130), new LatLng(41.873372, -88.097123));
-        polyOpt.strokeWidth(0);
+        polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
@@ -384,7 +401,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt = new PolygonOptions().add(new LatLng(41.870361, -88.094306), new LatLng(41.870321, -88.094452), new LatLng(41.870687, -88.094663), new LatLng(41.870660, -88.094756), new LatLng(41.870625, -88.094819), new LatLng(41.870667, -88.094875), new LatLng(41.870708, -88.094824), new LatLng(41.870754, -88.094853),
                 new LatLng(41.870789, -88.094928), new LatLng(41.870780, -88.094963), new LatLng(41.870977, -88.095076), new LatLng(41.870992, -88.095040), new LatLng(41.871037, -88.095064), new LatLng(41.871094, -88.094885), new LatLng(41.871049, -88.094859), new LatLng(41.871067, -88.094813), new LatLng(41.870875, -88.094703),
                 new LatLng(41.870905, -88.094613), new LatLng(41.870843, -88.094573), new LatLng(41.870826, -88.094616), new LatLng(41.870763, -88.094572), new LatLng(41.870930, -88.094061), new LatLng(41.870814, -88.093996), new LatLng(41.870666, -88.094485), new LatLng(41.870361, -88.094306));
-        polyOpt.strokeWidth(0);
+        polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
@@ -393,12 +410,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //Evans
         polyOpt = new PolygonOptions().add(new LatLng(41.869627, -88.098021), new LatLng(41.869751, -88.098021), new LatLng(41.869751, -88.097972), new LatLng(41.869979, -88.097973), new LatLng(41.869979, -88.097993), new LatLng(41.870091, -88.097997), new LatLng(41.870092, -88.097973), new LatLng(41.870327, -88.097968), new LatLng(41.870320, -88.098023), new LatLng(41.870447, -88.098020), new LatLng(41.870447, -88.097769), new LatLng(41.870327, -88.097766), new LatLng(41.870325, -88.097819), new LatLng(41.870092, -88.097814), new LatLng(41.870091, -88.097774), new LatLng(41.869981, -88.097772), new LatLng(41.869882, -88.097816), new LatLng(41.869750, -88.097814), new LatLng(41.869748, -88.097762), new LatLng(41.869629, -88.097767));
-        polyOpt.strokeWidth(0);
+        polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
         hInsert = new Housing(poly, "Mac-Evans", "Underclassmen");
         allLocations.put(hInsert.getName(),hInsert);
+
+
 
     }
 
