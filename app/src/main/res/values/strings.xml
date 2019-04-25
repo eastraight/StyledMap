@@ -5,4 +5,5 @@
     <string name="building_toggle">Buildings</string>
     <string name="housing_toggle">Housing</string>
     <string name="saga_menu">Dining Options</string>
+    <string name="housing_menu">Housing Options</string>
 </resources>
