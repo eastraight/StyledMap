@@ -4,6 +4,13 @@
     <string name="parking_toggle">Parking</string>
     <string name="building_toggle">Buildings</string>
     <string name="housing_toggle">Housing</string>
+
+    <string-array name="my_building">
+        <item>Blanchard Hall</item>
+        <item>Student Resource Center</item>
+        <item>Billy Graham Center</item>
+        <item>Buswell Memorial Library</item>
+    </string-array>
     <string name="saga_menu">Dining Options</string>
     <string name="housing_menu">Housing Options</string>
 </resources>
