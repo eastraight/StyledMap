@@ -21,7 +21,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -47,11 +49,32 @@ import com.google.android.gms.maps.model.PolygonOptions;
 
 import android.location.Location;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -67,23 +90,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private DrawerLayout drawerLayout;
 
     private Marker youAreHere;
-    private boolean mLocationPermissionGranted;
 
-
-    //private static final Context ContextCompat = checkPermission
+    ListView search_building;
+    ArrayAdapter<String> adapter;
 
     /* Object used to receive location updates */
     private FusedLocationProviderClient mFusedLocationClient;
     /* Object that defines important parameters regarding location request. */
     private LocationRequest locationRequest;
 
+    public final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 
-    public static int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    /*
-    private GeoDataClient mGeoDataClient;
-    private PlaceDetectionClient mPlaceDetectionClient;
-    private FusedLocationProviderClient mFusedLocationProviderClient;
-    */
 
 
     @Override
@@ -119,6 +136,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 });
         allLocations = new HashMap<>();
+
+        search_building = (ListView) findViewById(R.id.search_building);
+        ArrayList<String> arrayBuilding = new ArrayList<>();
+        arrayBuilding.addAll(Arrays.asList(getResources().getStringArray(R.array.my_building)));
+        adapter = new ArrayAdapter<String>(
+                MapsActivity.this,
+                android.R.layout.simple_list_item_1,
+                arrayBuilding
+        );
+        search_building.setAdapter(adapter);
 
         //Below code to add Toast to toggle buttons.
         parkingToggle = findViewById(R.id.parking_toggle);
@@ -172,7 +199,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //        diningButton.setMenuItemClickListener(new MenuItem.OnMenuItemClickListener())
 
 
-
         //location stuff:
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -182,7 +208,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         locationRequest.setSmallestDisplacement(1); // 1 meter minimum displacement for new location request
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // enables GPS high accuracy location requests
 
-        getLocationPermission();
         sendUpdatedLocationMessage();
 
     }
@@ -255,6 +280,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Set center point for the map at startup
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(WHEATON.getCenter(), 15.5f));
 
+
         locationSetup(mMap);
 
         // location marker:
@@ -262,11 +288,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .position(new LatLng(41.869559, -88.096015))
                 .title("You are here")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                );
+        );
         youAreHere.setVisible(false);
     }
 
-    private void locationSetup(GoogleMap mMap){
+    private void locationSetup(GoogleMap mMap) {
 //        int campusOutLine = Color.argb(0, 255, 147, 38);
         int bHighlightOrange = Color.argb(200, 255, 147, 38);
         int pHighlightGrey = Color.argb(200, 64, 64, 64);
@@ -293,13 +319,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //
 
 
-
         //--------------------------------------------------------------------------------------------------------------------------------------------------
 
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         // Building Section
-
 
         //Meyer Science Center
         polyOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
@@ -537,7 +561,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     /*
-     * The following location permissions method from the Google Maps Platform
+     * The following location permissions method adapted from the Google Maps Platform
      * https://developers.google.com/maps/documentation/android-sdk/current-place-tutorial
      */
 
@@ -550,7 +574,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-            mLocationPermissionGranted = true;
         } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
@@ -564,14 +587,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
-        mLocationPermissionGranted = false;
-        if (requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
-            // If request is cancelled, the result arrays are empty.
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                mLocationPermissionGranted = true;
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                }
             }
         }
+        sendUpdatedLocationMessage();
+
     }
 
 
@@ -581,6 +606,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void sendUpdatedLocationMessage() {
         Log.d("SEND", "sendUpdatedLocationMessage() in process");
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.d("SEND", "marker#1");
+            getLocationPermission();
+            Log.d("SEND", "marker#2");
+            return;
+        }
+        Log.d("SEND", "marker#3");
         mFusedLocationClient.requestLocationUpdates(locationRequest, new LocationCallback() {
 
             @Override
