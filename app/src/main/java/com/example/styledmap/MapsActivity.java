@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -78,6 +79,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 
 
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+
 
     @Override
     //create instance
@@ -93,7 +96,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         allLocations = new HashMap<>();
         drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -107,6 +111,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wheaton.cafebonappetit.com/"));
                                 startActivity(browserIntent);
                                 return true;
+                            case R.id.housing_options:
+                                Intent housingIntent = new Intent(navigationView.getContext(), HousingInfo.class);
+                                startActivity(housingIntent);
+
                         }
                         return true;
                     }
@@ -123,7 +131,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         );
         search_building.setAdapter(adapter);
 
-        //Below code to add Toast to toggle buttons.
+        //Below code to action to Buttons
         parkingToggle = findViewById(R.id.parking_toggle);
         parkingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
