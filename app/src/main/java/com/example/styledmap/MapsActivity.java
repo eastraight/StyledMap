@@ -412,7 +412,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(pHighlightGrey);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        pInsert = new Parking(poly, "Conserve Court Parking", new GoogleMap.OnPolygonClickListener(){
+        pInsert = new Parking(poly, "Conserv Court Parking", new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
                 Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) cpl", Toast.LENGTH_SHORT).show();
             }
@@ -517,13 +517,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setClickable(true);
         poly.setTag(hInsert);
 
-        //Evans
+        // McManis-Evans Hall
         polyOpt = new PolygonOptions().add(new LatLng(41.869627, -88.098021), new LatLng(41.869751, -88.098021), new LatLng(41.869751, -88.097972), new LatLng(41.869979, -88.097973), new LatLng(41.869979, -88.097993), new LatLng(41.870091, -88.097997), new LatLng(41.870092, -88.097973), new LatLng(41.870327, -88.097968), new LatLng(41.870332, -88.098021), new LatLng(41.870447, -88.098020), new LatLng(41.870447, -88.097769), new LatLng(41.870327, -88.097766), new LatLng(41.870325, -88.097819), new LatLng(41.870092, -88.097814), new LatLng(41.870091, -88.097774), new LatLng(41.869981, -88.097772), new LatLng(41.869981, -88.097814), new LatLng(41.869750, -88.097814), new LatLng(41.869748, -88.097762), new LatLng(41.869629, -88.097767));
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        hInsert = new Housing(poly, "Mac-Evans", "Underclassmen",new GoogleMap.OnPolygonClickListener(){
+        hInsert = new Housing(poly, "McManis-Evans", "Upperclassmen",new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
                 Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) eh", Toast.LENGTH_SHORT).show();
             }
