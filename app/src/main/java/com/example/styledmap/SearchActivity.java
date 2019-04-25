@@ -1,5 +1,6 @@
 package com.example.styledmap;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +20,17 @@ public class SearchActivity extends AppCompatActivity {
         public void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             setContentView(R.layout.search);
+            handleIntent(getIntent());
+        }
+
+        protected void onNewIntent(Intent intent){
+            handleIntent(intent);
+        }
+
+        private void handleIntent(Intent intent){
+            if(Intent.ACTION_SEARCH.equals(intent.getAction())){
+                String entered = intent.getStringExtra(intent.getAction());
+            }
         }
     }
 

@@ -7,5 +7,15 @@
         android:hint="search hint"
         android:searchButtonText = "search button text">
         >
+
     </searchable>
-</LinearLayout>
+
+    <activity android:name=".SearchResultsActivity">
+    <intent-filter>
+        <action android:name="android.intent.action.SEARCH" />
+    </intent-filter>
+</activity>
+
+    </LinearLayout>
+
+
