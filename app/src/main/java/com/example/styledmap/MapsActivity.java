@@ -357,13 +357,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setClickable(true);
         poly.setTag(bInsert);
 
-        //Armeding/Conserve
+        // Armerding/Conserv
         polyOpt = new PolygonOptions().add( new LatLng(41.870289, -88.098995), new LatLng(41.870289, -88.098779), new LatLng(41.870391, -88.098777), new LatLng(41.870393, -88.098736), new LatLng(41.870572, -88.098736), new LatLng(41.870579, -88.098591), new LatLng(41.870460, -88.098590), new LatLng(41.870465, -88.098462), new LatLng(41.870423, -88.098455), new LatLng(41.870423, -88.098305), new LatLng(41.870468, -88.098305), new LatLng(41.870465, -88.098166), new LatLng(41.870550, -88.098171), new LatLng(41.870552, -88.097931), new LatLng(41.870687, -88.097931), new LatLng(41.870687, -88.098171), new LatLng(41.870728, -88.098171), new LatLng(41.870727, -88.098586), new LatLng(41.870684, -88.098590), new LatLng(41.870681, -88.099040), new LatLng(41.870392, -88.099035), new LatLng(41.870390, -88.099004));
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        bInsert = new Building(poly, "Convservatory", new GoogleMap.OnPolygonClickListener(){
+        bInsert = new Building(poly, "Armerding", new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
                 Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) c", Toast.LENGTH_SHORT).show();
             }
@@ -378,7 +378,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        bInsert = new Building(poly, "MemorialStudentCenter", new GoogleMap.OnPolygonClickListener(){
+        bInsert = new Building(poly, "Memorial Student Center", new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
                 Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) msc", Toast.LENGTH_SHORT).show();
             }
@@ -386,6 +386,32 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         allLocations.put(bInsert.getName(),bInsert);
         poly.setClickable(true);
         poly.setTag(bInsert);
+
+        // Edman Chapel
+        polyOpt = new PolygonOptions().add(new LatLng(41.869666, -88.100397), new LatLng(41.869653, -88.100889),
+                new LatLng(41.870140, -88.100922), new LatLng(41.870141, -88.100876), new LatLng(41.870252, -88.100882),
+                new LatLng(41.870257, -88.100794), new LatLng(41.870282, -88.100797), new LatLng(41.870288, -88.100540),
+                new LatLng(41.870259, -88.100535), new LatLng(41.870259, -88.100444), new LatLng(41.870149, -88.100438),
+                new LatLng(41.870148, -88.100411), new LatLng(41.870142, -88.100408), new LatLng(41.870146, -88.100123),
+                new LatLng(41.870166, -88.100125), new LatLng(41.870169, -88.100018), new LatLng(41.870004, -88.100011),
+                new LatLng(41.870002, -88.100117), new LatLng(41.870027, -88.100118), new LatLng(41.870022, -88.100412),
+//                new LatLng(), new LatLng(), new LatLng(),
+                new LatLng(41.869666, -88.100397));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(poly, "Edman Chapel", new GoogleMap.OnPolygonClickListener(){
+            public void onPolygonClick(Polygon poly){
+                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) edmc", Toast.LENGTH_SHORT).show();
+            }
+        });
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
+
+
+
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
@@ -531,6 +557,61 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         allLocations.put(hInsert.getName(),hInsert);
         poly.setClickable(true);
         poly.setTag(hInsert);
+
+        // Saint and Elliot
+        polyOpt = new PolygonOptions().add(new LatLng(41.869974, -88.092459), new LatLng( 41.869982, -88.092162 ),
+                new LatLng( 41.869443, -88.092164 ), new LatLng( 41.869452, -88.092456), new LatLng(41.869974, -88.092459));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(hHighlightBlue);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        hInsert = new Housing(poly, "Saint and Elliot", "Apartment",new GoogleMap.OnPolygonClickListener(){
+            public void onPolygonClick(Polygon poly){
+                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) sne", Toast.LENGTH_SHORT).show();
+            }
+        });
+        allLocations.put(hInsert.getName(),hInsert);
+        poly.setClickable(true);
+        poly.setTag(hInsert);
+
+        // Michigan
+        polyOpt = new PolygonOptions().add(new LatLng( 41.865870, -88.096228), new LatLng( 41.865877, -88.095568),
+                new LatLng( 41.865719, -88.095573), new LatLng(41.865717, -88.095730), new LatLng(41.865739, -88.095732),
+                new LatLng(41.865733, -88.096062), new LatLng(41.865713, -88.096064), new LatLng(41.865710, -88.096221),
+                new LatLng( 41.865870, -88.096228 ));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(hHighlightBlue);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        hInsert = new Housing(poly, "Michigan", "Apartment",new GoogleMap.OnPolygonClickListener(){
+            public void onPolygonClick(Polygon poly){
+                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) m", Toast.LENGTH_SHORT).show();
+            }
+        });
+        allLocations.put(hInsert.getName(),hInsert);
+        poly.setClickable(true);
+        poly.setTag(hInsert);
+
+        // Crescent (try to merge with Michigan??)
+        polyOpt = new PolygonOptions().add(new LatLng(41.866074, -88.096241), new LatLng(41.866105, -88.096090),
+                new LatLng(41.866083, -88.096080), new LatLng(41.866147, -88.095759), new LatLng(41.866169, -88.095767),
+                new LatLng(41.866200, -88.095614), new LatLng(41.866045, -88.095560), new LatLng(41.865919, -88.096184),
+                new LatLng(41.866074, -88.096241));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(hHighlightBlue);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        hInsert = new Housing(poly, "Crescent", "Apartment",new GoogleMap.OnPolygonClickListener(){
+            public void onPolygonClick(Polygon poly){
+                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) c", Toast.LENGTH_SHORT).show();
+            }
+        });
+        allLocations.put(hInsert.getName(),hInsert);
+        poly.setClickable(true);
+        poly.setTag(hInsert);
+
+
+
 
 
         mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener(){
