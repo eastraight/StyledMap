@@ -43,13 +43,6 @@
                 android:text="@string/housing_toggle"
                 android:backgroundTint="@color/colorAccent"/>
 
-        <ListView
-            android:id="@+id/search_building"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="722dp" />
-        app:layout_constraintStart_toStartOf="@+id/pract_spinner"
-        app:layout_constraintTop_toTopOf="@+id/pract_spinner" />
 
         </android.support.v7.widget.Toolbar>
 

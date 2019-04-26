@@ -92,7 +92,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Marker youAreHere;
     private boolean mLocationPermissionGranted;
 
-    ListView search_building;
+
     ArrayAdapter<String> adapter;
 
     //private static final Context ContextCompat = checkPermission
@@ -145,7 +145,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 });
         allLocations = new HashMap<>();
 
-        search_building = (ListView) findViewById(R.id.search_building);
+
         ArrayList<String> arrayBuilding = new ArrayList<>();
         arrayBuilding.addAll(Arrays.asList(getResources().getStringArray(R.array.my_building)));
         adapter = new ArrayAdapter<String>(
@@ -153,7 +153,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 android.R.layout.simple_list_item_1,
                 arrayBuilding
         );
-        search_building.setAdapter(adapter);
+
 
         //Below code to add Toast to toggle buttons.
         parkingToggle = findViewById(R.id.parking_toggle);
