@@ -387,31 +387,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setClickable(true);
         poly.setTag(bInsert);
 
-        // Edman Chapel
-        polyOpt = new PolygonOptions().add(new LatLng(41.869666, -88.100397), new LatLng(41.869653, -88.100889),
-                new LatLng(41.870140, -88.100922), new LatLng(41.870141, -88.100876), new LatLng(41.870252, -88.100882),
-                new LatLng(41.870257, -88.100794), new LatLng(41.870282, -88.100797), new LatLng(41.870288, -88.100540),
-                new LatLng(41.870259, -88.100535), new LatLng(41.870259, -88.100444), new LatLng(41.870149, -88.100438),
-                new LatLng(41.870148, -88.100411), new LatLng(41.870142, -88.100408), new LatLng(41.870146, -88.100123),
-                new LatLng(41.870166, -88.100125), new LatLng(41.870169, -88.100018), new LatLng(41.870004, -88.100011),
-                new LatLng(41.870002, -88.100117), new LatLng(41.870027, -88.100118), new LatLng(41.870022, -88.100412),
-//                new LatLng(), new LatLng(), new LatLng(),
-                new LatLng(41.869666, -88.100397));
+        //Edman Chapel
+        polyOpt = new PolygonOptions().add( new LatLng(41.869605, -88.100807), new LatLng(41.869659, -88.100813), new LatLng(41.869663, -88.100896), new LatLng(41.870147, -88.100909), new LatLng(41.870147, -88.100885), new LatLng(41.870258, -88.100888), new LatLng(41.870258, -88.100796), new LatLng(41.870290, -88.100794), new LatLng(41.870294, -88.100552), new LatLng(41.870262, -88.100544), new LatLng(41.870264, -88.100450), new LatLng(41.870158, -88.100442), new LatLng(41.870156, -88.100134), new LatLng(41.870172, -88.100129), new LatLng(41.870176, -88.100019), new LatLng(41.870009, -88.100016), new LatLng(41.870007, -88.100126), new LatLng(41.870025, -88.100126), new LatLng(41.870017, -88.100418), new LatLng(41.869669, -88.100397), new LatLng(41.869669, -88.100485), new LatLng(41.869611, -88.100483));
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        bInsert = new Building(poly, "Edman Chapel", new GoogleMap.OnPolygonClickListener(){
+        bInsert = new Building(poly, "EdmanChapel", new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) edmc", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) msc", Toast.LENGTH_SHORT).show();
             }
         });
         allLocations.put(bInsert.getName(),bInsert);
         poly.setClickable(true);
         poly.setTag(bInsert);
-
-
-
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
@@ -438,7 +427,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(pHighlightGrey);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        pInsert = new Parking(poly, "Conserv Court Parking", new GoogleMap.OnPolygonClickListener(){
+        pInsert = new Parking(poly, "Conserve Court Parking", new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
                 Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) cpl", Toast.LENGTH_SHORT).show();
             }
