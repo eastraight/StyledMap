@@ -1,18 +1,25 @@
 package com.example.styledmap;
 
+import android.app.Activity;
+import android.widget.Toast;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Polygon;
 
 public class Building extends LocationSpaces {
 
-    //private File description;
+    private String description;
 
-    public Building(Polygon shape, String name, GoogleMap.OnPolygonClickListener click){
+    public Building(Activity m, GoogleMap mMap, Polygon shape, String name, String descFile) {
         super.shape = shape;
         super.name = name;
         super.type = "b";
-        super.click = click;
+        super.mMap = mMap;
+        description = descFile;
+        super.m = m;
     }
 
-    //insert file parser/retriever here
+    public void doClick() {
+        Toast.makeText(m,"Clicked: " + name, Toast.LENGTH_SHORT).show();
+    }
 }

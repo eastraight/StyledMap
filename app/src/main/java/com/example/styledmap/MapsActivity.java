@@ -316,28 +316,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        bInsert = new Building(poly, "Meyer Science Center", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) meysci", Toast.LENGTH_SHORT).show();
-            }
-        });  //change name
+        bInsert = new Building(this, mMap, poly, "Meyer Science Center", "meyer.txt");  //change name
         allLocations.put(bInsert.getName(),bInsert);
         poly.setClickable(true);
         poly.setTag(bInsert);
 
 
-
+        /**
+         * No desc file.
+         */
         //Student Services Building
         polyOpt = new PolygonOptions().add(new LatLng(41.869160, -88.097786), new LatLng(41.869158, -88.097972), new LatLng(41.869118, -88.097971), new LatLng(41.869121, -88.098089), new LatLng(41.868636, -88.098079), new LatLng(41.868639, -88.097766),new LatLng(41.869160, -88.097786));
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        bInsert = new Building(poly, "Student Services Building", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) ssb", Toast.LENGTH_SHORT).show();
-            }
-        } );
+        bInsert = new Building(this, mMap, poly, "Student Services Building", "");
         allLocations.put(bInsert.getName(),bInsert);
         poly.setClickable(true);
         poly.setTag(bInsert);
@@ -348,11 +342,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        bInsert = new Building(poly, "Adams Hall", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) ah", Toast.LENGTH_SHORT).show();
-            }
-        });
+        bInsert = new Building(this, mMap, poly, "Adams Hall", "adams.txt");
         allLocations.put(bInsert.getName(),bInsert);
         poly.setClickable(true);
         poly.setTag(bInsert);
@@ -363,11 +353,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        bInsert = new Building(poly, "Armerding", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) c", Toast.LENGTH_SHORT).show();
-            }
-        });
+        bInsert = new Building(this, mMap, poly, "Armerding", "armerding.txt");
         allLocations.put(bInsert.getName(),bInsert);
         poly.setClickable(true);
         poly.setTag(bInsert);
@@ -378,11 +364,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        bInsert = new Building(poly, "Memorial Student Center", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) msc", Toast.LENGTH_SHORT).show();
-            }
-        });
+        bInsert = new Building(this, mMap, poly, "Memorial Student Center", "msc.txt");
         allLocations.put(bInsert.getName(),bInsert);
         poly.setClickable(true);
         poly.setTag(bInsert);
@@ -393,11 +375,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        bInsert = new Building(poly, "EdmanChapel", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) msc", Toast.LENGTH_SHORT).show();
-            }
-        });
+        bInsert = new Building(this, mMap, poly, "EdmanChapel", "edman.txt");
         allLocations.put(bInsert.getName(),bInsert);
         poly.setClickable(true);
         poly.setTag(bInsert);
@@ -412,11 +390,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(pHighlightGrey);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        pInsert = new Parking(poly, "Tennis Court Parking", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) tcp", Toast.LENGTH_SHORT).show();
-            }
-        });
+        pInsert = new Parking(this, mMap, poly, "Tennis Court Parking");
         allLocations.put(pInsert.getName(),pInsert);
         poly.setClickable(true);
         poly.setTag(pInsert);
@@ -427,11 +401,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(pHighlightGrey);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        pInsert = new Parking(poly, "Conserve Court Parking", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) cpl", Toast.LENGTH_SHORT).show();
-            }
-        });
+        pInsert = new Parking(this, mMap, poly, "Conserve Court Parking");
         allLocations.put(pInsert.getName(),pInsert);
         poly.setClickable(true);
         poly.setTag(pInsert);
@@ -442,11 +412,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(pHighlightGrey);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        pInsert = new Parking(poly, "Blanchard Parking I", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) bpl1", Toast.LENGTH_SHORT).show();
-            }
-        });
+        pInsert = new Parking(this, mMap, poly, "Blanchard Parking I");
         allLocations.put(pInsert.getName(),pInsert);
         poly.setClickable(true);
         poly.setTag(pInsert);
@@ -457,11 +423,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(pHighlightGrey);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        pInsert = new Parking(poly, "Blanchard Parking II", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) bpl2", Toast.LENGTH_SHORT).show();
-            }
-        });
+        pInsert = new Parking(this, mMap, poly, "Blanchard Parking II");
         allLocations.put(pInsert.getName(),pInsert);
         poly.setClickable(true);
         poly.setTag(pInsert);
@@ -472,11 +434,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(pHighlightGrey);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        pInsert = new Parking(poly, "North Washington Parking", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) nwp", Toast.LENGTH_SHORT).show();
-            }
-        });
+        pInsert = new Parking(this, mMap, poly, "North Washington Parking");
         allLocations.put(pInsert.getName(),pInsert);
         poly.setClickable(true);
         poly.setTag(pInsert);
@@ -485,36 +443,37 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         // Housing Section
 
+        /**
+         * No desc file.
+         */
         // Williston Hall
         polyOpt = new PolygonOptions().add(new LatLng(41.869177, -88.098268), new LatLng(41.869175, -88.098102), new LatLng(41.868767, -88.098107), new LatLng(41.868766, -88.098259), new LatLng(41.868912, -88.098259), new LatLng(41.868926, -88.098323), new LatLng(41.868997, -88.098330), new LatLng(41.869019, -88.098270));
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        hInsert = new Housing(poly, "Williston Hall", "Upperclassmen", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) wh", Toast.LENGTH_SHORT).show();
-            }
-        });
+        hInsert = new Housing(this, mMap, poly, "Williston Hall", "Upperclassmen", "");
         allLocations.put(hInsert.getName(),hInsert);
         poly.setClickable(true);
         poly.setTag(hInsert);
 
+        /**
+         * No desc file.
+         */
         // Fischer Hall
         polyOpt = new PolygonOptions().add(new LatLng(41.873356, -88.096951), new LatLng(41.872813, -88.096946), new LatLng(41.872813, -88.096557), new LatLng(41.873372, -88.096571), new LatLng(41.873367, -88.096357), new LatLng(41.872650, -88.096363), new LatLng(41.872657, -88.097130), new LatLng(41.873372, -88.097123));
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        hInsert = new Housing(poly, "Fischer Hall", "Underclassmen", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) fh", Toast.LENGTH_SHORT).show();
-            }
-        });
+        hInsert = new Housing(this, mMap, poly, "Fischer Hall", "Underclassmen", "");
         allLocations.put(hInsert.getName(),hInsert);
         poly.setClickable(true);
         poly.setTag(hInsert);
 
+        /**
+         * No desc file.
+         */
         // Smith-Traber Hall
         polyOpt = new PolygonOptions().add(new LatLng(41.870361, -88.094306), new LatLng(41.870321, -88.094452), new LatLng(41.870687, -88.094663), new LatLng(41.870660, -88.094756), new LatLng(41.870625, -88.094819), new LatLng(41.870667, -88.094875), new LatLng(41.870708, -88.094824), new LatLng(41.870754, -88.094853),
                 new LatLng(41.870789, -88.094928), new LatLng(41.870780, -88.094963), new LatLng(41.870977, -88.095076), new LatLng(41.870992, -88.095040), new LatLng(41.871037, -88.095064), new LatLng(41.871094, -88.094885), new LatLng(41.871049, -88.094859), new LatLng(41.871067, -88.094813), new LatLng(41.870875, -88.094703),
@@ -523,30 +482,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        hInsert = new Housing(poly, "Smith-Traber Hall", "Underclassmen", new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) sth", Toast.LENGTH_SHORT).show();
-            }
-        });
+        hInsert = new Housing(this, mMap, poly, "Smith-Traber Hall", "Underclassmen", "");
         allLocations.put(hInsert.getName(),hInsert);
         poly.setClickable(true);
         poly.setTag(hInsert);
 
+        /**
+         * No desc file.
+         */
         // McManis-Evans Hall
         polyOpt = new PolygonOptions().add(new LatLng(41.869627, -88.098021), new LatLng(41.869751, -88.098021), new LatLng(41.869751, -88.097972), new LatLng(41.869979, -88.097973), new LatLng(41.869979, -88.097993), new LatLng(41.870091, -88.097997), new LatLng(41.870092, -88.097973), new LatLng(41.870327, -88.097968), new LatLng(41.870332, -88.098021), new LatLng(41.870447, -88.098020), new LatLng(41.870447, -88.097769), new LatLng(41.870327, -88.097766), new LatLng(41.870325, -88.097819), new LatLng(41.870092, -88.097814), new LatLng(41.870091, -88.097774), new LatLng(41.869981, -88.097772), new LatLng(41.869981, -88.097814), new LatLng(41.869750, -88.097814), new LatLng(41.869748, -88.097762), new LatLng(41.869629, -88.097767));
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        hInsert = new Housing(poly, "McManis-Evans", "Upperclassmen",new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) eh", Toast.LENGTH_SHORT).show();
-            }
-        });
+        hInsert = new Housing(this, mMap, poly, "McManis-Evans", "Upperclassmen","");
         allLocations.put(hInsert.getName(),hInsert);
         poly.setClickable(true);
         poly.setTag(hInsert);
 
+        /**
+         * No desc file.
+         */
         // Saint and Elliot
         polyOpt = new PolygonOptions().add(new LatLng(41.869974, -88.092459), new LatLng( 41.869982, -88.092162 ),
                 new LatLng( 41.869443, -88.092164 ), new LatLng( 41.869452, -88.092456), new LatLng(41.869974, -88.092459));
@@ -554,15 +511,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        hInsert = new Housing(poly, "Saint and Elliot", "Apartment",new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) sne", Toast.LENGTH_SHORT).show();
-            }
-        });
+        hInsert = new Housing(this, mMap, poly, "Saint and Elliot", "Apartment","");
         allLocations.put(hInsert.getName(),hInsert);
         poly.setClickable(true);
         poly.setTag(hInsert);
 
+        /**
+         * No desc file.
+         */
         // Michigan
         polyOpt = new PolygonOptions().add(new LatLng( 41.865870, -88.096228), new LatLng( 41.865877, -88.095568),
                 new LatLng( 41.865719, -88.095573), new LatLng(41.865717, -88.095730), new LatLng(41.865739, -88.095732),
@@ -572,15 +528,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        hInsert = new Housing(poly, "Michigan", "Apartment",new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) m", Toast.LENGTH_SHORT).show();
-            }
-        });
+        hInsert = new Housing(this, mMap, poly, "Michigan", "Apartment","");
         allLocations.put(hInsert.getName(),hInsert);
         poly.setClickable(true);
         poly.setTag(hInsert);
 
+        /**
+         * No desc file.
+         */
         // Crescent (try to merge with Michigan??)
         polyOpt = new PolygonOptions().add(new LatLng(41.866074, -88.096241), new LatLng(41.866105, -88.096090),
                 new LatLng(41.866083, -88.096080), new LatLng(41.866147, -88.095759), new LatLng(41.866169, -88.095767),
@@ -590,11 +545,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(hHighlightBlue);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        hInsert = new Housing(poly, "Crescent", "Apartment",new GoogleMap.OnPolygonClickListener(){
-            public void onPolygonClick(Polygon poly){
-                Toast.makeText(MapsActivity.this, "Confirmation placeholder toast! ( ͡° ͜ʖ ͡°) c", Toast.LENGTH_SHORT).show();
-            }
-        });
+        hInsert = new Housing(this, mMap, poly, "Crescent", "Apartment","");
         allLocations.put(hInsert.getName(),hInsert);
         poly.setClickable(true);
         poly.setTag(hInsert);
@@ -602,11 +553,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
-
         mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
                 LocationSpaces temp = (LocationSpaces) poly.getTag();
-                temp.getClick().onPolygonClick(poly);
+                temp.doClick();
             }
         });
 
