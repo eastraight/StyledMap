@@ -108,13 +108,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         drawerLayout.closeDrawers();
                         switch (id) {
                             case R.id.dining_button:
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wheaton.cafebonappetit.com/"));
-                                startActivity(browserIntent);
+                                Intent diningIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wheaton.cafebonappetit.com/"));
+                                startActivity(diningIntent);
                                 return true;
                             case R.id.housing_options:
                                 Intent housingIntent = new Intent(navigationView.getContext(), HousingInfo.class);
                                 startActivity(housingIntent);
-
+                                return true;
+                            case R.id.campus_events:
+                                Intent eventsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.wheaton.edu/calendar-of-events/"));
+                                startActivity(eventsIntent);
+                                return true;
                         }
                         return true;
                     }

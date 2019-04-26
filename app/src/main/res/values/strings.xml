@@ -14,5 +14,6 @@
     <string name="saga_menu">Dining Options</string>
     <string name="housing_menu">Housing Options</string>
     <string name="housing_options">Housing Options</string>
+    <string name="campus_events">Campus Events</string>
     <string name ="button_send">Click Me ;)</string>
 </resources>

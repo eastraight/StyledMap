@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/dining_button"
             android:checked="true"
+            android:icon="@drawable/forkknife"
             android:title="@string/saga_menu" />
 
         <item
             android:id="@+id/housing_options"
             android:checked="true"
+            android:icon="@drawable/house_icon"
             android:title="@string/housing_options" />
+        <item
+            android:id="@+id/campus_events"
+            android:checked="true"
+            android:icon="@drawable/pin_icon"
+            android:title="@string/campus_events" />
     </group>
 </menu>
