@@ -384,6 +384,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setClickable(true);
         poly.setTag(bInsert);
 
+        //Blanchard Hall
+        polyOpt = new PolygonOptions().add(new LatLng(41.868385, -88.099688), new LatLng(41.868383, -88.099504), new LatLng(41.868450, -88.099503), new LatLng(41.868554, -88.099505), new LatLng(41.868601, -88.099507), new LatLng(41.868600, -88.099692), new LatLng(41.868561, -88.099863), new LatLng(41.868631, -88.099863), new LatLng(41.868632, -88.100037), new LatLng(41.868428, -88.100041), new LatLng(41.868428, -88.099989), new LatLng(41.868408, -88.099966), new LatLng(41.868408, -88.099936), new LatLng(41.868424, -88.099910), new LatLng(41.868429, -88.099857), new LatLng(41.868445, -88.099857), new LatLng(41.868441, -88.099688), new LatLng(41.868451, -88.099324), new LatLng(41.868424, -88.099326), new LatLng(41.868423, -88.099269), new LatLng(41.868409, -88.099254), new LatLng(41.868408, -88.099224), new LatLng(41.868424, -88.099206), new LatLng(41.868428, -88.099155), new LatLng(41.868627, -88.099155), new LatLng(41.868628, -88.099325), new LatLng(41.868555, -88.099327));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(true);
+        bInsert = new Building(this, mMap, poly, "Blanchard Hall", "msc.txt");
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
+
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
 
