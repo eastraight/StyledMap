@@ -398,6 +398,71 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
 
+        //West Fischer Street Parking
+        polyOpt = new PolygonOptions().add(new LatLng(41.872102, -88.097166), new LatLng(41.872100, -88.097194), new LatLng(41.872610, -88.097199), new LatLng(41.872610, -88.097175));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "West Fischer Street Parking");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
+
+        //South Fischer E Lot
+        polyOpt = new PolygonOptions().add(new LatLng(41.872067, -88.097162), new LatLng(41.872136, -88.097066), new LatLng(41.872137, -88.096369), new LatLng(41.871790, -88.096378), new LatLng(41.871784, -88.096408), new LatLng(41.871678, -88.096406), new LatLng(41.871680, -88.097116), new LatLng(41.871697, -88.097157));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "South Fischer E Lot");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
+
+        //Fischer U Parking
+        polyOpt = new PolygonOptions().add(new LatLng(41.873170, -88.096819), new LatLng(41.873300, -88.096823), new LatLng(41.873198, -88.096687), new LatLng(41.873079, -88.096688));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "Fischer U Parking");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
+
+        //North Fischer E Lot
+        polyOpt = new PolygonOptions().add(new LatLng(41.873488, -88.097128), new LatLng(41.873499, -88.096566), new LatLng(41.873455, -88.096550), new LatLng(41.873452, -88.097110));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "North Fischer E Lot");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
+
+        //Health Center Parking
+        polyOpt = new PolygonOptions().add(new LatLng(41.873436, -88.097351), new LatLng(41.873437, -88.097298), new LatLng(41.871073, -88.097273), new LatLng(41.871077, -88.097325), new LatLng(41.872347, -88.097333), new LatLng(41.872398, -88.097355));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "Heath Center Parking");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
+
+        //Edman Chapel parking
+        polyOpt = new PolygonOptions().add(new LatLng(41.870309, -88.100750), new LatLng(41.870896, -88.100772), new LatLng(41.870894, -88.100628), new LatLng(41.871101, -88.100614), new LatLng(41.871103, -88.099432), new LatLng(41.870457, -88.099420), new LatLng(41.870450, -88.099855), new LatLng(41.870251, -88.099854), new LatLng(41.870238, -88.100275), new LatLng(41.870317, -88.100432));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "Edman Chapel Parking");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
 
         //Tennis court parking
         polyOpt = new PolygonOptions().add(new LatLng(41.871144, -88.098451), new LatLng(41.871164, -88.097390), new LatLng(41.871000, -88.097380), new LatLng(41.870976, -88.098449));
