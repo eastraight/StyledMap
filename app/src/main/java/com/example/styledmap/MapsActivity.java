@@ -379,7 +379,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
         poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "EdmanChapel", "edman.txt");
+        bInsert = new Building(this, mMap, poly, "Edman Chapel", "edman.txt");
         allLocations.put(bInsert.getName(),bInsert);
         poly.setClickable(true);
         poly.setTag(bInsert);
@@ -389,11 +389,75 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(true);
+        poly.setVisible(false);
         bInsert = new Building(this, mMap, poly, "Blanchard Hall", "msc.txt");
         allLocations.put(bInsert.getName(),bInsert);
         poly.setClickable(true);
         poly.setTag(bInsert);
+
+        // Beamer
+        polyOpt = new PolygonOptions().add(new LatLng(41.869678, -88.097455), new LatLng(41.869678, -88.096927),
+                new LatLng(41.869418, -88.096939), new LatLng(41.869418, -88.096958), new LatLng(41.869366, -88.096957),
+                new LatLng(41.869365, -88.096824), new LatLng(41.869088, -88.096820), new LatLng(41.869090, -88.096787),
+                new LatLng(41.868964, -88.096786), new LatLng(41.868964, -88.096820), new LatLng(41.868741, -88.096819),
+                new LatLng(41.868739, -88.096983), new LatLng(41.868715, -88.096987), new LatLng(41.868715, -88.097154),
+                new LatLng(41.868740, -88.097154), new LatLng(41.868738, -88.097398), new LatLng(41.868973, -88.097399),
+                new LatLng(41.868974, -88.097434), new LatLng(41.869121, -88.097435), new LatLng(/*h*/41.869122, -88.097364), new LatLng(41.869316, -88.097366),
+                new LatLng(41.869317, -88.097421), new LatLng(41.869412, -88.097425), new LatLng(41.869414, -88.097456),
+                //new LatLng(), new LatLng(), new LatLng(),
+                new LatLng(41.869678, -88.097455));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(this, mMap, poly, "Beamer Center", "beamer.txt");
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
+
+        // SRC
+//        polyOpt = new PolygonOptions().add(new LatLng(), new LatLng(),
+//                new LatLng(), new LatLng(), new LatLng(),
+//                new LatLng(), new LatLng(), new LatLng(),
+//                new LatLng(), new LatLng(), new LatLng(),
+//                new LatLng(), new LatLng(), new LatLng(),
+//                new LatLng(), new LatLng(), new LatLng(),
+//                new LatLng());
+//        polyOpt.strokeWidth(strokeWidth);
+//        polyOpt.fillColor(bHighlightOrange);
+//        poly = mMap.addPolygon(polyOpt);
+//        poly.setVisible(false);
+//        bInsert = new Building(this, mMap, poly, "SRC", "src.txt");
+//        allLocations.put(bInsert.getName(),bInsert);
+//        poly.setClickable(true);
+//        poly.setTag(bInsert);
+
+        // BGC
+        polyOpt = new PolygonOptions().add(new LatLng(41.866961, -88.099586), new LatLng(41.866965, -88.099195),
+                new LatLng(41.866893, -88.099202), new LatLng(41.866893, -88.099118), new LatLng(41.866882, -88.099117),
+                new LatLng(41.866882, -88.098958), new LatLng(41.866807, -88.098943), new LatLng(41.866795, -88.098943),
+                new LatLng(41.866812, -88.098944), new LatLng(41.866812, -88.098900), new LatLng(41.866843, -88.098900),
+                new LatLng(41.866847, -88.098768), new LatLng(41.866814, -88.098766), new LatLng(41.866812, -88.098723),
+                new LatLng(41.866797, -88.098722), new LatLng(41.866796, -88.098690), new LatLng(41.866476, -88.098690),
+                new LatLng(41.866476, -88.098721), new LatLng(41.866458, -88.098720), new LatLng(41.866458, -88.098941),
+                new LatLng(41.866473, -88.098942), new LatLng(41.866472, -88.099845), new LatLng(41.866455, -88.099846),
+                new LatLng(41.866457, -88.100067), new LatLng(41.866472, -88.100067), new LatLng(41.866471, -88.100101),
+                new LatLng(41.866792, -88.100103), new LatLng(41.866794, -88.100070), new LatLng(41.866810, -88.100069),
+                new LatLng(41.866809, -88.100026), new LatLng(41.866843, -88.100025), new LatLng(41.866841, -88.099892),
+                new LatLng(41.866812, -88.099889), new LatLng(41.866807, -88.099843), new LatLng(41.866795, -88.099844),
+                new LatLng(41.866795, -88.099818), new LatLng(41.866880, -88.099820), new LatLng(41.866881, -88.099674),
+                new LatLng(41.866892, -88.099674), new LatLng(41.866894, -88.099586),
+                new LatLng(41.866961, -88.099586));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(this, mMap, poly, "Billy Graham Center", "bgc.txt");
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
+
+
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
