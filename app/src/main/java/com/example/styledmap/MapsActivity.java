@@ -423,9 +423,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new LatLng(41.868964, -88.096786), new LatLng(41.868964, -88.096820), new LatLng(41.868741, -88.096819),
                 new LatLng(41.868739, -88.096983), new LatLng(41.868715, -88.096987), new LatLng(41.868715, -88.097154),
                 new LatLng(41.868740, -88.097154), new LatLng(41.868738, -88.097398), new LatLng(41.868973, -88.097399),
-                new LatLng(41.868974, -88.097434), new LatLng(41.869121, -88.097435), new LatLng(/*h*/41.869122, -88.097364), new LatLng(41.869316, -88.097366),
-                new LatLng(41.869317, -88.097421), new LatLng(41.869412, -88.097425), new LatLng(41.869414, -88.097456),
-                //new LatLng(), new LatLng(), new LatLng(),
+                new LatLng(41.868974, -88.097434), new LatLng(41.869121, -88.097435), new LatLng(41.869122, -88.097364),
+                new LatLng(41.869316, -88.097366), new LatLng(41.869317, -88.097421), new LatLng(41.869412, -88.097425),
+                new LatLng(41.869414, -88.097456),
                 new LatLng(41.869678, -88.097455));
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(bHighlightOrange);
@@ -436,7 +436,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setClickable(true);
         poly.setTag(bInsert);
 
-        // SRC
+        // SRC (in progress)
 //        polyOpt = new PolygonOptions().add(new LatLng(), new LatLng(),
 //                new LatLng(), new LatLng(), new LatLng(),
 //                new LatLng(), new LatLng(), new LatLng(),
@@ -454,9 +454,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //        poly.setTag(bInsert);
 
         // BGC
-        polyOpt = new PolygonOptions().add(new LatLng(41.866961, -88.099586), new LatLng(41.866965, -88.099195),
+        polyOpt = new PolygonOptions().add(new LatLng(41.866961, -88.099586), new LatLng(41.866965, -88.099199),
                 new LatLng(41.866893, -88.099202), new LatLng(41.866893, -88.099118), new LatLng(41.866882, -88.099117),
-                new LatLng(41.866882, -88.098958), new LatLng(41.866807, -88.098943), new LatLng(41.866795, -88.098943),
+                new LatLng(41.866882, -88.098950), new LatLng(41.866807, -88.098943), new LatLng(41.866795, -88.098943),
                 new LatLng(41.866812, -88.098944), new LatLng(41.866812, -88.098900), new LatLng(41.866843, -88.098900),
                 new LatLng(41.866847, -88.098768), new LatLng(41.866814, -88.098766), new LatLng(41.866812, -88.098723),
                 new LatLng(41.866797, -88.098722), new LatLng(41.866796, -88.098690), new LatLng(41.866476, -88.098690),
