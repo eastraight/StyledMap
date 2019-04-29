@@ -51,6 +51,7 @@ import android.location.Location;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -268,7 +269,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(WHEATON.getCenter(), 15.5f));
 
 
-        locationSetup(mMap);
+        locationSetup();
 
         // location marker:
         youAreHere = mMap.addMarker(new MarkerOptions()
@@ -279,32 +280,78 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         youAreHere.setVisible(false);
     }
 
-    private void locationSetup(GoogleMap mMap) {
-//        int campusOutLine = Color.argb(0, 255, 147, 38);
-        int bHighlightOrange = Color.argb(200, 255, 147, 38);
-        int pHighlightGrey = Color.argb(200, 64, 64, 64);
-        int hHighlightBlue = Color.argb(255, 38, 53, 141);
-        PolygonOptions polyOpt;
-        Polygon poly;
-        Building bInsert;
-        Parking pInsert;
-        Housing hInsert;
+    int bHighlightOrange = Color.argb(200, 255, 147, 38);
+    int pHighlightGrey = Color.argb(200, 64, 64, 64);
+    int hHighlightBlue = Color.argb(255, 38, 53, 141);
+    PolygonOptions polyOpt;
+    Polygon poly;
+    Building bInsert;
+    Parking pInsert;
+    Housing hInsert;
+    int strokeWidth = 0;
 
-        int strokeWidth = 0;
+    private class Coordinate {
+        double first, second;
+        Coordinate(double first, double second){
+            this.first=first;
+            this.second=second;
+        }
+    }
+
+    private void newBuiling(String title, String textFile, Coordinate[] coordinates){
+        List<LatLng> toAdd = new ArrayList<>(coordinates.length);
+        for(int i = 0; i<coordinates.length; i++){
+            toAdd.add(new LatLng(coordinates[i].first, coordinates[i].second));
+        }
+        polyOpt = new PolygonOptions().addAll(toAdd);
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+
+        bInsert = new Building(this, mMap, poly, title, textFile);  //change name
+
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
+    }
+
+    private void newHousing(String title, String catagory, Coordinate[] coordinates){
+        List<LatLng> toAdd = new ArrayList<>(coordinates.length);
+        for(int i = 0; i<coordinates.length; i++){
+            toAdd.add(new LatLng(coordinates[i].first, coordinates[i].second));
+        }
+        polyOpt = new PolygonOptions().addAll(toAdd);
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(hHighlightBlue);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+
+        hInsert = new Housing(this, mMap, poly, title, catagory, "");
+        allLocations.put(hInsert.getName(),hInsert);
+        poly.setClickable(true);
+        poly.setTag(hInsert);
+    }
+
+    private void newParking(String title, Coordinate[] coordinates) {
+        List<LatLng> toAdd = new ArrayList<>(coordinates.length);
+        for(int i = 0; i<coordinates.length; i++){
+            toAdd.add(new LatLng(coordinates[i].first, coordinates[i].second));
+        }
+        polyOpt = new PolygonOptions().addAll(toAdd);
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, title);
+        allLocations.put(pInsert.getName(), pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
+    }
+
+    private void locationSetup(){
 
         final GoogleMap map = mMap;
-
-
-        //Campus outline
-//        //Meyer Science Center
-//        polyOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
-//        //Do not adjust the following 4 lines
-//        polyOpt.strokeWidth(0);
-//        polyOpt.fillColor(bHighlightOrange);
-//        poly = mMap.addPolygon(polyOpt);
-//        poly.setVisible(true);
-//
-
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -313,410 +360,107 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Building Section
 
         //Meyer Science Center
-        polyOpt = new PolygonOptions().add(new LatLng(41.869850, -88.096759), new LatLng(41.869851, -88.095732), new LatLng(41.869282, -88.095713), new LatLng(41.869283, -88.096073), new LatLng(41.869634, -88.096077), new LatLng(41.869653, -88.096746),new LatLng(41.869850, -88.096759));
-        //Do not adjust the following 4 lines
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "Meyer Science Center", "meyer.txt");  //change name
-        allLocations.put(bInsert.getName(),bInsert);
-        poly.setClickable(true);
-        poly.setTag(bInsert);
-
+        newBuiling("Meyer Science Center", "meyer.txt", new Coordinate[] {new Coordinate(41.869850, -88.096759), new Coordinate(41.869851, -88.095732), new Coordinate(41.869282, -88.095713), new Coordinate(41.869283, -88.096073), new Coordinate(41.869634, -88.096077), new Coordinate(41.869653, -88.096746), new Coordinate(41.869850, -88.096759)});
 
         /**
          * No desc file.
          */
         //Student Services Building
-        polyOpt = new PolygonOptions().add(new LatLng(41.869160, -88.097786), new LatLng(41.869158, -88.097972), new LatLng(41.869118, -88.097971), new LatLng(41.869121, -88.098089), new LatLng(41.868636, -88.098079), new LatLng(41.868639, -88.097766),new LatLng(41.869160, -88.097786));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "Student Services Building", "");
-        allLocations.put(bInsert.getName(),bInsert);
-        poly.setClickable(true);
-        poly.setTag(bInsert);
+        newBuiling("Student Services Building", "", new Coordinate[] {new Coordinate(41.869160, -88.097786), new Coordinate(41.869158, -88.097972), new Coordinate(41.869118, -88.097971), new Coordinate(41.869121, -88.098089), new Coordinate(41.868636, -88.098079), new Coordinate(41.868639, -88.097766),new Coordinate(41.869160, -88.097786)});
 
         //Adams Hall
-        polyOpt = new PolygonOptions().add(new LatLng(41.869286, -88.100006), new LatLng(41.869194, -88.100006), new LatLng(41.869192, -88.100045), new LatLng(41.869035, -88.100044), new LatLng(41.869035, -88.099936), new LatLng(41.868987, -88.099942),new LatLng(41.868991, -88.099775), new LatLng(41.869035,-88.099797), new LatLng(41.869037, -88.099692), new LatLng(41.869193, -88.099692), new LatLng(41.869195, -88.099730), new LatLng(41.869286, -88.099732), new LatLng(41.869288, -88.099799), new LatLng(41.869296, -88.099801), new LatLng(41.869294, -88.099936), new LatLng(41.869287, -88.099937));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "Adams Hall", "adams.txt");
-        allLocations.put(bInsert.getName(),bInsert);
-        poly.setClickable(true);
-        poly.setTag(bInsert);
+        newBuiling("Adamas Hall", "adams.txt", new Coordinate[] {new Coordinate(41.869286, -88.100006), new Coordinate(41.869194, -88.100006), new Coordinate(41.869192, -88.100045), new Coordinate(41.869035, -88.100044), new Coordinate(41.869035, -88.099936), new Coordinate(41.868987, -88.099942),new Coordinate(41.868991, -88.099775), new Coordinate(41.869035,-88.099797), new Coordinate(41.869037, -88.099692), new Coordinate(41.869193, -88.099692), new Coordinate(41.869195, -88.099730), new Coordinate(41.869286, -88.099732), new Coordinate(41.869288, -88.099799), new Coordinate(41.869296, -88.099801), new Coordinate(41.869294, -88.099936), new Coordinate(41.869287, -88.099937)});
 
         // Armerding/Conserv
-        polyOpt = new PolygonOptions().add( new LatLng(41.870289, -88.098995), new LatLng(41.870289, -88.098779), new LatLng(41.870391, -88.098777), new LatLng(41.870393, -88.098736), new LatLng(41.870572, -88.098736), new LatLng(41.870579, -88.098591), new LatLng(41.870460, -88.098590), new LatLng(41.870465, -88.098462), new LatLng(41.870423, -88.098455), new LatLng(41.870423, -88.098305), new LatLng(41.870468, -88.098305), new LatLng(41.870465, -88.098166), new LatLng(41.870550, -88.098171), new LatLng(41.870552, -88.097931), new LatLng(41.870687, -88.097931), new LatLng(41.870687, -88.098171), new LatLng(41.870728, -88.098171), new LatLng(41.870727, -88.098586), new LatLng(41.870684, -88.098590), new LatLng(41.870681, -88.099040), new LatLng(41.870392, -88.099035), new LatLng(41.870390, -88.099004));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "Armerding", "armerding.txt");
-        allLocations.put(bInsert.getName(),bInsert);
-        poly.setClickable(true);
-        poly.setTag(bInsert);
+        newBuiling("Armerding", "armeding.txt", new Coordinate[] {new Coordinate(41.870289, -88.098995), new Coordinate(41.870289, -88.098779), new Coordinate(41.870391, -88.098777), new Coordinate(41.870393, -88.098736), new Coordinate(41.870572, -88.098736), new Coordinate(41.870579, -88.098591), new Coordinate(41.870460, -88.098590), new Coordinate(41.870465, -88.098462), new Coordinate(41.870423, -88.098455), new Coordinate(41.870423, -88.098305), new Coordinate(41.870468, -88.098305), new Coordinate(41.870465, -88.098166), new Coordinate(41.870550, -88.098171), new Coordinate(41.870552, -88.097931), new Coordinate(41.870687, -88.097931), new Coordinate(41.870687, -88.098171), new Coordinate(41.870728, -88.098171), new Coordinate(41.870727, -88.098586), new Coordinate(41.870684, -88.098590), new Coordinate(41.870681, -88.099040), new Coordinate(41.870392, -88.099035), new Coordinate(41.870390, -88.099004)});
 
         //Memorial Student Center
-        polyOpt = new PolygonOptions().add( new LatLng(41.869025, -88.098800), new LatLng(41.869029, -88.098650), new LatLng(41.869065, -88.098651), new LatLng(41.869072, -88.098532), new LatLng(41.869215, -88.098540), new LatLng(41.869217, -88.098657), new LatLng(41.869258, -88.098657), new LatLng(41.869253, -88.098811), new LatLng(41.869212, -88.098812), new LatLng(41.869208, -88.098930), new LatLng(41.869067, -88.098923), new LatLng(41.869066, -88.098803));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "Memorial Student Center", "msc.txt");
-        allLocations.put(bInsert.getName(),bInsert);
-        poly.setClickable(true);
-        poly.setTag(bInsert);
+        newBuiling("Memorial Student Center", "msc1.txt", new Coordinate[] {new Coordinate(41.869025, -88.098800), new Coordinate(41.869029, -88.098650), new Coordinate(41.869065, -88.098651), new Coordinate(41.869072, -88.098532), new Coordinate(41.869215, -88.098540), new Coordinate(41.869217, -88.098657), new Coordinate(41.869258, -88.098657), new Coordinate(41.869253, -88.098811), new Coordinate(41.869212, -88.098812), new Coordinate(41.869208, -88.098930), new Coordinate(41.869067, -88.098923), new Coordinate(41.869066, -88.098803)});
 
         //Edman Chapel
-        polyOpt = new PolygonOptions().add( new LatLng(41.869605, -88.100807), new LatLng(41.869659, -88.100813), new LatLng(41.869663, -88.100896), new LatLng(41.870147, -88.100909), new LatLng(41.870147, -88.100885), new LatLng(41.870258, -88.100888), new LatLng(41.870258, -88.100796), new LatLng(41.870290, -88.100794), new LatLng(41.870294, -88.100552), new LatLng(41.870262, -88.100544), new LatLng(41.870264, -88.100450), new LatLng(41.870158, -88.100442), new LatLng(41.870156, -88.100134), new LatLng(41.870172, -88.100129), new LatLng(41.870176, -88.100019), new LatLng(41.870009, -88.100016), new LatLng(41.870007, -88.100126), new LatLng(41.870025, -88.100126), new LatLng(41.870017, -88.100418), new LatLng(41.869669, -88.100397), new LatLng(41.869669, -88.100485), new LatLng(41.869611, -88.100483));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "Edman Chapel", "edman.txt");
-        allLocations.put(bInsert.getName(),bInsert);
-        poly.setClickable(true);
-        poly.setTag(bInsert);
+        newBuiling("Edman Chapel", "edman.txt", new Coordinate[] {new Coordinate(41.869605, -88.100807), new Coordinate(41.869659, -88.100813), new Coordinate(41.869663, -88.100896), new Coordinate(41.870147, -88.100909), new Coordinate(41.870147, -88.100885), new Coordinate(41.870258, -88.100888), new Coordinate(41.870258, -88.100796), new Coordinate(41.870290, -88.100794), new Coordinate(41.870294, -88.100552), new Coordinate(41.870262, -88.100544), new Coordinate(41.870264, -88.100450), new Coordinate(41.870158, -88.100442), new Coordinate(41.870156, -88.100134), new Coordinate(41.870172, -88.100129), new Coordinate(41.870176, -88.100019), new Coordinate(41.870009, -88.100016), new Coordinate(41.870007, -88.100126), new Coordinate(41.870025, -88.100126), new Coordinate(41.870017, -88.100418), new Coordinate(41.869669, -88.100397), new Coordinate(41.869669, -88.100485), new Coordinate(41.869611, -88.100483)});
 
         //Blanchard Hall
-        polyOpt = new PolygonOptions().add(new LatLng(41.868385, -88.099688), new LatLng(41.868383, -88.099504), new LatLng(41.868450, -88.099503), new LatLng(41.868554, -88.099505), new LatLng(41.868601, -88.099507), new LatLng(41.868600, -88.099692), new LatLng(41.868561, -88.099863), new LatLng(41.868631, -88.099863), new LatLng(41.868632, -88.100037), new LatLng(41.868428, -88.100041), new LatLng(41.868428, -88.099989), new LatLng(41.868408, -88.099966), new LatLng(41.868408, -88.099936), new LatLng(41.868424, -88.099910), new LatLng(41.868429, -88.099857), new LatLng(41.868445, -88.099857), new LatLng(41.868441, -88.099688), new LatLng(41.868451, -88.099324), new LatLng(41.868424, -88.099326), new LatLng(41.868423, -88.099269), new LatLng(41.868409, -88.099254), new LatLng(41.868408, -88.099224), new LatLng(41.868424, -88.099206), new LatLng(41.868428, -88.099155), new LatLng(41.868627, -88.099155), new LatLng(41.868628, -88.099325), new LatLng(41.868555, -88.099327));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "Blanchard Hall", "msc.txt");
-        allLocations.put(bInsert.getName(),bInsert);
-        poly.setClickable(true);
-        poly.setTag(bInsert);
+        newBuiling("Blanchard Hall", "msc2.txt", new Coordinate[] {new Coordinate(41.868385, -88.099688), new Coordinate(41.868383, -88.099504), new Coordinate(41.868450, -88.099503), new Coordinate(41.868554, -88.099505), new Coordinate(41.868601, -88.099507), new Coordinate(41.868600, -88.099692), new Coordinate(41.868561, -88.099863), new Coordinate(41.868631, -88.099863), new Coordinate(41.868632, -88.100037), new Coordinate(41.868428, -88.100041), new Coordinate(41.868428, -88.099989), new Coordinate(41.868408, -88.099966), new Coordinate(41.868408, -88.099936), new Coordinate(41.868424, -88.099910), new Coordinate(41.868429, -88.099857), new Coordinate(41.868445, -88.099857), new Coordinate(41.868441, -88.099688), new Coordinate(41.868451, -88.099324), new Coordinate(41.868424, -88.099326), new Coordinate(41.868423, -88.099269), new Coordinate(41.868409, -88.099254), new Coordinate(41.868408, -88.099224), new Coordinate(41.868424, -88.099206), new Coordinate(41.868428, -88.099155), new Coordinate(41.868627, -88.099155), new Coordinate(41.868628, -88.099325), new Coordinate(41.868555, -88.099327)});
 
         //Buswell Library
-        polyOpt = new PolygonOptions().add(new LatLng(41.869961, -88.099709), new LatLng(41.869962, -88.099800), new LatLng(41.870339, -88.099805), new LatLng(41.870340, -88.099656), new LatLng(41.870386, -88.099656), new LatLng(41.870386, -88.099615), new LatLng(41.870372, -88.099613), new LatLng(41.870350, -88.099595), new LatLng(41.870341, -88.099595), new LatLng(41.870340, -88.099460), new LatLng(41.870318, -88.099461), new LatLng(41.870304, -88.099449), new LatLng(41.869933, -88.099448), new LatLng(41.869932, -88.099488), new LatLng(41.869876, -88.099487), new LatLng(41.869875, -88.099447), new LatLng(41.869848, -88.099431), new LatLng(41.869604, -88.099421), new LatLng(41.869598, -88.099747), new LatLng(41.869634, -88.099767), new LatLng(41.869680, -88.099770), new LatLng(41.869683, -88.099707));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "Buswell Library", "msc.txt");
-        allLocations.put(bInsert.getName(),bInsert);
-        poly.setClickable(true);
-        poly.setTag(bInsert);
+        newBuiling("Buswell Library", "buswell.txt", new Coordinate[] {new Coordinate(41.869961, -88.099709), new Coordinate(41.869962, -88.099800), new Coordinate(41.870339, -88.099805), new Coordinate(41.870340, -88.099656), new Coordinate(41.870386, -88.099656), new Coordinate(41.870386, -88.099615), new Coordinate(41.870372, -88.099613), new Coordinate(41.870350, -88.099595), new Coordinate(41.870341, -88.099595), new Coordinate(41.870340, -88.099460), new Coordinate(41.870318, -88.099461), new Coordinate(41.870304, -88.099449), new Coordinate(41.869933, -88.099448), new Coordinate(41.869932, -88.099488), new Coordinate(41.869876, -88.099487), new Coordinate(41.869875, -88.099447), new Coordinate(41.869848, -88.099431), new Coordinate(41.869604, -88.099421), new Coordinate(41.869598, -88.099747), new Coordinate(41.869634, -88.099767), new Coordinate(41.869680, -88.099770), new Coordinate(41.869683, -88.099707)});
 
         //Jenks
-        polyOpt = new PolygonOptions().add(new LatLng(41.869310, -88.095212), new LatLng(41.869392, -88.095213), new LatLng(41.869393, -88.095201), new LatLng(41.869430, -88.095203), new LatLng(41.869432, -88.095154), new LatLng(41.869460, -88.095154), new LatLng(41.869460, -88.095287), new LatLng(41.869661, -88.095287), new LatLng(41.869661, -88.095133), new LatLng(41.869640, -88.095133), new LatLng(41.869640, -88.095061), new LatLng(41.869674, -88.095061), new LatLng(41.869675, -88.094866), new LatLng(41.869694, -88.094864), new LatLng(41.869695, -88.094581), new LatLng(41.869680, -88.094581), new LatLng(41.869680, -88.094493), new LatLng(41.869590, -88.094493), new LatLng(41.869591, -88.094467), new LatLng(41.869422, -88.094466), new LatLng(41.869422, -88.094625), new LatLng(41.869583, -88.094626), new LatLng(41.869582, -88.094864), new LatLng(41.869635, -88.094866), new LatLng(41.869636, -88.094909), new LatLng(41.869515, -88.094909), new LatLng(41.869516, -88.094813), new LatLng(41.869458, -88.094812), new LatLng(41.869459, -88.094666), new LatLng(41.869392, -88.094664), new LatLng(41.869312, -88.094653));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "Jenks Hall", "msc.txt");
-        allLocations.put(bInsert.getName(),bInsert);
-        poly.setClickable(true);
-        poly.setTag(bInsert);
+        newBuiling("Jenks", "jenks.txt", new Coordinate[] {new Coordinate(41.869310, -88.095212), new Coordinate(41.869392, -88.095213), new Coordinate(41.869393, -88.095201), new Coordinate(41.869430, -88.095203), new Coordinate(41.869432, -88.095154), new Coordinate(41.869460, -88.095154), new Coordinate(41.869460, -88.095287), new Coordinate(41.869661, -88.095287), new Coordinate(41.869661, -88.095133), new Coordinate(41.869640, -88.095133), new Coordinate(41.869640, -88.095061), new Coordinate(41.869674, -88.095061), new Coordinate(41.869675, -88.094866), new Coordinate(41.869694, -88.094864), new Coordinate(41.869695, -88.094581), new Coordinate(41.869680, -88.094581), new Coordinate(41.869680, -88.094493), new Coordinate(41.869590, -88.094493), new Coordinate(41.869591, -88.094467), new Coordinate(41.869422, -88.094466), new Coordinate(41.869422, -88.094625), new Coordinate(41.869583, -88.094626), new Coordinate(41.869582, -88.094864), new Coordinate(41.869635, -88.094866), new Coordinate(41.869636, -88.094909), new Coordinate(41.869515, -88.094909), new Coordinate(41.869516, -88.094813), new Coordinate(41.869458, -88.094812), new Coordinate(41.869459, -88.094666), new Coordinate(41.869392, -88.094664), new Coordinate(41.869312, -88.094653)});
 
         // Beamer
-        polyOpt = new PolygonOptions().add(new LatLng(41.869678, -88.097455), new LatLng(41.869678, -88.096927),
-                new LatLng(41.869418, -88.096939), new LatLng(41.869418, -88.096958), new LatLng(41.869366, -88.096957),
-                new LatLng(41.869365, -88.096824), new LatLng(41.869088, -88.096820), new LatLng(41.869090, -88.096787),
-                new LatLng(41.868964, -88.096786), new LatLng(41.868964, -88.096820), new LatLng(41.868741, -88.096819),
-                new LatLng(41.868739, -88.096983), new LatLng(41.868715, -88.096987), new LatLng(41.868715, -88.097154),
-                new LatLng(41.868740, -88.097154), new LatLng(41.868738, -88.097398), new LatLng(41.868973, -88.097399),
-                new LatLng(41.868974, -88.097434), new LatLng(41.869121, -88.097435), new LatLng(41.869122, -88.097364),
-                new LatLng(41.869316, -88.097366), new LatLng(41.869317, -88.097421), new LatLng(41.869412, -88.097425),
-                new LatLng(41.869414, -88.097456),
-                new LatLng(41.869678, -88.097455));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "Beamer Center", "beamer.txt");
-        allLocations.put(bInsert.getName(),bInsert);
-        poly.setClickable(true);
-        poly.setTag(bInsert);
+        newBuiling("Beamer Center", "beamer.txt", new Coordinate[] {new Coordinate(41.869678, -88.097455), new Coordinate(41.869678, -88.096927), new Coordinate(41.869418, -88.096939), new Coordinate(41.869418, -88.096958), new Coordinate(41.869366, -88.096957), new Coordinate(41.869365, -88.096824), new Coordinate(41.869088, -88.096820), new Coordinate(41.869090, -88.096787), new Coordinate(41.868964, -88.096786), new Coordinate(41.868964, -88.096820), new Coordinate(41.868741, -88.096819), new Coordinate(41.868739, -88.096983), new Coordinate(41.868715, -88.096987), new Coordinate(41.868715, -88.097154), new Coordinate(41.868740, -88.097154), new Coordinate(41.868738, -88.097398), new Coordinate(41.868973, -88.097399), new Coordinate(41.868974, -88.097434), new Coordinate(41.869121, -88.097435), new Coordinate(41.869122, -88.097364), new Coordinate(41.869316, -88.097366), new Coordinate(41.869317, -88.097421), new Coordinate(41.869412, -88.097425), new Coordinate(41.869414, -88.097456), new Coordinate(41.869678, -88.097455)});
 
         // SRC (in progress)
-//        polyOpt = new PolygonOptions().add(new LatLng(), new LatLng(),
-//                new LatLng(), new LatLng(), new LatLng(),
-//                new LatLng(), new LatLng(), new LatLng(),
-//                new LatLng(), new LatLng(), new LatLng(),
-//                new LatLng(), new LatLng(), new LatLng(),
-//                new LatLng(), new LatLng(), new LatLng(),
-//                new LatLng());
-//        polyOpt.strokeWidth(strokeWidth);
-//        polyOpt.fillColor(bHighlightOrange);
-//        poly = mMap.addPolygon(polyOpt);
-//        poly.setVisible(false);
-//        bInsert = new Building(this, mMap, poly, "SRC", "src.txt");
-//        allLocations.put(bInsert.getName(),bInsert);
-//        poly.setClickable(true);
-//        poly.setTag(bInsert);
+//      newBuilding("SRC", "src.txt", new Coordinate[] {new Coordinate()});
 
         // BGC
-        polyOpt = new PolygonOptions().add(new LatLng(41.866961, -88.099586), new LatLng(41.866965, -88.099199),
-                new LatLng(41.866893, -88.099202), new LatLng(41.866893, -88.099118), new LatLng(41.866882, -88.099117),
-                new LatLng(41.866882, -88.098950), new LatLng(41.866807, -88.098943), new LatLng(41.866795, -88.098943),
-                new LatLng(41.866812, -88.098944), new LatLng(41.866812, -88.098900), new LatLng(41.866843, -88.098900),
-                new LatLng(41.866847, -88.098768), new LatLng(41.866814, -88.098766), new LatLng(41.866812, -88.098723),
-                new LatLng(41.866797, -88.098722), new LatLng(41.866796, -88.098690), new LatLng(41.866476, -88.098690),
-                new LatLng(41.866476, -88.098721), new LatLng(41.866458, -88.098720), new LatLng(41.866458, -88.098941),
-                new LatLng(41.866473, -88.098942), new LatLng(41.866472, -88.099845), new LatLng(41.866455, -88.099846),
-                new LatLng(41.866457, -88.100067), new LatLng(41.866472, -88.100067), new LatLng(41.866471, -88.100101),
-                new LatLng(41.866792, -88.100103), new LatLng(41.866794, -88.100070), new LatLng(41.866810, -88.100069),
-                new LatLng(41.866809, -88.100026), new LatLng(41.866843, -88.100025), new LatLng(41.866841, -88.099892),
-                new LatLng(41.866812, -88.099889), new LatLng(41.866807, -88.099843), new LatLng(41.866795, -88.099844),
-                new LatLng(41.866795, -88.099818), new LatLng(41.866880, -88.099820), new LatLng(41.866881, -88.099674),
-                new LatLng(41.866892, -88.099674), new LatLng(41.866894, -88.099586),
-                new LatLng(41.866961, -88.099586));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(bHighlightOrange);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        bInsert = new Building(this, mMap, poly, "Billy Graham Center", "bgc.txt");
-        allLocations.put(bInsert.getName(),bInsert);
-        poly.setClickable(true);
-        poly.setTag(bInsert);
-
-
+        newBuiling("Billy Graham Center", "bgc.txt", new Coordinate[] {new Coordinate(41.866961, -88.099586), new Coordinate(41.866965, -88.099199), new Coordinate(41.866893, -88.099202), new Coordinate(41.866893, -88.099118), new Coordinate(41.866882, -88.099117), new Coordinate(41.866882, -88.098950), new Coordinate(41.866807, -88.098943), new Coordinate(41.866795, -88.098943), new Coordinate(41.866812, -88.098944), new Coordinate(41.866812, -88.098900), new Coordinate(41.866843, -88.098900), new Coordinate(41.866847, -88.098768), new Coordinate(41.866814, -88.098766), new Coordinate(41.866812, -88.098723), new Coordinate(41.866797, -88.098722), new Coordinate(41.866796, -88.098690), new Coordinate(41.866476, -88.098690), new Coordinate(41.866476, -88.098721), new Coordinate(41.866458, -88.098720), new Coordinate(41.866458, -88.098941), new Coordinate(41.866473, -88.098942), new Coordinate(41.866472, -88.099845), new Coordinate(41.866455, -88.099846), new Coordinate(41.866457, -88.100067), new Coordinate(41.866472, -88.100067), new Coordinate(41.866471, -88.100101), new Coordinate(41.866792, -88.100103), new Coordinate(41.866794, -88.100070), new Coordinate(41.866810, -88.100069), new Coordinate(41.866809, -88.100026), new Coordinate(41.866843, -88.100025), new Coordinate(41.866841, -88.099892), new Coordinate(41.866812, -88.099889), new Coordinate(41.866807, -88.099843), new Coordinate(41.866795, -88.099844), new Coordinate(41.866795, -88.099818), new Coordinate(41.866880, -88.099820), new Coordinate(41.866881, -88.099674), new Coordinate(41.866892, -88.099674), new Coordinate(41.866894, -88.099586), new Coordinate(41.866961, -88.099586)});
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
 
         //West Fischer Street Parking
-        polyOpt = new PolygonOptions().add(new LatLng(41.872102, -88.097166), new LatLng(41.872100, -88.097194), new LatLng(41.872610, -88.097199), new LatLng(41.872610, -88.097175));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(pHighlightGrey);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        pInsert = new Parking(this, mMap, poly, "West Fischer Street Parking");
-        allLocations.put(pInsert.getName(),pInsert);
-        poly.setClickable(true);
-        poly.setTag(pInsert);
+        newParking("West Fischer Street Parking", new Coordinate[] {new Coordinate(41.872102, -88.097166), new Coordinate(41.872100, -88.097194), new Coordinate(41.872610, -88.097199), new Coordinate(41.872610, -88.097175)});
 
         //South Fischer E Lot
-        polyOpt = new PolygonOptions().add(new LatLng(41.872067, -88.097162), new LatLng(41.872136, -88.097066), new LatLng(41.872137, -88.096369), new LatLng(41.871790, -88.096378), new LatLng(41.871784, -88.096408), new LatLng(41.871678, -88.096406), new LatLng(41.871680, -88.097116), new LatLng(41.871697, -88.097157));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(pHighlightGrey);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        pInsert = new Parking(this, mMap, poly, "South Fischer E Lot");
-        allLocations.put(pInsert.getName(),pInsert);
-        poly.setClickable(true);
-        poly.setTag(pInsert);
+        newParking("South Fischer E Lot", new Coordinate[] {new Coordinate(41.872067, -88.097162), new Coordinate(41.872136, -88.097066), new Coordinate(41.872137, -88.096369), new Coordinate(41.871790, -88.096378), new Coordinate(41.871784, -88.096408), new Coordinate(41.871678, -88.096406), new Coordinate(41.871680, -88.097116), new Coordinate(41.871697, -88.097157)});
 
         //Fischer U Parking
-        polyOpt = new PolygonOptions().add(new LatLng(41.873170, -88.096819), new LatLng(41.873300, -88.096823), new LatLng(41.873198, -88.096687), new LatLng(41.873079, -88.096688));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(pHighlightGrey);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        pInsert = new Parking(this, mMap, poly, "Fischer U Parking");
-        allLocations.put(pInsert.getName(),pInsert);
-        poly.setClickable(true);
-        poly.setTag(pInsert);
+        newParking("Fischer U Parking", new Coordinate[] {new Coordinate(41.873170, -88.096819), new Coordinate(41.873300, -88.096823), new Coordinate(41.873198, -88.096687), new Coordinate(41.873079, -88.096688)});
 
         //North Fischer E Lot
-        polyOpt = new PolygonOptions().add(new LatLng(41.873488, -88.097128), new LatLng(41.873499, -88.096566), new LatLng(41.873455, -88.096550), new LatLng(41.873452, -88.097110));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(pHighlightGrey);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        pInsert = new Parking(this, mMap, poly, "North Fischer E Lot");
-        allLocations.put(pInsert.getName(),pInsert);
-        poly.setClickable(true);
-        poly.setTag(pInsert);
+        newParking("North Fischer E Lot", new Coordinate[] {new Coordinate(41.873488, -88.097128), new Coordinate(41.873499, -88.096566), new Coordinate(41.873455, -88.096550), new Coordinate(41.873452, -88.097110)});
 
         //Health Center Parking
-        polyOpt = new PolygonOptions().add(new LatLng(41.873436, -88.097351), new LatLng(41.873437, -88.097298), new LatLng(41.871073, -88.097273), new LatLng(41.871077, -88.097325), new LatLng(41.872347, -88.097333), new LatLng(41.872398, -88.097355));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(pHighlightGrey);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        pInsert = new Parking(this, mMap, poly, "Heath Center Parking");
-        allLocations.put(pInsert.getName(),pInsert);
-        poly.setClickable(true);
-        poly.setTag(pInsert);
+        newParking("Health Center Parking", new Coordinate[] {new Coordinate(41.873436, -88.097351), new Coordinate(41.873437, -88.097298), new Coordinate(41.871073, -88.097273), new Coordinate(41.871077, -88.097325), new Coordinate(41.872347, -88.097333), new Coordinate(41.872398, -88.097355)});
 
         //Edman Chapel parking
-        polyOpt = new PolygonOptions().add(new LatLng(41.870309, -88.100750), new LatLng(41.870896, -88.100772), new LatLng(41.870894, -88.100628), new LatLng(41.871101, -88.100614), new LatLng(41.871103, -88.099432), new LatLng(41.870457, -88.099420), new LatLng(41.870450, -88.099855), new LatLng(41.870251, -88.099854), new LatLng(41.870238, -88.100275), new LatLng(41.870317, -88.100432));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(pHighlightGrey);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        pInsert = new Parking(this, mMap, poly, "Edman Chapel Parking");
-        allLocations.put(pInsert.getName(),pInsert);
-        poly.setClickable(true);
-        poly.setTag(pInsert);
+        newParking("Edman Chapel Parking", new Coordinate[] {new Coordinate(41.870309, -88.100750), new Coordinate(41.870896, -88.100772), new Coordinate(41.870894, -88.100628), new Coordinate(41.871101, -88.100614), new Coordinate(41.871103, -88.099432), new Coordinate(41.870457, -88.099420), new Coordinate(41.870450, -88.099855), new Coordinate(41.870251, -88.099854), new Coordinate(41.870238, -88.100275), new Coordinate(41.870317, -88.100432)});
 
         //Tennis court parking
-        polyOpt = new PolygonOptions().add(new LatLng(41.871144, -88.098451), new LatLng(41.871164, -88.097390), new LatLng(41.871000, -88.097380), new LatLng(41.870976, -88.098449));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(pHighlightGrey);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        pInsert = new Parking(this, mMap, poly, "Tennis Court Parking");
-        allLocations.put(pInsert.getName(),pInsert);
-        poly.setClickable(true);
-        poly.setTag(pInsert);
+        newParking("Tennis Court Parking", new Coordinate[] {new Coordinate(41.871144, -88.098451), new Coordinate(41.871164, -88.097390), new Coordinate(41.871000, -88.097380), new Coordinate(41.870976, -88.098449)});
 
         //Convserv Parking Lot
-        polyOpt = new PolygonOptions().add(new LatLng(41.870797, -88.098812), new LatLng(41.870846, -88.098808), new LatLng(41.870859, -88.098105), new LatLng(41.870801, -88.098104));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(pHighlightGrey);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        pInsert = new Parking(this, mMap, poly, "Conserve Court Parking");
-        allLocations.put(pInsert.getName(),pInsert);
-        poly.setClickable(true);
-        poly.setTag(pInsert);
+        newParking("Conserve Court Parking", new Coordinate[] {new Coordinate(41.870797, -88.098812), new Coordinate(41.870846, -88.098808), new Coordinate(41.870859, -88.098105), new Coordinate(41.870801, -88.098104)});
 
         //Initializing Blanchard Parking Lot 1
-        polyOpt = new PolygonOptions().add(new LatLng(41.868379, -88.098382), new LatLng(41.868326, -88.098956), new LatLng(41.868622, -88.098960), new LatLng(41.868610, -88.098467), new LatLng(41.868588, -88.097944), new LatLng(41.868435, -88.097897));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(pHighlightGrey);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        pInsert = new Parking(this, mMap, poly, "Blanchard Parking I");
-        allLocations.put(pInsert.getName(),pInsert);
-        poly.setClickable(true);
-        poly.setTag(pInsert);
+        newParking("Blanchard parking 1", new Coordinate[] {new Coordinate(41.868379, -88.098382), new Coordinate(41.868326, -88.098956), new Coordinate(41.868622, -88.098960), new Coordinate(41.868610, -88.098467), new Coordinate(41.868588, -88.097944), new Coordinate(41.868435, -88.097897)});
 
         //Initializing Blanchard Parking Lot 2
-        polyOpt = new PolygonOptions().add(new LatLng(41.868563, -88.100200), new LatLng(41.868359, -88.100168), new LatLng(41.868369, -88.100878), new LatLng(41.868509, -88.100921));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(pHighlightGrey);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        pInsert = new Parking(this, mMap, poly, "Blanchard Parking II");
-        allLocations.put(pInsert.getName(),pInsert);
-        poly.setClickable(true);
-        poly.setTag(pInsert);
+        newParking("Blanchard Parking 2", new Coordinate[] {new Coordinate(41.868563, -88.100200), new Coordinate(41.868359, -88.100168), new Coordinate(41.868369, -88.100878), new Coordinate(41.868509, -88.100921)});
 
         //North Washington Parking
-        polyOpt = new PolygonOptions().add(new LatLng(41.868399, -88.101160), new LatLng(41.868399, -88.101086), new LatLng(41.867504, -88.101084), new LatLng(41.867492, -88.101141));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(pHighlightGrey);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        pInsert = new Parking(this, mMap, poly, "North Washington Parking");
-        allLocations.put(pInsert.getName(),pInsert);
-        poly.setClickable(true);
-        poly.setTag(pInsert);
-
+        newParking("North Washington Parking", new Coordinate[] {new Coordinate(41.868399, -88.101160), new Coordinate(41.868399, -88.101086), new Coordinate(41.867504, -88.101084), new Coordinate(41.867492, -88.101141)});
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         // Housing Section
 
         /**
-         * No desc file.
+         * No desc file for any of the houses.
          */
+
         // Williston Hall
-        polyOpt = new PolygonOptions().add(new LatLng(41.869177, -88.098268), new LatLng(41.869175, -88.098102), new LatLng(41.868767, -88.098107), new LatLng(41.868766, -88.098259), new LatLng(41.868912, -88.098259), new LatLng(41.868926, -88.098323), new LatLng(41.868997, -88.098330), new LatLng(41.869019, -88.098270));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(hHighlightBlue);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        hInsert = new Housing(this, mMap, poly, "Williston Hall", "Upperclassmen", "");
-        allLocations.put(hInsert.getName(),hInsert);
-        poly.setClickable(true);
-        poly.setTag(hInsert);
+        newHousing("WIlliston Hall", "Upperclassmen", new Coordinate[] {new Coordinate(41.869177, -88.098268), new Coordinate(41.869175, -88.098102), new Coordinate(41.868767, -88.098107), new Coordinate(41.868766, -88.098259), new Coordinate(41.868912, -88.098259), new Coordinate(41.868926, -88.098323), new Coordinate(41.868997, -88.098330), new Coordinate(41.869019, -88.098270)});
 
-        /**
-         * No desc file.
-         */
         // Fischer Hall
-        polyOpt = new PolygonOptions().add(new LatLng(41.873356, -88.096951), new LatLng(41.872813, -88.096946), new LatLng(41.872813, -88.096557), new LatLng(41.873372, -88.096571), new LatLng(41.873367, -88.096357), new LatLng(41.872650, -88.096363), new LatLng(41.872657, -88.097130), new LatLng(41.873372, -88.097123));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(hHighlightBlue);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        hInsert = new Housing(this, mMap, poly, "Fischer Hall", "Underclassmen", "");
-        allLocations.put(hInsert.getName(),hInsert);
-        poly.setClickable(true);
-        poly.setTag(hInsert);
+        newHousing("Fischer Hall", "underclassmen", new Coordinate[] {new Coordinate(41.873356, -88.096951), new Coordinate(41.872813, -88.096946), new Coordinate(41.872813, -88.096557), new Coordinate(41.873372, -88.096571), new Coordinate(41.873367, -88.096357), new Coordinate(41.872650, -88.096363), new Coordinate(41.872657, -88.097130), new Coordinate(41.873372, -88.097123)});
 
-        /**
-         * No desc file.
-         */
         // Smith-Traber Hall
-        polyOpt = new PolygonOptions().add(new LatLng(41.870361, -88.094306), new LatLng(41.870321, -88.094452), new LatLng(41.870687, -88.094663), new LatLng(41.870660, -88.094756), new LatLng(41.870625, -88.094819), new LatLng(41.870667, -88.094875), new LatLng(41.870708, -88.094824), new LatLng(41.870754, -88.094853),
-                new LatLng(41.870789, -88.094928), new LatLng(41.870780, -88.094963), new LatLng(41.870977, -88.095076), new LatLng(41.870992, -88.095040), new LatLng(41.871037, -88.095064), new LatLng(41.871094, -88.094885), new LatLng(41.871049, -88.094859), new LatLng(41.871067, -88.094813), new LatLng(41.870875, -88.094703),
-                new LatLng(41.870905, -88.094613), new LatLng(41.870843, -88.094573), new LatLng(41.870826, -88.094616), new LatLng(41.870763, -88.094572), new LatLng(41.870930, -88.094061), new LatLng(41.870814, -88.093996), new LatLng(41.870666, -88.094485), new LatLng(41.870361, -88.094306));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(hHighlightBlue);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        hInsert = new Housing(this, mMap, poly, "Smith-Traber Hall", "Underclassmen", "");
-        allLocations.put(hInsert.getName(),hInsert);
-        poly.setClickable(true);
-        poly.setTag(hInsert);
+        newHousing("Smith-Traber Hall", "Underclassmen", new Coordinate[] {new Coordinate(41.870361, -88.094306), new Coordinate(41.870321, -88.094452), new Coordinate(41.870687, -88.094663), new Coordinate(41.870660, -88.094756), new Coordinate(41.870625, -88.094819), new Coordinate(41.870667, -88.094875), new Coordinate(41.870708, -88.094824), new Coordinate(41.870754, -88.094853), new Coordinate(41.870789, -88.094928), new Coordinate(41.870780, -88.094963), new Coordinate(41.870977, -88.095076), new Coordinate(41.870992, -88.095040), new Coordinate(41.871037, -88.095064), new Coordinate(41.871094, -88.094885), new Coordinate(41.871049, -88.094859), new Coordinate(41.871067, -88.094813), new Coordinate(41.870875, -88.094703), new Coordinate(41.870905, -88.094613), new Coordinate(41.870843, -88.094573), new Coordinate(41.870826, -88.094616), new Coordinate(41.870763, -88.094572), new Coordinate(41.870930, -88.094061), new Coordinate(41.870814, -88.093996), new Coordinate(41.870666, -88.094485), new Coordinate(41.870361, -88.094306)});
 
-        /**
-         * No desc file.
-         */
         // McManis-Evans Hall
-        polyOpt = new PolygonOptions().add(new LatLng(41.869627, -88.098021), new LatLng(41.869751, -88.098021), new LatLng(41.869751, -88.097972), new LatLng(41.869979, -88.097973), new LatLng(41.869979, -88.097993), new LatLng(41.870091, -88.097997), new LatLng(41.870092, -88.097973), new LatLng(41.870327, -88.097968), new LatLng(41.870332, -88.098021), new LatLng(41.870447, -88.098020), new LatLng(41.870447, -88.097769), new LatLng(41.870327, -88.097766), new LatLng(41.870325, -88.097819), new LatLng(41.870092, -88.097814), new LatLng(41.870091, -88.097774), new LatLng(41.869981, -88.097772), new LatLng(41.869981, -88.097814), new LatLng(41.869750, -88.097814), new LatLng(41.869748, -88.097762), new LatLng(41.869629, -88.097767));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(hHighlightBlue);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        hInsert = new Housing(this, mMap, poly, "McManis-Evans", "Upperclassmen","");
-        allLocations.put(hInsert.getName(),hInsert);
-        poly.setClickable(true);
-        poly.setTag(hInsert);
+        newHousing("McManis-Evans", "upperclassmen", new Coordinate[] {new Coordinate(41.869627, -88.098021), new Coordinate(41.869751, -88.098021), new Coordinate(41.869751, -88.097972), new Coordinate(41.869979, -88.097973), new Coordinate(41.869979, -88.097993), new Coordinate(41.870091, -88.097997), new Coordinate(41.870092, -88.097973), new Coordinate(41.870327, -88.097968), new Coordinate(41.870332, -88.098021), new Coordinate(41.870447, -88.098020), new Coordinate(41.870447, -88.097769), new Coordinate(41.870327, -88.097766), new Coordinate(41.870325, -88.097819), new Coordinate(41.870092, -88.097814), new Coordinate(41.870091, -88.097774), new Coordinate(41.869981, -88.097772), new Coordinate(41.869981, -88.097814), new Coordinate(41.869750, -88.097814), new Coordinate(41.869748, -88.097762), new Coordinate(41.869629, -88.097767)});
 
-        /**
-         * No desc file.
-         */
         // Saint and Elliot
-        polyOpt = new PolygonOptions().add(new LatLng(41.869974, -88.092459), new LatLng( 41.869982, -88.092162 ),
-                new LatLng( 41.869443, -88.092164 ), new LatLng( 41.869452, -88.092456), new LatLng(41.869974, -88.092459));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(hHighlightBlue);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        hInsert = new Housing(this, mMap, poly, "Saint and Elliot", "Apartment","");
-        allLocations.put(hInsert.getName(),hInsert);
-        poly.setClickable(true);
-        poly.setTag(hInsert);
+        newHousing("Saint and Elliot", "Apartment", new Coordinate[] {new Coordinate(41.869974, -88.092459), new Coordinate( 41.869982, -88.092162 ), new Coordinate( 41.869443, -88.092164 ), new Coordinate( 41.869452, -88.092456), new Coordinate(41.869974, -88.092459)});
 
-        /**
-         * No desc file.
-         */
         // Michigan
-        polyOpt = new PolygonOptions().add(new LatLng( 41.865870, -88.096228), new LatLng( 41.865877, -88.095568),
-                new LatLng( 41.865719, -88.095573), new LatLng(41.865717, -88.095730), new LatLng(41.865739, -88.095732),
-                new LatLng(41.865733, -88.096062), new LatLng(41.865713, -88.096064), new LatLng(41.865710, -88.096221),
-                new LatLng( 41.865870, -88.096228 ));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(hHighlightBlue);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        hInsert = new Housing(this, mMap, poly, "Michigan", "Apartment","");
-        allLocations.put(hInsert.getName(),hInsert);
-        poly.setClickable(true);
-        poly.setTag(hInsert);
+        newHousing("Michigan", "Apartment", new Coordinate[] {new Coordinate( 41.865870, -88.096228), new Coordinate( 41.865877, -88.095568), new Coordinate( 41.865719, -88.095573), new Coordinate(41.865717, -88.095730), new Coordinate(41.865739, -88.095732), new Coordinate(41.865733, -88.096062), new Coordinate(41.865713, -88.096064), new Coordinate(41.865710, -88.096221), new Coordinate( 41.865870, -88.096228 )});
 
-        /**
-         * No desc file.
-         */
         // Crescent (try to merge with Michigan??)
-        polyOpt = new PolygonOptions().add(new LatLng(41.866074, -88.096241), new LatLng(41.866105, -88.096090),
-                new LatLng(41.866083, -88.096080), new LatLng(41.866147, -88.095759), new LatLng(41.866169, -88.095767),
-                new LatLng(41.866200, -88.095614), new LatLng(41.866045, -88.095560), new LatLng(41.865919, -88.096184),
-                new LatLng(41.866074, -88.096241));
-        polyOpt.strokeWidth(strokeWidth);
-        polyOpt.fillColor(hHighlightBlue);
-        poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(false);
-        hInsert = new Housing(this, mMap, poly, "Crescent", "Apartment","");
-        allLocations.put(hInsert.getName(),hInsert);
-        poly.setClickable(true);
-        poly.setTag(hInsert);
-
-
-
+        newHousing("Crescent", "Apartment", new Coordinate[] {new Coordinate(41.866074, -88.096241), new Coordinate(41.866105, -88.096090), new Coordinate(41.866083, -88.096080), new Coordinate(41.866147, -88.095759), new Coordinate(41.866169, -88.095767), new Coordinate(41.866200, -88.095614), new Coordinate(41.866045, -88.095560), new Coordinate(41.865919, -88.096184), new Coordinate(41.866074, -88.096241)});
 
         mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
