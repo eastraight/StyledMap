@@ -126,9 +126,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         allLocations = new HashMap<>();
 
 
-        ArrayList<String> arrayBuilding = new ArrayList<>();
-        arrayBuilding.addAll(Arrays.asList(getResources().getStringArray(R.array.my_building)));
-        adapter = new ArrayAdapter<String>(
+        ArrayList<String> arrayBuilding = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.my_building)));
+        adapter = new ArrayAdapter<>(
                 MapsActivity.this,
                 android.R.layout.simple_list_item_1,
                 arrayBuilding
@@ -395,6 +394,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         poly.setClickable(true);
         poly.setTag(bInsert);
 
+        //Buswell Library
+        polyOpt = new PolygonOptions().add(new LatLng(41.869961, -88.099709), new LatLng(41.869962, -88.099800), new LatLng(41.870339, -88.099805), new LatLng(41.870340, -88.099656), new LatLng(41.870386, -88.099656), new LatLng(41.870386, -88.099615), new LatLng(41.870372, -88.099613), new LatLng(41.870350, -88.099595), new LatLng(41.870341, -88.099595), new LatLng(41.870340, -88.099460), new LatLng(41.870318, -88.099461), new LatLng(41.870304, -88.099449), new LatLng(41.869933, -88.099448), new LatLng(41.869932, -88.099488), new LatLng(41.869876, -88.099487), new LatLng(41.869875, -88.099447), new LatLng(41.869848, -88.099431), new LatLng(41.869604, -88.099421), new LatLng(41.869598, -88.099747), new LatLng(41.869634, -88.099767), new LatLng(41.869680, -88.099770), new LatLng(41.869683, -88.099707));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(this, mMap, poly, "Buswell Library", "msc.txt");
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
+
+        //Jenks
+        polyOpt = new PolygonOptions().add(new LatLng(41.869310, -88.095212), new LatLng(41.869392, -88.095213), new LatLng(41.869393, -88.095201), new LatLng(41.869430, -88.095203), new LatLng(41.869432, -88.095154), new LatLng(41.869460, -88.095154), new LatLng(41.869460, -88.095287), new LatLng(41.869661, -88.095287), new LatLng(41.869661, -88.095133), new LatLng(41.869640, -88.095133), new LatLng(41.869640, -88.095061), new LatLng(41.869674, -88.095061), new LatLng(41.869675, -88.094866), new LatLng(41.869694, -88.094864), new LatLng(41.869695, -88.094581), new LatLng(41.869680, -88.094581), new LatLng(41.869680, -88.094493), new LatLng(41.869590, -88.094493), new LatLng(41.869591, -88.094467), new LatLng(41.869422, -88.094466), new LatLng(41.869422, -88.094625), new LatLng(41.869583, -88.094626), new LatLng(41.869582, -88.094864), new LatLng(41.869635, -88.094866), new LatLng(41.869636, -88.094909), new LatLng(41.869515, -88.094909), new LatLng(41.869516, -88.094813), new LatLng(41.869458, -88.094812), new LatLng(41.869459, -88.094666), new LatLng(41.869392, -88.094664), new LatLng(41.869312, -88.094653));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(this, mMap, poly, "Jenks Hall", "msc.txt");
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
+
         // Beamer
         polyOpt = new PolygonOptions().add(new LatLng(41.869678, -88.097455), new LatLng(41.869678, -88.096927),
                 new LatLng(41.869418, -88.096939), new LatLng(41.869418, -88.096958), new LatLng(41.869366, -88.096957),
@@ -462,6 +483,71 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
 
+        //West Fischer Street Parking
+        polyOpt = new PolygonOptions().add(new LatLng(41.872102, -88.097166), new LatLng(41.872100, -88.097194), new LatLng(41.872610, -88.097199), new LatLng(41.872610, -88.097175));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "West Fischer Street Parking");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
+
+        //South Fischer E Lot
+        polyOpt = new PolygonOptions().add(new LatLng(41.872067, -88.097162), new LatLng(41.872136, -88.097066), new LatLng(41.872137, -88.096369), new LatLng(41.871790, -88.096378), new LatLng(41.871784, -88.096408), new LatLng(41.871678, -88.096406), new LatLng(41.871680, -88.097116), new LatLng(41.871697, -88.097157));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "South Fischer E Lot");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
+
+        //Fischer U Parking
+        polyOpt = new PolygonOptions().add(new LatLng(41.873170, -88.096819), new LatLng(41.873300, -88.096823), new LatLng(41.873198, -88.096687), new LatLng(41.873079, -88.096688));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "Fischer U Parking");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
+
+        //North Fischer E Lot
+        polyOpt = new PolygonOptions().add(new LatLng(41.873488, -88.097128), new LatLng(41.873499, -88.096566), new LatLng(41.873455, -88.096550), new LatLng(41.873452, -88.097110));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "North Fischer E Lot");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
+
+        //Health Center Parking
+        polyOpt = new PolygonOptions().add(new LatLng(41.873436, -88.097351), new LatLng(41.873437, -88.097298), new LatLng(41.871073, -88.097273), new LatLng(41.871077, -88.097325), new LatLng(41.872347, -88.097333), new LatLng(41.872398, -88.097355));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "Heath Center Parking");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
+
+        //Edman Chapel parking
+        polyOpt = new PolygonOptions().add(new LatLng(41.870309, -88.100750), new LatLng(41.870896, -88.100772), new LatLng(41.870894, -88.100628), new LatLng(41.871101, -88.100614), new LatLng(41.871103, -88.099432), new LatLng(41.870457, -88.099420), new LatLng(41.870450, -88.099855), new LatLng(41.870251, -88.099854), new LatLng(41.870238, -88.100275), new LatLng(41.870317, -88.100432));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(pHighlightGrey);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        pInsert = new Parking(this, mMap, poly, "Edman Chapel Parking");
+        allLocations.put(pInsert.getName(),pInsert);
+        poly.setClickable(true);
+        poly.setTag(pInsert);
 
         //Tennis court parking
         polyOpt = new PolygonOptions().add(new LatLng(41.871144, -88.098451), new LatLng(41.871164, -88.097390), new LatLng(41.871000, -88.097380), new LatLng(41.870976, -88.098449));
@@ -654,10 +740,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
-        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+        if (!(ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-        } else {
+                == PackageManager.PERMISSION_GRANTED)) {
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
