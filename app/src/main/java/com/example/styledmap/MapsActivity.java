@@ -611,6 +611,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869214, -88.095372), new Coordinate(41.869225, -88.095017),
                 new Coordinate(41.868703, -88.094996), new Coordinate(41.868690, -88.095365)});
 
+        //Smaber Parking
+        newParking("Smaber Parking 1", new Coordinate[] {
+                new Coordinate(41.871072, -88.094702), new Coordinate(41.870916, -88.094611),
+                new Coordinate(41.871130, -88.093934), new Coordinate(41.871286, -88.094011)});
+        newParking("Smaber Parking 2", new Coordinate[] {
+                new Coordinate(41.870667, -88.094362), new Coordinate(41.870788, -88.093982),
+                new Coordinate(41.870213, -88.093975), new Coordinate(41.870213, -88.094254),
+                new Coordinate(41.870459, -88.094255)});
+
+
         //College Ave Parking
         newParking("College Ave Parking 1", new Coordinate[] {
                 new Coordinate(41.868373, -88.095299), new Coordinate(41.868387, -88.095006),
@@ -624,6 +634,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         newParking("College Ave Parking 4", new Coordinate[] {
                 new Coordinate(41.868604, -88.092870), new Coordinate(41.868666, -88.092250),
                 new Coordinate(41.868234, -88.092252), new Coordinate(41.868239, -88.092842)});
+
+        //Saint & Elliot Parking
+        newParking("Saint & Elliot Parking", new Coordinate[] {
+                new Coordinate(41.869996, -88.092597), new Coordinate(41.870005, -88.092528),
+                new Coordinate(41.869532, -88.092496), new Coordinate(41.869513, -88.092570)});
 
         //Terrace Parking
         newParking("Terrace Parking", new Coordinate[] {
