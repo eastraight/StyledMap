@@ -472,7 +472,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.870962, -88.096165), new Coordinate(41.870962, -88.096470), new Coordinate(41.871119, -88.096472),
                 new Coordinate(41.871121, -88.096456), new Coordinate(41.871448, -88.096462), new Coordinate(41.871450, -88.096473),
                 new Coordinate(41.871657, -88.096473), new Coordinate(41.871656, -88.097079)});
-
+        // Wade
+        newBuilding("Wade", "wade.txt", new Coordinate[] {
+                new Coordinate(41.870513, -88.101319), new Coordinate(41.870704, -88.101316), new Coordinate(41.870709, -88.101033),
+                new Coordinate(41.870645, -88.101031), new Coordinate(41.870643, -88.101044), new Coordinate(41.870582, -88.101045),
+                new Coordinate(41.870583, -88.101065), new Coordinate(41.870532, -88.101065), new Coordinate(41.870530, -88.101166),
+                new Coordinate(41.870545, -88.101167), new Coordinate(41.870544, -88.101241), new Coordinate(41.870512, -88.101240)});
+        // Welcome Center
+        newBuilding("Welcome Center", "welcome.txt", new Coordinate[]{
+                new Coordinate(41.868074, -88.097209), new Coordinate(41.868359, -88.097213), new Coordinate(41.868365, -88.097181),
+                new Coordinate(41.868364, -88.097062), new Coordinate(41.868088, -88.097060), new Coordinate(41.868080, -88.097085),
+                new Coordinate(41.868073, -88.097085)});
+        // Westgate
+        newBuilding("Westgate", "westgate.txt", new Coordinate[]{
+                new Coordinate(41.868259, -88.101602), new Coordinate(41.868358, -88.101600), new Coordinate(41.868360, -88.101590),
+                new Coordinate(41.868369, -88.101565), new Coordinate(41.868369, -88.101387), new Coordinate(41.868255, -88.101387),
+                new Coordinate(41.868246, -88.101413), new Coordinate(41.868241, -88.101563), new Coordinate(41.868258, -88.101561)});
         // BGC
         newBuilding("Billy Graham Center", "bgc.txt", new Coordinate[] {
                 new Coordinate(41.866961, -88.099586), new Coordinate(41.866965, -88.099199), new Coordinate(41.866893, -88.099202),
