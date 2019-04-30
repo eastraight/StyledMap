@@ -129,7 +129,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 arrayBuilding
         );
 
-
         //Below code to action to Buttons
         parkingToggle = findViewById(R.id.parking_toggle);
         parkingToggle.setOnClickListener(new View.OnClickListener() {
@@ -194,6 +193,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         sendUpdatedLocationMessage();
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -489,6 +489,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.866807, -88.099843), new Coordinate(41.866795, -88.099844), new Coordinate(41.866795, -88.099818),
                 new Coordinate(41.866880, -88.099820), new Coordinate(41.866881, -88.099674), new Coordinate(41.866892, -88.099674),
                 new Coordinate(41.866894, -88.099586), new Coordinate(41.866961, -88.099586)});
+
         polyOpt = new PolygonOptions().add(new LatLng(41.868385, -88.099688), new LatLng(41.868383, -88.099504), new LatLng(41.868450, -88.099503), new LatLng(41.868554, -88.099505), new LatLng(41.868601, -88.099507), new LatLng(41.868600, -88.099692), new LatLng(41.868561, -88.099863), new LatLng(41.868631, -88.099863), new LatLng(41.868632, -88.100037), new LatLng(41.868428, -88.100041), new LatLng(41.868428, -88.099989), new LatLng(41.868408, -88.099966), new LatLng(41.868408, -88.099936), new LatLng(41.868424, -88.099910), new LatLng(41.868429, -88.099857), new LatLng(41.868445, -88.099857), new LatLng(41.868441, -88.099688), new LatLng(41.868451, -88.099324), new LatLng(41.868424, -88.099326), new LatLng(41.868423, -88.099269), new LatLng(41.868409, -88.099254), new LatLng(41.868408, -88.099224), new LatLng(41.868424, -88.099206), new LatLng(41.868428, -88.099155), new LatLng(41.868627, -88.099155), new LatLng(41.868628, -88.099325), new LatLng(41.868555, -88.099327));
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(bHighlightOrange);

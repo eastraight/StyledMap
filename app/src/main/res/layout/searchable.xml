@@ -12,14 +12,14 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="722dp" />
-        app:layout_constraintStart_toStartOf="@+id/pract_spinner"
-        app:layout_constraintTop_toTopOf="@+id/pract_spinner" />gn.bottomappbar.BottomAppBar>
     </searchable>
 
     <activity android:name=".SearchResultsActivity">
     <intent-filter>
         <action android:name="android.intent.action.SEARCH" />
     </intent-filter>
+        <meta-data android:name="android.app.default_searchable"
+            android:value=".SearchableActivity" />
 </activity>
 
     </LinearLayout>
