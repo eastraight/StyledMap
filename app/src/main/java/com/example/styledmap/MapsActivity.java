@@ -355,6 +355,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Building Section
 
         //Meyer Science Center
+        newBuilding("Student Health Services", "shs.txt", new Coordinate[] {
+                new Coordinate(41.872973, -88.097991), new Coordinate(41.872972, -88.097378), new Coordinate(41.872400, -88.097379),
+                new Coordinate(41.872395, -88.097502), new Coordinate(41.87242, -88.097506), new Coordinate(41.872422, -88.097707),
+                new Coordinate(41.872373, -88.097711), new Coordinate(41.872372, -88.097980)});
+
+        //Meyer Science Center
         newBuilding("Meyer Science Center", "meyer.txt", new Coordinate[] {
                 new Coordinate(41.869850, -88.096759), new Coordinate(41.869851, -88.095732), new Coordinate(41.869282, -88.095713),
                 new Coordinate(41.869283, -88.096073), new Coordinate(41.869634, -88.096077), new Coordinate(41.869653, -88.096746),
@@ -466,7 +472,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.870962, -88.096165), new Coordinate(41.870962, -88.096470), new Coordinate(41.871119, -88.096472),
                 new Coordinate(41.871121, -88.096456), new Coordinate(41.871448, -88.096462), new Coordinate(41.871450, -88.096473),
                 new Coordinate(41.871657, -88.096473), new Coordinate(41.871656, -88.097079)});
-
+        // Wade
+        newBuilding("Wade", "wade.txt", new Coordinate[] {
+                new Coordinate(41.870513, -88.101319), new Coordinate(41.870704, -88.101316), new Coordinate(41.870709, -88.101033),
+                new Coordinate(41.870645, -88.101031), new Coordinate(41.870643, -88.101044), new Coordinate(41.870582, -88.101045),
+                new Coordinate(41.870583, -88.101065), new Coordinate(41.870532, -88.101065), new Coordinate(41.870530, -88.101166),
+                new Coordinate(41.870545, -88.101167), new Coordinate(41.870544, -88.101241), new Coordinate(41.870512, -88.101240)});
+        // Welcome Center
+        newBuilding("Welcome Center", "welcome.txt", new Coordinate[]{
+                new Coordinate(41.868074, -88.097209), new Coordinate(41.868359, -88.097213), new Coordinate(41.868365, -88.097181),
+                new Coordinate(41.868364, -88.097062), new Coordinate(41.868088, -88.097060), new Coordinate(41.868080, -88.097085),
+                new Coordinate(41.868073, -88.097085)});
+        // Westgate
+        newBuilding("Westgate", "westgate.txt", new Coordinate[]{
+                new Coordinate(41.868259, -88.101602), new Coordinate(41.868358, -88.101600), new Coordinate(41.868360, -88.101590),
+                new Coordinate(41.868369, -88.101565), new Coordinate(41.868369, -88.101387), new Coordinate(41.868255, -88.101387),
+                new Coordinate(41.868246, -88.101413), new Coordinate(41.868241, -88.101563), new Coordinate(41.868258, -88.101561)});
         // BGC
         newBuilding("Billy Graham Center", "bgc.txt", new Coordinate[] {
                 new Coordinate(41.866961, -88.099586), new Coordinate(41.866965, -88.099199), new Coordinate(41.866893, -88.099202),
@@ -483,14 +504,50 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.866807, -88.099843), new Coordinate(41.866795, -88.099844), new Coordinate(41.866795, -88.099818),
                 new Coordinate(41.866880, -88.099820), new Coordinate(41.866881, -88.099674), new Coordinate(41.866892, -88.099674),
                 new Coordinate(41.866894, -88.099586), new Coordinate(41.866961, -88.099586)});
+        polyOpt = new PolygonOptions().add(new LatLng(41.868385, -88.099688), new LatLng(41.868383, -88.099504), new LatLng(41.868450, -88.099503), new LatLng(41.868554, -88.099505), new LatLng(41.868601, -88.099507), new LatLng(41.868600, -88.099692), new LatLng(41.868561, -88.099863), new LatLng(41.868631, -88.099863), new LatLng(41.868632, -88.100037), new LatLng(41.868428, -88.100041), new LatLng(41.868428, -88.099989), new LatLng(41.868408, -88.099966), new LatLng(41.868408, -88.099936), new LatLng(41.868424, -88.099910), new LatLng(41.868429, -88.099857), new LatLng(41.868445, -88.099857), new LatLng(41.868441, -88.099688), new LatLng(41.868451, -88.099324), new LatLng(41.868424, -88.099326), new LatLng(41.868423, -88.099269), new LatLng(41.868409, -88.099254), new LatLng(41.868408, -88.099224), new LatLng(41.868424, -88.099206), new LatLng(41.868428, -88.099155), new LatLng(41.868627, -88.099155), new LatLng(41.868628, -88.099325), new LatLng(41.868555, -88.099327));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(this, mMap, poly, "Blanchard Hall", "msc.txt");
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
+
+        //McAlister Hall
+        polyOpt = new PolygonOptions().add(new LatLng(41.868630, -88.100865), new LatLng(41.868631, -88.100735), new LatLng(41.868624, -88.100734), new LatLng(41.868620, -88.100590), new LatLng(41.868629, -88.100589), new LatLng(41.868628, -88.100459), new LatLng(41.868851, -88.100456), new LatLng(41.868852, -88.100578), new LatLng(41.868864, -88.100580), new LatLng(41.868864, -88.100752), new LatLng(41.868851, -88.100751), new LatLng(41.868848, -88.100873));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(this, mMap, poly, "McAlister Hall", "msc.txt");
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
+
+        //Pierce Memorial
+        polyOpt = new PolygonOptions().add(new LatLng(41.868943, -88.100897), new LatLng(41.868942, -88.100868), new LatLng(41.868921, -88.100867), new LatLng(41.868912, -88.100855), new LatLng(41.868913, -88.100823), new LatLng(41.868921, -88.100813), new LatLng(41.868946, -88.100815), new LatLng(41.868949, -88.100609), new LatLng(41.868925, -88.100606), new LatLng(41.868925, -88.100510), new LatLng(41.868954, -88.100508), new LatLng(41.868956, -88.100477), new LatLng(41.868989, -88.100427), new LatLng(41.869107, -88.100430), new LatLng(41.869146, -88.100481), new LatLng(41.869148, -88.100521), new LatLng(41.869176, -88.100522), new LatLng(41.869172, -88.100611), new LatLng(41.869146, -88.100610), new LatLng(41.869147, -88.100822), new LatLng(41.869176, -88.100822), new LatLng(41.869182, -88.100827), new LatLng(41.869182, -88.100866), new LatLng(41.869176, -88.100879), new LatLng(41.869151, -88.100879), new LatLng(41.869151, -88.100903));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(this, mMap, poly, "Pierce Memorial Hall", "msc.txt");
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
 
+        //Parking for Houses near Student Health Services
+        newParking("SHS Houses Parking", new Coordinate[] {
+                new Coordinate(41.873050, -88.098123), new Coordinate(41.873049, -88.098337), new Coordinate(41.872603, -88.098344),
+                new Coordinate(41.872596, -88.098305), new Coordinate(41.872528, -88.098308), new Coordinate(41.872533, -88.098138)});
+
         //West Fischer Street Parking
         newParking("West Fischer Street Parking", new Coordinate[] {
-                new Coordinate(41.872102, -88.097166), new Coordinate(41.872100, -88.097194),
-                new Coordinate(41.872610, -88.097199), new Coordinate(41.872610, -88.097175)});
+                new Coordinate(41.873000, -88.098144), new Coordinate(41.872100, -88.097194),
+                new Coordinate(41.872610, -88.097199), new Coordinate(41.872610, -88.097175), new Coordinate(41.872533, -88.098141)});
 
         //South Fischer E Lot
         newParking("South Fischer E Lot", new Coordinate[] {
