@@ -389,8 +389,30 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(bHighlightOrange);
         poly = mMap.addPolygon(polyOpt);
-        poly.setVisible(true);
+        poly.setVisible(false);
         bInsert = new Building(this, mMap, poly, "Blanchard Hall", "msc.txt");
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
+
+        //McAlister Hall
+        polyOpt = new PolygonOptions().add(new LatLng(41.868630, -88.100865), new LatLng(41.868631, -88.100735), new LatLng(41.868624, -88.100734), new LatLng(41.868620, -88.100590), new LatLng(41.868629, -88.100589), new LatLng(41.868628, -88.100459), new LatLng(41.868851, -88.100456), new LatLng(41.868852, -88.100578), new LatLng(41.868864, -88.100580), new LatLng(41.868864, -88.100752), new LatLng(41.868851, -88.100751), new LatLng(41.868848, -88.100873));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(this, mMap, poly, "McAlister Hall", "msc.txt");
+        allLocations.put(bInsert.getName(),bInsert);
+        poly.setClickable(true);
+        poly.setTag(bInsert);
+
+        //Pierce Memorial
+        polyOpt = new PolygonOptions().add(new LatLng(41.868943, -88.100897), new LatLng(41.868942, -88.100868), new LatLng(41.868921, -88.100867), new LatLng(41.868912, -88.100855), new LatLng(41.868913, -88.100823), new LatLng(41.868921, -88.100813), new LatLng(41.868946, -88.100815), new LatLng(41.868949, -88.100609), new LatLng(41.868925, -88.100606), new LatLng(41.868925, -88.100510), new LatLng(41.868954, -88.100508), new LatLng(41.868956, -88.100477), new LatLng(41.868989, -88.100427), new LatLng(41.869107, -88.100430), new LatLng(41.869146, -88.100481), new LatLng(41.869148, -88.100521), new LatLng(41.869176, -88.100522), new LatLng(41.869172, -88.100611), new LatLng(41.869146, -88.100610), new LatLng(41.869147, -88.100822), new LatLng(41.869176, -88.100822), new LatLng(41.869182, -88.100827), new LatLng(41.869182, -88.100866), new LatLng(41.869176, -88.100879), new LatLng(41.869151, -88.100879), new LatLng(41.869151, -88.100903));
+        polyOpt.strokeWidth(strokeWidth);
+        polyOpt.fillColor(bHighlightOrange);
+        poly = mMap.addPolygon(polyOpt);
+        poly.setVisible(false);
+        bInsert = new Building(this, mMap, poly, "Pierce Memorial Hall", "msc.txt");
         allLocations.put(bInsert.getName(),bInsert);
         poly.setClickable(true);
         poly.setTag(bInsert);
