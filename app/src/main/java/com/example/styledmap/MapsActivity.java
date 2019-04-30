@@ -456,8 +456,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869317, -88.097421), new Coordinate(41.869412, -88.097425), new Coordinate(41.869414, -88.097456),
                 new Coordinate(41.869678, -88.097455)});
 
-        // SRC (in progress)
-//      newBuilding("SRC", "src.txt", new Coordinate[] {new Coordinate()});
+        // SRC
+        newBuilding("SRC", "src.txt", new Coordinate[] {
+                new Coordinate(41.871656, -88.097079), new Coordinate(41.871447, -88.097078), new Coordinate(41.871448, -88.097092),
+                new Coordinate(41.871109, -88.097085), new Coordinate(41.871115, -88.097074), new Coordinate(41.871026, -88.097076),
+                new Coordinate(41.871026, -88.097001), new Coordinate(41.870698, -88.096995), new Coordinate(41.870698, -88.097040),
+                new Coordinate(41.870562, -88.097040), new Coordinate(41.870561, -88.096884), new Coordinate(41.870201, -88.096880),
+                new Coordinate(41.870201, -88.096117), new Coordinate(41.870562, -88.096116), new Coordinate(41.870559, -88.096162),
+                new Coordinate(41.870962, -88.096165), new Coordinate(41.870962, -88.096470), new Coordinate(41.871119, -88.096472),
+                new Coordinate(41.871121, -88.096456), new Coordinate(41.871448, -88.096462), new Coordinate(41.871450, -88.096473),
+                new Coordinate(41.871657, -88.096473), new Coordinate(41.871656, -88.097079)});
 
         // BGC
         newBuilding("Billy Graham Center", "bgc.txt", new Coordinate[] {
@@ -520,7 +528,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.871144, -88.098451), new Coordinate(41.871164, -88.097390),
                 new Coordinate(41.871000, -88.097380), new Coordinate(41.870976, -88.098449)});
 
-        //Convserv Parking Lot
+        //Conserv Parking Lot
         newParking("Conserve Court Parking", new Coordinate[] {
                 new Coordinate(41.870797, -88.098812), new Coordinate(41.870846, -88.098808),
                 new Coordinate(41.870859, -88.098105), new Coordinate(41.870801, -88.098104)});
@@ -540,6 +548,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         newParking("North Washington Parking", new Coordinate[] {
                 new Coordinate(41.868399, -88.101160), new Coordinate(41.868399, -88.101086),
                 new Coordinate(41.867504, -88.101084), new Coordinate(41.867492, -88.101141)});
+
+        //College Ave Parking
+        newParking("College Ave Parking 1", new Coordinate[] {
+                new Coordinate(41.868373, -88.095299), new Coordinate(41.868387, -88.095006),
+                new Coordinate(41.868048, -88.094999), new Coordinate(41.868029, -88.095298)});
+
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         // Housing Section
@@ -612,6 +626,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.866169, -88.095767), new Coordinate(41.866200, -88.095614),
                 new Coordinate(41.866045, -88.095560), new Coordinate(41.865919, -88.096184),
                 new Coordinate(41.866074, -88.096241)});
+
+        // College Ave
+        newHousing("College Ave 802", "Apartment", new Coordinate[] {
+                new Coordinate(41.868377, -88.095459), new Coordinate(41.868374, -88.095309),
+                new Coordinate(41.868326, -88.095308), new Coordinate(41.868327, -88.095328),
+                new Coordinate(41.868073, -88.095327), new Coordinate(41.868073, -88.095310),
+                new Coordinate(41.868008, -88.095308), new Coordinate(41.868001, -88.095457)});
+        newHousing("College Ave 814", "Apartment", new Coordinate[] {
+                new Coordinate(41.868410, -88.094954), new Coordinate(41.868410, -88.094783),
+                new Coordinate(41.868059, -88.094779), new Coordinate(41.868050, -88.094949)});
+        newHousing("College Ave 818", "Apartment", new Coordinate[] {
+                new Coordinate(41.868379, -88.094702), new Coordinate(41.868391, -88.094589),
+                new Coordinate(41.868185, -88.094548), new Coordinate(41.868169, -88.094730),
+                new Coordinate(41.868252, -88.094747), new Coordinate(41.868260, -88.094679)});
+        newHousing("College Ave 904", "Apartment", new Coordinate[] {
+                new Coordinate(41.868567, -88.093646), new Coordinate(41.868565, -88.093480),
+                new Coordinate(41.868270, -88.093475), new Coordinate(41.868271, -88.093644)});
+        newHousing("College Ave 916", "Apartment", new Coordinate[] {
+                new Coordinate(41.868598, -88.093367), new Coordinate(41.868599, -88.093199),
+                new Coordinate(41.868303, -88.093197), new Coordinate(41.868302, -88.093363)});
+
+
 
         mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
