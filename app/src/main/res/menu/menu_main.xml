@@ -19,5 +19,9 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/drawer_view" />
 
-
+    <item
+        android:id="@+id/search"
+        android:title="search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always"/>
 </menu>
