@@ -355,6 +355,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Building Section
 
         //Meyer Science Center
+        newBuilding("Student Health Services", "shs.txt", new Coordinate[] {
+                new Coordinate(41.872973, -88.097991), new Coordinate(41.872972, -88.097378), new Coordinate(41.872400, -88.097379),
+                new Coordinate(41.872395, -88.097502), new Coordinate(41.87242, -88.097506), new Coordinate(41.872422, -88.097707),
+                new Coordinate(41.872373, -88.097711), new Coordinate(41.872372, -88.097980)});
+
+        //Meyer Science Center
         newBuilding("Meyer Science Center", "meyer.txt", new Coordinate[] {
                 new Coordinate(41.869850, -88.096759), new Coordinate(41.869851, -88.095732), new Coordinate(41.869282, -88.095713),
                 new Coordinate(41.869283, -88.096073), new Coordinate(41.869634, -88.096077), new Coordinate(41.869653, -88.096746),
@@ -487,10 +493,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
 
+        //Parking for Houses near Student Health Services
+        newParking("SHS Houses Parking", new Coordinate[] {
+                new Coordinate(41.873050, -88.098123), new Coordinate(41.873049, -88.098337), new Coordinate(41.872603, -88.098344),
+                new Coordinate(41.872596, -88.098305), new Coordinate(41.872528, -88.098308), new Coordinate(41.872533, -88.098138)});
+
         //West Fischer Street Parking
         newParking("West Fischer Street Parking", new Coordinate[] {
-                new Coordinate(41.872102, -88.097166), new Coordinate(41.872100, -88.097194),
-                new Coordinate(41.872610, -88.097199), new Coordinate(41.872610, -88.097175)});
+                new Coordinate(41.873000, -88.098144), new Coordinate(41.872100, -88.097194),
+                new Coordinate(41.872610, -88.097199), new Coordinate(41.872610, -88.097175), new Coordinate(41.872533, -88.098141)});
 
         //South Fischer E Lot
         newParking("South Fischer E Lot", new Coordinate[] {
