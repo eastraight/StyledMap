@@ -606,10 +606,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869748, -88.097762), new Coordinate(41.869629, -88.097767)});
 
         // Saint and Elliot
-        newHousing("Saint and Elliot", "Apartment", new Coordinate[] {
-                new Coordinate(41.869974, -88.092459), new Coordinate( 41.869982, -88.092162 ),
-                new Coordinate( 41.869443, -88.092164 ), new Coordinate( 41.869452, -88.092456),
-                new Coordinate(41.869974, -88.092459)});
+        newHousing("Saint and Elliot 430", "Apartment", new Coordinate[] {
+                new Coordinate(41.869974, -88.092459), new Coordinate( 41.869982, -88.092162),
+                new Coordinate(41.869841, -88.092175), new Coordinate(41.869826, -88.092456)});
+        newHousing("Saint and Elliot 424", "Apartment", new Coordinate[] {
+                new Coordinate(41.869777, -88.092449), new Coordinate(41.869780, -88.092180),
+                new Coordinate(41.869653, -88.092176), new Coordinate(41.869651, -88.092445)});
+         newHousing("Saint and Elliot 418", "Apartment", new Coordinate[] {
+                new Coordinate(41.869601, -88.092459), new Coordinate(41.869602, -88.092170),
+                new Coordinate(41.869443, -88.092164), new Coordinate(41.869452, -88.092456)});
+
 
         // Michigan
         newHousing("Michigan", "Apartment", new Coordinate[] {
@@ -618,8 +624,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.865739, -88.095732), new Coordinate(41.865733, -88.096062),
                 new Coordinate(41.865713, -88.096064), new Coordinate(41.865710, -88.096221),
                 new Coordinate( 41.865870, -88.096228 )});
-
-        // Crescent (try to merge with Michigan??)
+        // Crescent
         newHousing("Crescent", "Apartment", new Coordinate[] {
                 new Coordinate(41.866074, -88.096241), new Coordinate(41.866105, -88.096090),
                 new Coordinate(41.866083, -88.096080), new Coordinate(41.866147, -88.095759),
@@ -646,6 +651,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         newHousing("College Ave 916", "Apartment", new Coordinate[] {
                 new Coordinate(41.868598, -88.093367), new Coordinate(41.868599, -88.093199),
                 new Coordinate(41.868303, -88.093197), new Coordinate(41.868302, -88.093363)});
+
+        // Terrace
+        newHousing("Terrace 1047", "Apartment", new Coordinate[] {
+                new Coordinate(41.869824, -88.090319), new Coordinate(41.869822, -88.090182),
+                new Coordinate(41.869246, -88.090192), new Coordinate(41.869243, -88.090322)});
+        newHousing("Terrace 1051", "Apartment", new Coordinate[] {
+                new Coordinate(41.869849, -88.090122), new Coordinate(41.869849, -88.089988),
+                new Coordinate(41.869275, -88.089994), new Coordinate(41.869276, -88.090128)});
+        newHousing("Terrace 1055", "Apartment", new Coordinate[] {
+                new Coordinate(41.869812, -88.089954), new Coordinate(41.869811, -88.089821),
+                new Coordinate(41.869294, -88.089824), new Coordinate(41.869295, -88.089958)});
+        newHousing("Terrace 1057", "Apartment", new Coordinate[] {
+                new Coordinate(41.869832, -88.089767), new Coordinate(41.869838, -88.089641),
+                new Coordinate(41.869318, -88.089637), new Coordinate(41.869319, -88.089771)});
 
 
 
