@@ -13,13 +13,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HousingInfo">
-            android:parentActivityName=".MapsActivity">
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
+        <activity
+            android:name=".HousingInfo"
+            android:parentActivityName=".MapsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MapsActivity" />
-
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
