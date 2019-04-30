@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.Polygon;
 
 public class Building extends LocationSpaces {
