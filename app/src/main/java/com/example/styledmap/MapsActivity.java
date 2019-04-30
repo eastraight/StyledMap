@@ -606,10 +606,29 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.868399, -88.101160), new Coordinate(41.868399, -88.101086),
                 new Coordinate(41.867504, -88.101084), new Coordinate(41.867492, -88.101141)});
 
+        //Softball-Jenks Parking
+        newParking("Softball Field Parking", new Coordinate[] {
+                new Coordinate(41.869214, -88.095372), new Coordinate(41.869225, -88.095017),
+                new Coordinate(41.868703, -88.094996), new Coordinate(41.868690, -88.095365)});
+
         //College Ave Parking
         newParking("College Ave Parking 1", new Coordinate[] {
                 new Coordinate(41.868373, -88.095299), new Coordinate(41.868387, -88.095006),
                 new Coordinate(41.868048, -88.094999), new Coordinate(41.868029, -88.095298)});
+        newParking("College Ave Parking 2", new Coordinate[] {
+                new Coordinate(41.868439, -88.094526), new Coordinate(41.868535, -88.093752),
+                new Coordinate(41.868254, -88.093673), new Coordinate(41.868169, -88.094494)});
+        newParking("College Ave Parking 3", new Coordinate[] {
+                new Coordinate(41.868075, -88.094722), new Coordinate(41.868024, -88.094710),
+                new Coordinate(41.868217, -88.093134), new Coordinate(41.868268, -88.093141)});
+        newParking("College Ave Parking 4", new Coordinate[] {
+                new Coordinate(41.868604, -88.092870), new Coordinate(41.868666, -88.092250),
+                new Coordinate(41.868234, -88.092252), new Coordinate(41.868239, -88.092842)});
+
+        //Terrace Parking
+        newParking("Terrace Parking", new Coordinate[] {
+                new Coordinate(41.870106, -88.090320), new Coordinate(41.870121, -88.089660),
+                new Coordinate(41.869883, -88.089638), new Coordinate(41.869885, -88.090322)});
 
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
