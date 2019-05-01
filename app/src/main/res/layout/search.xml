@@ -5,16 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <activity android:id="@+id/activity2"
+    <activity
+        android:name=".SearchActivity"
+        android:id="@+id/activity2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        android:id="@+id/activity"
-        android:name=".SearchableActivity">
+        android:layout_height="match_parent"
+        android:launchMode="singleTop">
 
         <intent-filter>
-
-
-
             <action android:name="android.intent.action.SEARCH" />
         </intent-filter>
 

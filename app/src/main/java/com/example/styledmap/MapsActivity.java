@@ -58,6 +58,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button parkingToggle;
     private Button buildingToggle;
     private Button housingToggle;
+    private boolean bVisible;
+    private boolean pVisible;
+    private boolean hVisible;
 
     private HashMap<String, LocationSpaces> allLocations;
     private DrawerLayout drawerLayout;
@@ -92,6 +95,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         allLocations = new HashMap<>();
         drawerLayout = findViewById(R.id.drawer_layout);
+        bVisible = false;
+        pVisible = false;
+        hVisible = false;
 
         final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
@@ -129,21 +135,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 arrayBuilding
         );
 
-
         //Below code to action to Buttons
         parkingToggle = findViewById(R.id.parking_toggle);
         parkingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resetPolygon();
                 for (LocationSpaces here : allLocations.values()) {
                     if(here.getType().equals("p")) {
-                        if (here.getShape().isVisible()) {
+                        if (pVisible) {
                             here.getShape().setVisible(false);
                         } else {
                             here.getShape().setVisible(true);
                         }
                     }
                 }
+                pVisible = !pVisible;
             }
         });
 
@@ -151,15 +158,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         buildingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resetPolygon();
                 for (LocationSpaces here : allLocations.values()) {
                     if(here.getType().equals("b")) {
-                        if (here.getShape().isVisible()) {
+                        if (bVisible) {
                             here.getShape().setVisible(false);
                         } else {
                             here.getShape().setVisible(true);
                         }
                     }
                 }
+                bVisible = !bVisible;
             }
         });
 
@@ -167,15 +176,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         housingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resetPolygon();
                 for (LocationSpaces here : allLocations.values()) {
                     if(here.getType().equals("h")) {
-                        if (here.getShape().isVisible()) {
+                        if (hVisible) {
                             here.getShape().setVisible(false);
                         } else {
                             here.getShape().setVisible(true);
                         }
                     }
                 }
+                hVisible = !hVisible;
             }
         });
 //        diningButton = findViewById(R.id.dining_button);
@@ -194,6 +205,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         sendUpdatedLocationMessage();
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -504,6 +516,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.866807, -88.099843), new Coordinate(41.866795, -88.099844), new Coordinate(41.866795, -88.099818),
                 new Coordinate(41.866880, -88.099820), new Coordinate(41.866881, -88.099674), new Coordinate(41.866892, -88.099674),
                 new Coordinate(41.866894, -88.099586), new Coordinate(41.866961, -88.099586)});
+
         polyOpt = new PolygonOptions().add(new LatLng(41.868385, -88.099688), new LatLng(41.868383, -88.099504), new LatLng(41.868450, -88.099503), new LatLng(41.868554, -88.099505), new LatLng(41.868601, -88.099507), new LatLng(41.868600, -88.099692), new LatLng(41.868561, -88.099863), new LatLng(41.868631, -88.099863), new LatLng(41.868632, -88.100037), new LatLng(41.868428, -88.100041), new LatLng(41.868428, -88.099989), new LatLng(41.868408, -88.099966), new LatLng(41.868408, -88.099936), new LatLng(41.868424, -88.099910), new LatLng(41.868429, -88.099857), new LatLng(41.868445, -88.099857), new LatLng(41.868441, -88.099688), new LatLng(41.868451, -88.099324), new LatLng(41.868424, -88.099326), new LatLng(41.868423, -88.099269), new LatLng(41.868409, -88.099254), new LatLng(41.868408, -88.099224), new LatLng(41.868424, -88.099206), new LatLng(41.868428, -88.099155), new LatLng(41.868627, -88.099155), new LatLng(41.868628, -88.099325), new LatLng(41.868555, -88.099327));
         polyOpt.strokeWidth(strokeWidth);
         polyOpt.fillColor(bHighlightOrange);
@@ -538,6 +551,29 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
+
+        //Billy Graham Center Parking Lot
+        newParking("Billy Graham Center Parking Lot", new Coordinate[] {
+                new Coordinate(41.867231, -88.100267), new Coordinate(41.867223, -88.100174), new Coordinate(41.866372, -88.100177),
+                new Coordinate(41.866375, -88.100050), new Coordinate(41.866424, -88.100047), new Coordinate(41.866410, -88.099834),
+                new Coordinate(41.866365, -88.099831), new Coordinate(41.866371, -88.099762), new Coordinate(41.866412, -88.099760),
+                new Coordinate(41.866411, -88.099120), new Coordinate(41.866369, -88.099120), new Coordinate(41.866366, -88.099049),
+                new Coordinate(41.866452, -88.098654), new Coordinate(41.866816, -88.098646), new Coordinate(41.867283, -88.098807),
+                new Coordinate(41.867309, -88.098710), new Coordinate(41.867091, -88.098642), new Coordinate(41.867102, -88.098558),
+                new Coordinate(41.867155, -88.098582), new Coordinate(41.867364, -88.097602), new Coordinate(41.867300, -88.097569),
+                new Coordinate(41.867376, -88.097448), new Coordinate(41.867629, -88.097648), new Coordinate(41.867656, -88.097555),
+                new Coordinate(41.867364, -88.097333), new Coordinate(41.867256, -88.097486), new Coordinate(41.867163, -88.097460),
+                new Coordinate(41.867182, -88.097404), new Coordinate(41.866682, -88.097210), new Coordinate(41.866660, -88.097285),
+                new Coordinate(41.866617, -88.097279), new Coordinate(41.866247, -88.099011), new Coordinate(41.866252, -88.099340),
+                new Coordinate(41.866297, -88.099432), new Coordinate(41.866294, -88.099564), new Coordinate(41.866243, -88.099889),
+                new Coordinate(41.866280, -88.099929), new Coordinate(41.866212, -88.100284), new Coordinate(41.866572, -88.100265),
+                new Coordinate(41.866561, -88.100498), new Coordinate(41.867046, -88.100532), new Coordinate(41.867045, -88.100269)
+        });
+
+        //North Tennis Court E Lot
+        newParking("North Tennis Court E Lot", new Coordinate[] {
+                new Coordinate(41.871665, -88.098474), new Coordinate(41.871656, -88.098051), new Coordinate(41.871538, -88.098039),
+                new Coordinate(41.871515, -88.098512)});
 
         //Parking for Houses near Student Health Services
         newParking("SHS Houses Parking", new Coordinate[] {
@@ -606,10 +642,44 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.868399, -88.101160), new Coordinate(41.868399, -88.101086),
                 new Coordinate(41.867504, -88.101084), new Coordinate(41.867492, -88.101141)});
 
+        //Softball-Jenks Parking
+        newParking("Softball Field Parking", new Coordinate[] {
+                new Coordinate(41.869214, -88.095372), new Coordinate(41.869225, -88.095017),
+                new Coordinate(41.868703, -88.094996), new Coordinate(41.868690, -88.095365)});
+
+        //Smaber Parking
+        newParking("Smaber Parking 1", new Coordinate[] {
+                new Coordinate(41.871072, -88.094702), new Coordinate(41.870916, -88.094611),
+                new Coordinate(41.871130, -88.093934), new Coordinate(41.871286, -88.094011)});
+        newParking("Smaber Parking 2", new Coordinate[] {
+                new Coordinate(41.870667, -88.094362), new Coordinate(41.870788, -88.093982),
+                new Coordinate(41.870213, -88.093975), new Coordinate(41.870213, -88.094254),
+                new Coordinate(41.870459, -88.094255)});
+
+
         //College Ave Parking
         newParking("College Ave Parking 1", new Coordinate[] {
                 new Coordinate(41.868373, -88.095299), new Coordinate(41.868387, -88.095006),
                 new Coordinate(41.868048, -88.094999), new Coordinate(41.868029, -88.095298)});
+        newParking("College Ave Parking 2", new Coordinate[] {
+                new Coordinate(41.868439, -88.094526), new Coordinate(41.868535, -88.093752),
+                new Coordinate(41.868254, -88.093673), new Coordinate(41.868169, -88.094494)});
+        newParking("College Ave Parking 3", new Coordinate[] {
+                new Coordinate(41.868075, -88.094722), new Coordinate(41.868024, -88.094710),
+                new Coordinate(41.868217, -88.093134), new Coordinate(41.868268, -88.093141)});
+        newParking("College Ave Parking 4", new Coordinate[] {
+                new Coordinate(41.868604, -88.092870), new Coordinate(41.868666, -88.092250),
+                new Coordinate(41.868234, -88.092252), new Coordinate(41.868239, -88.092842)});
+
+        //Saint & Elliot Parking
+        newParking("Saint & Elliot Parking", new Coordinate[] {
+                new Coordinate(41.869996, -88.092597), new Coordinate(41.870005, -88.092528),
+                new Coordinate(41.869532, -88.092496), new Coordinate(41.869513, -88.092570)});
+
+        //Terrace Parking
+        newParking("Terrace Parking", new Coordinate[] {
+                new Coordinate(41.870106, -88.090320), new Coordinate(41.870121, -88.089660),
+                new Coordinate(41.869883, -88.089638), new Coordinate(41.869885, -88.090322)});
 
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
@@ -663,10 +733,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869748, -88.097762), new Coordinate(41.869629, -88.097767)});
 
         // Saint and Elliot
-        newHousing("Saint and Elliot", "Apartment", new Coordinate[] {
-                new Coordinate(41.869974, -88.092459), new Coordinate( 41.869982, -88.092162 ),
-                new Coordinate( 41.869443, -88.092164 ), new Coordinate( 41.869452, -88.092456),
-                new Coordinate(41.869974, -88.092459)});
+        newHousing("Saint and Elliot 430", "Apartment", new Coordinate[] {
+                new Coordinate(41.869974, -88.092459), new Coordinate( 41.869982, -88.092162),
+                new Coordinate(41.869841, -88.092175), new Coordinate(41.869826, -88.092456)});
+        newHousing("Saint and Elliot 424", "Apartment", new Coordinate[] {
+                new Coordinate(41.869777, -88.092449), new Coordinate(41.869780, -88.092180),
+                new Coordinate(41.869653, -88.092176), new Coordinate(41.869651, -88.092445)});
+         newHousing("Saint and Elliot 418", "Apartment", new Coordinate[] {
+                new Coordinate(41.869601, -88.092459), new Coordinate(41.869602, -88.092170),
+                new Coordinate(41.869443, -88.092164), new Coordinate(41.869452, -88.092456)});
+
 
         // Michigan
         newHousing("Michigan", "Apartment", new Coordinate[] {
@@ -675,8 +751,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.865739, -88.095732), new Coordinate(41.865733, -88.096062),
                 new Coordinate(41.865713, -88.096064), new Coordinate(41.865710, -88.096221),
                 new Coordinate( 41.865870, -88.096228 )});
-
-        // Crescent (try to merge with Michigan??)
+        // Crescent
         newHousing("Crescent", "Apartment", new Coordinate[] {
                 new Coordinate(41.866074, -88.096241), new Coordinate(41.866105, -88.096090),
                 new Coordinate(41.866083, -88.096080), new Coordinate(41.866147, -88.095759),
@@ -704,10 +779,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.868598, -88.093367), new Coordinate(41.868599, -88.093199),
                 new Coordinate(41.868303, -88.093197), new Coordinate(41.868302, -88.093363)});
 
+        // Terrace
+        newHousing("Terrace 1047", "Apartment", new Coordinate[] {
+                new Coordinate(41.869824, -88.090319), new Coordinate(41.869822, -88.090182),
+                new Coordinate(41.869246, -88.090192), new Coordinate(41.869243, -88.090322)});
+        newHousing("Terrace 1051", "Apartment", new Coordinate[] {
+                new Coordinate(41.869849, -88.090122), new Coordinate(41.869849, -88.089988),
+                new Coordinate(41.869275, -88.089994), new Coordinate(41.869276, -88.090128)});
+        newHousing("Terrace 1055", "Apartment", new Coordinate[] {
+                new Coordinate(41.869812, -88.089954), new Coordinate(41.869811, -88.089821),
+                new Coordinate(41.869294, -88.089824), new Coordinate(41.869295, -88.089958)});
+        newHousing("Terrace 1057", "Apartment", new Coordinate[] {
+                new Coordinate(41.869832, -88.089767), new Coordinate(41.869838, -88.089641),
+                new Coordinate(41.869318, -88.089637), new Coordinate(41.869319, -88.089771)});
+
 
 
         mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
+                resetPolygon();
                 LocationSpaces temp = (LocationSpaces) poly.getTag();
                 temp.doClick();
             }
@@ -715,6 +805,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    private void resetPolygon(){
+        for (LocationSpaces here : allLocations.values()) {
+            here.getShape().setVisible(false);
+        }
+    }
 
 
     /*

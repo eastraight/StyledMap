@@ -28,6 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     ListView search_building;
     ArrayAdapter<String> adapter;
     private HashMap<String, LocationSpaces> allLocations;
+    String entered = "";
 
         public void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
@@ -50,23 +51,34 @@ public class SearchActivity extends AppCompatActivity {
                     arrayBuilding
             );
             if(Intent.ACTION_SEARCH.equals(intent.getAction())){
-                String query = intent.getStringExtra(SearchManager.QUERY);
-                doMySearch(query);
+                entered = intent.getStringExtra(SearchManager.QUERY);
+                doMySearch(entered);
             }
         }
 
         protected void onNewIntent(Intent intent){
+            setIntent(intent);
             handleIntent(intent);
         }
 
         private void handleIntent(Intent intent){
             if(Intent.ACTION_SEARCH.equals(intent.getAction())){
-                String entered = intent.getStringExtra(intent.getAction());
+                entered = intent.getStringExtra(intent.getAction());
+                doMySearch(entered);
             }
         }
 
         private void doMySearch(String query){
+            if(query.toLowerCase().matches("meyer[s] science center | science center | meysci | meyer[s]")){
 
+            }
+        }
+
+        public boolean onSearchRequested(){
+            Bundle appData = new Bundle();
+            appData.putBoolean(entered, true);
+            startSearch(null, false, appData, false);
+            return true;
         }
     }
 

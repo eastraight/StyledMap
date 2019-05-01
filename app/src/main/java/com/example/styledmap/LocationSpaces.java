@@ -13,6 +13,7 @@ public abstract class LocationSpaces {
     protected String type;
     protected GoogleMap mMap;
     protected Activity m;
+    protected int clicks;
 
     public Polygon getShape(){
         return shape;
