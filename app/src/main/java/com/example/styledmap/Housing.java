@@ -20,10 +20,19 @@ public class Housing extends LocationSpaces {
         super.type = "h";
         super.mMap = mMap;
         super.m = m;
+        super.clicks = 1;
         description = new File(descFile);
     }
 
-    public void doClick(){
-        Toast.makeText(m,"Clicked: " + name, Toast.LENGTH_SHORT).show();
+    public void doClick() {
+        if (clicks == 1){
+            shape.setVisible(true);
+            Toast.makeText(m, name+ ": Tap again for more info", Toast.LENGTH_SHORT).show();
+            clicks++;
+        } else {
+            shape.setVisible(false);
+            Toast.makeText(m, "Info here: " + name, Toast.LENGTH_SHORT).show();
+            clicks--;
+        }
     }
 }

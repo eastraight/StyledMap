@@ -14,9 +14,10 @@ public class Parking extends LocationSpaces {
         super.type = "p";
         super.mMap = mMap;
         super.m = m;
+        super.clicks = 1;
     }
 
     public void doClick(){
-        Toast.makeText(m,"Clicked: " + name, Toast.LENGTH_SHORT).show();
+        Toast.makeText(m,"Parking Clicked: " + name, Toast.LENGTH_SHORT).show();
     }
 }

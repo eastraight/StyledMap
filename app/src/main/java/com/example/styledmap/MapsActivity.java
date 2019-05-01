@@ -785,6 +785,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
+                resetPolygon();
                 LocationSpaces temp = (LocationSpaces) poly.getTag();
                 temp.doClick();
             }
@@ -792,6 +793,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    private void resetPolygon(){
+        for (LocationSpaces here : allLocations.values()) {
+            here.getShape().setVisible(false);
+        }
+    }
 
 
     /*
