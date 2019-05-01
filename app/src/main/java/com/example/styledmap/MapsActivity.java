@@ -58,6 +58,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button parkingToggle;
     private Button buildingToggle;
     private Button housingToggle;
+    private boolean bVisible;
+    private boolean pVisible;
+    private boolean hVisible;
 
     private HashMap<String, LocationSpaces> allLocations;
     private DrawerLayout drawerLayout;
@@ -92,6 +95,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         allLocations = new HashMap<>();
         drawerLayout = findViewById(R.id.drawer_layout);
+        bVisible = false;
+        pVisible = false;
+        hVisible = false;
 
         final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
@@ -134,15 +140,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         parkingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resetPolygon();
                 for (LocationSpaces here : allLocations.values()) {
                     if(here.getType().equals("p")) {
-                        if (here.getShape().isVisible()) {
+                        if (pVisible) {
                             here.getShape().setVisible(false);
                         } else {
                             here.getShape().setVisible(true);
                         }
                     }
                 }
+                pVisible = !pVisible;
             }
         });
 
@@ -150,15 +158,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         buildingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resetPolygon();
                 for (LocationSpaces here : allLocations.values()) {
                     if(here.getType().equals("b")) {
-                        if (here.getShape().isVisible()) {
+                        if (bVisible) {
                             here.getShape().setVisible(false);
                         } else {
                             here.getShape().setVisible(true);
                         }
                     }
                 }
+                bVisible = !bVisible;
             }
         });
 
@@ -166,15 +176,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         housingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resetPolygon();
                 for (LocationSpaces here : allLocations.values()) {
                     if(here.getType().equals("h")) {
-                        if (here.getShape().isVisible()) {
+                        if (hVisible) {
                             here.getShape().setVisible(false);
                         } else {
                             here.getShape().setVisible(true);
                         }
                     }
                 }
+                hVisible = !hVisible;
             }
         });
 //        diningButton = findViewById(R.id.dining_button);
