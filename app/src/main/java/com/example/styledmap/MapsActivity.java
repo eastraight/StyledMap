@@ -540,6 +540,29 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
 
+        //Billy Graham Center Parking Lot
+        newParking("Billy Graham Center Parking Lot", new Coordinate[] {
+                new Coordinate(41.867231, -88.100267), new Coordinate(41.867223, -88.100174), new Coordinate(41.866372, -88.100177),
+                new Coordinate(41.866375, -88.100050), new Coordinate(41.866424, -88.100047), new Coordinate(41.866410, -88.099834),
+                new Coordinate(41.866365, -88.099831), new Coordinate(41.866371, -88.099762), new Coordinate(41.866412, -88.099760),
+                new Coordinate(41.866411, -88.099120), new Coordinate(41.866369, -88.099120), new Coordinate(41.866366, -88.099049),
+                new Coordinate(41.866452, -88.098654), new Coordinate(41.866816, -88.098646), new Coordinate(41.867283, -88.098807),
+                new Coordinate(41.867309, -88.098710), new Coordinate(41.867091, -88.098642), new Coordinate(41.867102, -88.098558),
+                new Coordinate(41.867155, -88.098582), new Coordinate(41.867364, -88.097602), new Coordinate(41.867300, -88.097569),
+                new Coordinate(41.867376, -88.097448), new Coordinate(41.867629, -88.097648), new Coordinate(41.867656, -88.097555),
+                new Coordinate(41.867364, -88.097333), new Coordinate(41.867256, -88.097486), new Coordinate(41.867163, -88.097460),
+                new Coordinate(41.867182, -88.097404), new Coordinate(41.866682, -88.097210), new Coordinate(41.866660, -88.097285),
+                new Coordinate(41.866617, -88.097279), new Coordinate(41.866247, -88.099011), new Coordinate(41.866252, -88.099340),
+                new Coordinate(41.866297, -88.099432), new Coordinate(41.866294, -88.099564), new Coordinate(41.866243, -88.099889),
+                new Coordinate(41.866280, -88.099929), new Coordinate(41.866212, -88.100284), new Coordinate(41.866572, -88.100265),
+                new Coordinate(41.866561, -88.100498), new Coordinate(41.867046, -88.100532), new Coordinate(41.867045, -88.100269)
+        });
+
+        //North Tennis Court E Lot
+        newParking("North Tennis Court E Lot", new Coordinate[] {
+                new Coordinate(41.871665, -88.098474), new Coordinate(41.871656, -88.098051), new Coordinate(41.871538, -88.098039),
+                new Coordinate(41.871515, -88.098512)});
+
         //Parking for Houses near Student Health Services
         newParking("SHS Houses Parking", new Coordinate[] {
                 new Coordinate(41.873050, -88.098123), new Coordinate(41.873049, -88.098337), new Coordinate(41.872603, -88.098344),
