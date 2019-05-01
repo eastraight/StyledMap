@@ -140,7 +140,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         parkingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetPolygon();
+                resetPolygon("p");
                 for (LocationSpaces here : allLocations.values()) {
                     if(here.getType().equals("p")) {
                         if (pVisible) {
@@ -158,7 +158,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         buildingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetPolygon();
+                resetPolygon("b");
                 for (LocationSpaces here : allLocations.values()) {
                     if(here.getType().equals("b")) {
                         if (bVisible) {
@@ -176,7 +176,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         housingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetPolygon();
+                resetPolygon("h");
                 for (LocationSpaces here : allLocations.values()) {
                     if(here.getType().equals("h")) {
                         if (hVisible) {
@@ -837,7 +837,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
-                resetPolygon();
+                resetPolygon("a");
                 LocationSpaces temp = (LocationSpaces) poly.getTag();
                 temp.doClick();
             }
@@ -845,9 +845,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    private void resetPolygon(){
+    private void resetPolygon(String type){
         for (LocationSpaces here : allLocations.values()) {
-            here.getShape().setVisible(false);
+            if (type.equals("a"))
+                here.getShape().setVisible(false);
+            else if (here.getType().equals(type))
+                here.getShape().setVisible(false);
         }
     }
 
