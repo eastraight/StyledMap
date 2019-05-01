@@ -68,9 +68,10 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
 
-        private void doMySearch(String query){
-            if(query.toLowerCase().matches("meyer[s] science center | science center | meysci | meyer[s]")){
-
+        private LocationSpaces doMySearch(String query){
+            for(String current : allLocations.keySet()){
+            if(query.toLowerCase().matches(current)){
+                return allLocations.get(current);
             }
         }
 
