@@ -681,6 +681,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.870106, -88.090320), new Coordinate(41.870121, -88.089660),
                 new Coordinate(41.869883, -88.089638), new Coordinate(41.869885, -88.090322)});
 
+        //Michigan-Crescent Parking
+        newParking("Michigan-Crescent Parking", new Coordinate[] {
+                new Coordinate(41.866250, -88.095554), new Coordinate(41.866278, -88.095361),
+                new Coordinate(41.865775, -88.095364), new Coordinate(41.865775, -88.095531)});
+
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         // Housing Section

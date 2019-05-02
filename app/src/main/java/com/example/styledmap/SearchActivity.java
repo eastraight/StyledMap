@@ -30,52 +30,54 @@ public class SearchActivity extends AppCompatActivity {
     private HashMap<String, LocationSpaces> allLocations;
     String entered = "";
 
-        public void onCreate(Bundle savedInstanceState){
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.search);
-            handleIntent(getIntent());
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.search);
+        handleIntent(getIntent());
 
-            search_building = (ListView) findViewById(R.id.search_building);
-            search_building.setAdapter(adapter);
+        search_building = (ListView) findViewById(R.id.search_building);
+        search_building.setAdapter(adapter);
 
-            Intent intent = getIntent();
+        Intent intent = getIntent();
 
-            allLocations = new HashMap<>();
+        allLocations = new HashMap<>();
 
 
-            ArrayList<String> arrayBuilding = new ArrayList<>();
-            arrayBuilding.addAll(Arrays.asList(getResources().getStringArray(R.array.my_building)));
-            adapter = new ArrayAdapter<String>(
-                    SearchActivity.this,
-                    android.R.layout.simple_list_item_1,
-                    arrayBuilding
-            );
-            if(Intent.ACTION_SEARCH.equals(intent.getAction())){
-                entered = intent.getStringExtra(SearchManager.QUERY);
-                doMySearch(entered);
-            }
+        ArrayList<String> arrayBuilding = new ArrayList<>();
+        arrayBuilding.addAll(Arrays.asList(getResources().getStringArray(R.array.my_building)));
+        adapter = new ArrayAdapter<String>(
+                SearchActivity.this,
+                android.R.layout.simple_list_item_1,
+                arrayBuilding
+        );
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            entered = intent.getStringExtra(SearchManager.QUERY);
+            doMySearch(entered);
         }
+    }
 
-        protected void onNewIntent(Intent intent){
-            setIntent(intent);
-            handleIntent(intent);
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            entered = intent.getStringExtra(intent.getAction());
+            doMySearch(entered);
         }
+    }
 
-        private void handleIntent(Intent intent){
-            if(Intent.ACTION_SEARCH.equals(intent.getAction())){
-                entered = intent.getStringExtra(intent.getAction());
-                doMySearch(entered);
-            }
-        }
-
-        private LocationSpaces doMySearch(String query){
-            for(String current : allLocations.keySet()){
-            if(query.toLowerCase().matches(current)){
+    private LocationSpaces doMySearch(String query) {
+        for (String current : allLocations.keySet()) {
+            if (query.toLowerCase().matches(current)) {
                 return allLocations.get(current);
             }
         }
+        return null;
+    }
 
-        public boolean onSearchRequested(){
+        public boolean onSearchRequested () {
             Bundle appData = new Bundle();
             appData.putBoolean(entered, true);
             startSearch(null, false, appData, false);
