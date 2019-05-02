@@ -22,17 +22,20 @@
         app:theme="@style/ActionBarThemeOverlay"
         app:popupTheme="@style/ActionBarPopupThemeOverlay"
         android:elevation="4dp">
+        android:weightSum="3"
 
             <Button
                 android:id="@+id/parking_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/parking_toggle"
                 android:backgroundTint="@color/colorAccent"/>
             <Button
                 android:id="@+id/building_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/building_toggle"
                 android:backgroundTint="@color/colorAccent"/>
 
@@ -40,6 +43,7 @@
                 android:id="@+id/housing_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/housing_toggle"
                 android:backgroundTint="@color/colorAccent"/>
 
