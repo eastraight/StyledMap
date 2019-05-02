@@ -1,6 +1,7 @@
 package com.example.styledmap;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -28,8 +29,15 @@ public class Building extends LocationSpaces {
             clicks++;
         } else {
             shape.setVisible(false);
+            info();
             Toast.makeText(m, "Info here: " + name, Toast.LENGTH_SHORT).show();
             clicks--;
         }
+    }
+
+    private void info(){
+        Intent intent = new Intent(m, HousingInfo.class);
+        intent.putExtra("DESC_FILE", description);
+        m.startActivity(intent);
     }
 }

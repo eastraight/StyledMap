@@ -18,6 +18,13 @@ public class Parking extends LocationSpaces {
     }
 
     public void doClick(){
-        Toast.makeText(m,"Parking Clicked: " + name, Toast.LENGTH_SHORT).show();
+        if(clicks == 1) {
+            shape.setVisible(true);
+            Toast.makeText(m, "Parking Clicked: " + name, Toast.LENGTH_SHORT).show();
+            clicks++;
+        } else{
+            shape.setVisible(false);
+            clicks--;
+        }
     }
 }
