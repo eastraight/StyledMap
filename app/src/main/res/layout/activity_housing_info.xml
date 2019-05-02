@@ -7,20 +7,13 @@
     android:visibility="visible"
     tools:context=".HousingInfo">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/app_name"
-        android:inputType="textPersonName"
-        android:text="@string/housing_options"
-        android:textColor="@color/colorPrimaryDark"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="" />
-
+        android:text="TextView"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="91dp" />
 </android.support.constraint.ConstraintLayout>

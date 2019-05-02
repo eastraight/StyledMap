@@ -9,31 +9,61 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class HousingInfo extends AppCompatActivity {
 
-    Button testButton;
+    private StringBuilder text = new StringBuilder();
+    private Button testButton;
 
+    /**
+     *Code reused from "Naruto Uzumaki" at
+     * "https://stackoverflow.com/questions/33779607/reading-a-txt-file-and-outputing-as-a-textview-in-android"
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_housing_info);
-
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MapsActivity.EXTRA_MESSAGE);
+        String descFile = intent.getStringExtra("DESC_FILE");
+
+        BufferedReader reader = null;
+
+        try{
+            reader = new BufferedReader(
+                    new InputStreamReader(getAssets().open(descFile)));
+
+            String mLine;
+            while((mLine = reader.readLine()) != null){
+                text.append(mLine);
+                text.append('\n');
+            }
+        } catch (IOException e){
+            System.out.println("File not found: " + descFile);
+        } finally {
+            if(reader != null){
+                try{
+                    reader.close();
+                } catch (IOException e){
+                    System.out.println("Um");
+                }
+            }
+        }
 
         // Capture the layout's TextView and set the string as its text
-        TextView textView = findViewById(R.id.editText);
-        textView.setText(message);
+        TextView output = findViewById(R.id.textView);
+        output.setText(text);
 
-        testButton = findViewById(R.id.button);
+        testButton = findViewById(R.id.button3);
         testButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                EditText simpleEditText = (EditText) findViewById(R.id.editText);
-                String strValue = simpleEditText.getText().toString();
-                Toast.makeText(getApplicationContext(), strValue, Toast.LENGTH_LONG).show();
+                finish();
             }
         });
 
