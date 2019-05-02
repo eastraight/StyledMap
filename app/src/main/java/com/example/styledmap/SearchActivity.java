@@ -68,8 +68,8 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
 
-        private LocationSpaces doMySearch(String query){
-            for(String current : allLocations.keySet()) {
+        private LocationSpaces doMySearch(String query) {
+            for (String current : allLocations.keySet()) {
                 if (query.toLowerCase().matches(current)) {
                     return allLocations.get(current);
                 }
@@ -77,7 +77,7 @@ public class SearchActivity extends AppCompatActivity {
             return null;
         }
 
-        public boolean onSearchRequested(){
+        public boolean onSearchRequested() {
             Bundle appData = new Bundle();
             appData.putBoolean(entered, true);
             startSearch(null, false, appData, false);

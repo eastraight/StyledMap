@@ -656,7 +656,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.870213, -88.093975), new Coordinate(41.870213, -88.094254),
                 new Coordinate(41.870459, -88.094255)});
 
-
         //College Ave Parking
         newParking("College Ave Parking 1", new Coordinate[] {
                 new Coordinate(41.868373, -88.095299), new Coordinate(41.868387, -88.095006),
@@ -680,6 +679,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         newParking("Terrace Parking", new Coordinate[] {
                 new Coordinate(41.870106, -88.090320), new Coordinate(41.870121, -88.089660),
                 new Coordinate(41.869883, -88.089638), new Coordinate(41.869885, -88.090322)});
+
+        //Michigan-Crescent Parking
+        newParking("Michigan-Crescent Parking", new Coordinate[] {
+                new Coordinate(41.866250, -88.095554), new Coordinate(41.866278, -88.095361),
+                new Coordinate(41.865775, -88.095364), new Coordinate(41.865775, -88.095531)});
+
+        //Welcome Center Parking
+        newParking("Welcome Center Parking 1", new Coordinate[] {
+                new Coordinate(41.868178, -88.097562), new Coordinate(41.868180, -88.097500),
+                new Coordinate(41.867982, -88.097495), new Coordinate(41.867984, -88.097557)});
+        newParking("Welcome Center Parking 2", new Coordinate[] {
+                new Coordinate(41.868284, -88.097713), new Coordinate(41.868284, -88.097651),
+                new Coordinate(41.867971, -88.097652), new Coordinate(41.867970, -88.097709)});
 
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
