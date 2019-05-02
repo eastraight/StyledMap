@@ -68,14 +68,14 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
 
-    private LocationSpaces doMySearch(String query) {
-        for (String current : allLocations.keySet()) {
-            if (query.toLowerCase().matches(current)) {
-                return allLocations.get(current);
+        private LocationSpaces doMySearch(String query) {
+            for (String current : allLocations.keySet()) {
+                if (query.toLowerCase().matches(current)) {
+                    return allLocations.get(current);
+                }
             }
+            return null;
         }
-        return null;
-    }
 
         public boolean onSearchRequested() {
             Bundle appData = new Bundle();
