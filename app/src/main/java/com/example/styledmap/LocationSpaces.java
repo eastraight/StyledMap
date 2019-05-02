@@ -3,6 +3,7 @@ package com.example.styledmap;
 import android.app.Activity;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.Polygon;
 
 public abstract class LocationSpaces {
@@ -12,6 +13,7 @@ public abstract class LocationSpaces {
     protected String type;
     protected GoogleMap mMap;
     protected Activity m;
+    protected int clicks;
 
     public Polygon getShape(){
         return shape;
