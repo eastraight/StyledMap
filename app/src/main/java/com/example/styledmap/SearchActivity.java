@@ -69,10 +69,12 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         private LocationSpaces doMySearch(String query){
-            for(String current : allLocations.keySet()){
-            if(query.toLowerCase().matches(current)){
-                return allLocations.get(current);
+            for(String current : allLocations.keySet()) {
+                if (query.toLowerCase().matches(current)) {
+                    return allLocations.get(current);
+                }
             }
+            return null;
         }
 
         public boolean onSearchRequested(){
