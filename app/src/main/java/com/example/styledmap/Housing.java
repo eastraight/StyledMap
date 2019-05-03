@@ -54,10 +54,6 @@ public class Housing extends LocationSpaces {
         Intent intent = new Intent(m, HousingInfo.class);
         intent.putExtra("DESC_FILE", description);
         m.startActivity(intent);
-
-        if(!description.equals("Houses")){
-            zoom();
-        }
-
+        zoom();
     }
 }
