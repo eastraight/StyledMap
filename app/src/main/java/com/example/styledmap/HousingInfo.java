@@ -6,14 +6,11 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class HousingInfo extends AppCompatActivity {
@@ -28,7 +25,7 @@ public class HousingInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_housing_info);
+        setContentView(R.layout.housing_info);
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
         String descFile = intent.getStringExtra("DESC_FILE");
