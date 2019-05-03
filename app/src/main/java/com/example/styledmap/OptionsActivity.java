@@ -33,18 +33,19 @@ public class OptionsActivity extends AppCompatActivity {
         underButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("tried");
                 Intent housingIntent = new Intent(OptionsActivity.this, HousingInfo.class);
-                housingIntent.putExtra("DESC_FILE", "LowerClass");
+                housingIntent.putExtra("DESC_FILE", "UnderClassHousing");
                 startActivity(housingIntent);
             }
         });
 
         upperButton = findViewById(R.id.upperButton);
-        underButton.setOnClickListener(new View.OnClickListener() {
+        upperButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent housingIntent = new Intent(OptionsActivity.this, HousingInfo.class);
-                housingIntent.putExtra("DESC_FILE", "UpperClass");
+                housingIntent.putExtra("DESC_FILE", "UpperClassHousing");
                 startActivity(housingIntent);
             }
         });
