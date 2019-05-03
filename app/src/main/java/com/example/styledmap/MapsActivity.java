@@ -1,6 +1,7 @@
 package com.example.styledmap;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -115,6 +116,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 return true;
                             case R.id.housing_options:
                                 Intent housingIntent = new Intent(navigationView.getContext(), HousingInfo.class);
+                                housingIntent.putExtra("DESC_File", "Houses");
                                 startActivity(housingIntent);
                                 return true;
                             case R.id.campus_events:
