@@ -203,7 +203,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // enables GPS high accuracy location requests
 
         sendUpdatedLocationMessage();
-
     }
 
 
@@ -259,8 +258,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         // Add a marker in the CS lab and move the camera
-        //LatLng meysci = new LatLng(41.869559, -88.096015);
-        //mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
+        // LatLng meysci = new LatLng(41.869559, -88.096015);
+        // mMap.addMarker(new MarkerOptions().position(meysci).title("Meyer Science Center"));
 
         // Create a LatLngBounds that includes the Campus of Wheaton.
         LatLngBounds WHEATON = new LatLngBounds(
@@ -383,7 +382,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869287, -88.099937)});
 
         // Armerding/Conserv
-        newBuilding("Armerding", "Armeding", new Coordinate[] {
+        newBuilding("Armerding", "Armerding", new Coordinate[] {
                 new Coordinate(41.870289, -88.098995), new Coordinate(41.870289, -88.098779), new Coordinate(41.870391, -88.098777),
                 new Coordinate(41.870393, -88.098736), new Coordinate(41.870572, -88.098736), new Coordinate(41.870579, -88.098591),
                 new Coordinate(41.870460, -88.098590), new Coordinate(41.870465, -88.098462), new Coordinate(41.870423, -88.098455),
@@ -584,18 +583,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //North Tennis Court E Lot
         newParking("North Tennis Court E Lot", new Coordinate[] {
-                new Coordinate(41.871665, -88.098474), new Coordinate(41.871656, -88.098051), new Coordinate(41.871538, -88.098039),
-                new Coordinate(41.871515, -88.098512)});
+                new Coordinate(41.871665, -88.098474), new Coordinate(41.871656, -88.098051),
+                new Coordinate(41.871538, -88.098039), new Coordinate(41.871515, -88.098512)});
 
         //Parking for Houses near Student Health Services
         newParking("SHS Houses Parking", new Coordinate[] {
-                new Coordinate(41.873050, -88.098123), new Coordinate(41.873049, -88.098337), new Coordinate(41.872603, -88.098344),
-                new Coordinate(41.872596, -88.098305), new Coordinate(41.872528, -88.098308), new Coordinate(41.872533, -88.098138)});
+                new Coordinate(41.873050, -88.098123), new Coordinate(41.873049, -88.098337),
+                new Coordinate(41.872603, -88.098344), new Coordinate(41.872596, -88.098305),
+                new Coordinate(41.872528, -88.098308), new Coordinate(41.872533, -88.098138)});
 
         //West Fischer Street Parking
         newParking("West Fischer Street Parking", new Coordinate[] {
                 new Coordinate(41.873000, -88.098144), new Coordinate(41.872100, -88.097194),
-                new Coordinate(41.872610, -88.097199), new Coordinate(41.872610, -88.097175), new Coordinate(41.872533, -88.098141)});
+                new Coordinate(41.872610, -88.097199), new Coordinate(41.872610, -88.097175),
+                new Coordinate(41.872533, -88.098141)});
 
         //South Fischer E Lot
         newParking("South Fischer E Lot", new Coordinate[] {
@@ -880,7 +881,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.871921, -88.098796), new Coordinate(41.871917, -88.098926)});
 
 
-
         mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener(){
             public void onPolygonClick(Polygon poly){
                 resetPolygon("a");
@@ -888,9 +888,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 temp.doClick();
             }
         });
-
     }
 
+
+    /*
+     * Set a polygon to be invisible
+     */
     private void resetPolygon(String type){
         for (LocationSpaces here : allLocations.values()) {
             if (type.equals("a"))
@@ -900,12 +903,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-
     /*
-     * The following location permissions method adapted from the Google Maps Platform
-     * https://developers.google.com/maps/documentation/android-sdk/current-place-tutorial
+     * Request location permission on the device
      */
-
     private void getLocationPermission() {
         /*
          * Request location permission, so that we can get the location of the
@@ -920,12 +920,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
     }
-
-
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
@@ -937,14 +933,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         sendUpdatedLocationMessage();
     }
 
-
     /*
-     * This method gets user's current location
+     * Get the user's current location
      */
     private void sendUpdatedLocationMessage() {
         Log.d("SEND", "sendUpdatedLocationMessage() in process");
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.d("SEND", "marker#1");
             getLocationPermission();
             Log.d("SEND", "marker#2");
@@ -965,7 +963,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         }, Looper.myLooper());
     }
-
-
 
 }
