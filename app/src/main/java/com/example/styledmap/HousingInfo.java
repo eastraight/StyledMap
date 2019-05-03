@@ -35,17 +35,20 @@ public class HousingInfo extends AppCompatActivity {
 
         BufferedReader reader = null;
 
-        try{
+        try {
+            System.out.println("\n\nFile name is: "+descFile+"\n\n");
             reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open(descFile)));
+                    new InputStreamReader(getApplicationContext().getAssets().open(descFile)));
 
             String mLine;
-            while((mLine = reader.readLine()) != null){
+            while ((mLine = reader.readLine()) != null) {
                 text.append(mLine);
                 text.append('\n');
             }
-        } catch (IOException e){
+        }catch (FileNotFoundException e){
             System.out.println("File not found: " + descFile);
+        } catch (IOException e){
+            System.out.println("Er: " + descFile);
         } finally {
             if(reader != null){
                 try{

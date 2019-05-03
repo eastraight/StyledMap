@@ -10,13 +10,20 @@
 
     <application
         android:allowBackup="true"
+        android:icon="@drawable/wmapp_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:icon="@drawable/wmapp_icon">
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".OptionsActivity"
+            android:parentActivityName=".MapsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MapsActivity" />
+        </activity>
         <activity
             android:name=".HousingInfo"
-            android:parentActivityName=".MapsActivity" >
+            android:parentActivityName=".MapsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MapsActivity" />
