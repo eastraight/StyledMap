@@ -24,4 +24,5 @@ public abstract class LocationSpaces {
     public String getType() { return type; }
 
     public abstract void doClick();
+    public abstract void zoom();
 }

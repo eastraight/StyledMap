@@ -41,7 +41,7 @@ public class Housing extends LocationSpaces {
             shape.setVisible(false);
         }
     }
-    private void zoom(){
+    public void zoom(){
         List<LatLng> take = shape.getPoints();
         double newLat = (take.get(1).latitude + take.get(3).latitude)/(double)2;
         double newLong = (take.get(1).longitude + take.get(3).longitude)/(double)2;
