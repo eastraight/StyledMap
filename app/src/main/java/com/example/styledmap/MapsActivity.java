@@ -1,6 +1,9 @@
 package com.example.styledmap;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -20,6 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
@@ -42,6 +46,10 @@ import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 
 import android.location.Location;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -58,6 +66,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button parkingToggle;
     private Button buildingToggle;
     private Button housingToggle;
+    private ImageButton search;
     private boolean bVisible;
     private boolean pVisible;
     private boolean hVisible;
@@ -135,6 +144,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 arrayBuilding
         );
 
+        search = findViewById(R.id.button1);
+        search.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                EditText edit = findViewById(R.id.editText);
+                String searching = edit.getText().toString();
+                searchToggle(searching);
+                edit.getText().clear();
+            }
+        });
+
         //Below code to action to Buttons
         parkingToggle = findViewById(R.id.parking_toggle);
         parkingToggle.setOnClickListener(new View.OnClickListener() {
@@ -211,6 +231,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+/*
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+*/
         return true;
     }
 
@@ -231,6 +259,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return super.onOptionsItemSelected(item);
     }
 
+    public void searchToggle(String searched){
+        for(String s : allLocations.keySet()){
+            if(searched.equalsIgnoreCase(s)){
+                allLocations.get(s).zoom();
+                hideKeyboard(this);
+                return;
+            }
+        }
+        Toast.makeText(this, "Building not found", Toast.LENGTH_SHORT).show();
+        hideKeyboard(this);
+    }
+
+    public static void hideKeyboard(MapsActivity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
     /**
      * Manipulates the map once available.

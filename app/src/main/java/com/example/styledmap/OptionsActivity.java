@@ -34,7 +34,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent housingIntent = new Intent(OptionsActivity.this, HousingInfo.class);
-                housingIntent.putExtra("DESC_FILE", "LowerClass");
+                housingIntent.putExtra("DESC_FILE", "UnderClass");
                 startActivity(housingIntent);
             }
         });
