@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
+
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -14,43 +15,89 @@
         android:layout_height="match_parent"
         tools:context=".MapsActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        style="@style/HeaderBar"
-        app:theme="@style/ActionBarThemeOverlay"
-        app:popupTheme="@style/ActionBarPopupThemeOverlay"
-        android:elevation="4dp"
-        android:weightSum="3">
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/parking_toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/parking_toggle"
-                android:backgroundTint="@color/colorAccent"/>
-            <Button
-                android:id="@+id/building_toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/building_toggle"
-                android:backgroundTint="@color/colorAccent"/>
+            <android.support.design.widget.BottomNavigationView
+                android:id="@+id/bottom_navigation"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentBottom="true"
+                app:menu="@menu/bottom_nav_menu"
+                style="@style/HeaderBar"
+                app:itemBackground="@color/colorPrimary"
+                app:itemIconTint="@android:color/white"
+                app:itemTextColor="@android:color/white" >
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-            <Button
-                android:id="@+id/housing_toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/housing_toggle"
-                android:backgroundTint="@color/colorAccent"/>
+                    <EditText
+                        android:id="@+id/editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:ems="10"
+                        android:textColor="@color/white"
+                        android:visibility="visible"
+                        android:autofillHints="" />
 
 
-        </android.support.v7.widget.Toolbar>
+                    <ImageButton
+                        android:id="@+id/button1"
+                        android:background="@color/colorPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_search_black_24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="5dp"
+                    android:text="Button"/>
+                </RelativeLayout>
+            </android.support.design.widget.BottomNavigationView>
 
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/my_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                style="@style/HeaderBar"
+                app:theme="@style/ActionBarThemeOverlay"
+                app:popupTheme="@style/ActionBarPopupThemeOverlay"
+                android:elevation="4dp"
+                android:weightSum="3"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/parking_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/parking_toggle"
+                    android:backgroundTint="@color/colorAccent"/>
+                <Button
+                    android:id="@+id/building_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/building_toggle"
+                    android:backgroundTint="@color/colorAccent"/>
+
+                <Button
+                    android:id="@+id/housing_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/housing_toggle"
+                    android:backgroundTint="@color/colorAccent"/>
+            </android.support.v7.widget.Toolbar>
+        </RelativeLayout>
     </fragment>
+
+
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

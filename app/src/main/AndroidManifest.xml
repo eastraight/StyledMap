@@ -47,9 +47,20 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity
+        <activity android:name=".SearchResultsActivity"
+            android:parentActivityName=".MapsActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+    <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

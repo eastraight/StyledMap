@@ -33,7 +33,6 @@ public class OptionsActivity extends AppCompatActivity {
         underButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("tried");
                 Intent housingIntent = new Intent(OptionsActivity.this, HousingInfo.class);
                 housingIntent.putExtra("DESC_FILE", "UnderClassHousing");
                 startActivity(housingIntent);
