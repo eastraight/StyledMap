@@ -1,7 +1,6 @@
 package com.example.styledmap;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -368,28 +367,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         // Building Section
 
-        //Meyer Science Center
-        newBuilding("Student Health Services", "shs", new Coordinate[] {
-                new Coordinate(41.872973, -88.097991), new Coordinate(41.872972, -88.097378), new Coordinate(41.872400, -88.097379),
-                new Coordinate(41.872395, -88.097502), new Coordinate(41.87242, -88.097506), new Coordinate(41.872422, -88.097707),
-                new Coordinate(41.872373, -88.097711), new Coordinate(41.872372, -88.097980)});
-
-        //Meyer Science Center
+        // Meyer Science Center
         newBuilding("Meyer Science Center", "meyer", new Coordinate[] {
                 new Coordinate(41.869850, -88.096759), new Coordinate(41.869851, -88.095732), new Coordinate(41.869282, -88.095713),
                 new Coordinate(41.869283, -88.096073), new Coordinate(41.869634, -88.096077), new Coordinate(41.869653, -88.096746),
                 new Coordinate(41.869850, -88.096759)});
 
-        /**
-         * No desc file.
-         */
-        //Student Services Building
-        newBuilding("Student Services Building", "", new Coordinate[] {
-                new Coordinate(41.869160, -88.097786), new Coordinate(41.869158, -88.097972), new Coordinate(41.869118, -88.097971),
-                new Coordinate(41.869121, -88.098089), new Coordinate(41.868636, -88.098079), new Coordinate(41.868639, -88.097766),
-                new Coordinate(41.869160, -88.097786)});
 
-        //Adams Hall
+        // Adams Hall
         newBuilding("Adams Hall", "adams", new Coordinate[] {
                 new Coordinate(41.869286, -88.100006), new Coordinate(41.869194, -88.100006), new Coordinate(41.869192, -88.100045),
                 new Coordinate(41.869035, -88.100044), new Coordinate(41.869035, -88.099936), new Coordinate(41.868987, -88.099942),
@@ -409,26 +394,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.870684, -88.098590), new Coordinate(41.870681, -88.099040), new Coordinate(41.870392, -88.099035),
                 new Coordinate(41.870390, -88.099004)});
 
-        //Memorial Student Center
-        newBuilding("Memorial Student Center", "msc", new Coordinate[] {
-                new Coordinate(41.869025, -88.098800), new Coordinate(41.869029, -88.098650), new Coordinate(41.869065, -88.098651),
-                new Coordinate(41.869072, -88.098532), new Coordinate(41.869215, -88.098540), new Coordinate(41.869217, -88.098657),
-                new Coordinate(41.869258, -88.098657), new Coordinate(41.869253, -88.098811), new Coordinate(41.869212, -88.098812),
-                new Coordinate(41.869208, -88.098930), new Coordinate(41.869067, -88.098923), new Coordinate(41.869066, -88.098803)});
-
-        //Edman Chapel
-        newBuilding("Edman Chapel", "edman", new Coordinate[] {
-                new Coordinate(41.869605, -88.100807), new Coordinate(41.869659, -88.100813), new Coordinate(41.869663, -88.100896),
-                new Coordinate(41.870147, -88.100909), new Coordinate(41.870147, -88.100885), new Coordinate(41.870258, -88.100888),
-                new Coordinate(41.870258, -88.100796), new Coordinate(41.870290, -88.100794), new Coordinate(41.870294, -88.100552),
-                new Coordinate(41.870262, -88.100544), new Coordinate(41.870264, -88.100450), new Coordinate(41.870158, -88.100442),
-                new Coordinate(41.870156, -88.100134), new Coordinate(41.870172, -88.100129), new Coordinate(41.870176, -88.100019),
-                new Coordinate(41.870009, -88.100016), new Coordinate(41.870007, -88.100126), new Coordinate(41.870025, -88.100126),
-                new Coordinate(41.870017, -88.100418), new Coordinate(41.869669, -88.100397), new Coordinate(41.869669, -88.100485),
-                new Coordinate(41.869611, -88.100483)});
-
-        //Blanchard Hall
-        newBuilding("Blanchard Hall", "msc2", new Coordinate[] {
+        // Blanchard Hall
+        newBuilding("Blanchard Hall", "blanchard", new Coordinate[] {
                 new Coordinate(41.868385, -88.099688), new Coordinate(41.868383, -88.099504), new Coordinate(41.868450, -88.099503),
                 new Coordinate(41.868554, -88.099505), new Coordinate(41.868601, -88.099507), new Coordinate(41.868600, -88.099692),
                 new Coordinate(41.868561, -88.099863), new Coordinate(41.868631, -88.099863), new Coordinate(41.868632, -88.100037),
@@ -438,31 +405,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.868424, -88.099326), new Coordinate(41.868423, -88.099269), new Coordinate(41.868409, -88.099254),
                 new Coordinate(41.868408, -88.099224), new Coordinate(41.868424, -88.099206), new Coordinate(41.868428, -88.099155),
                 new Coordinate(41.868627, -88.099155), new Coordinate(41.868628, -88.099325), new Coordinate(41.868555, -88.099327)});
-
-        //Buswell Library
-        newBuilding("Buswell Library", "buswell", new Coordinate[] {
-                new Coordinate(41.869961, -88.099709), new Coordinate(41.869962, -88.099800), new Coordinate(41.870339, -88.099805),
-                new Coordinate(41.870340, -88.099656), new Coordinate(41.870386, -88.099656), new Coordinate(41.870386, -88.099615),
-                new Coordinate(41.870372, -88.099613), new Coordinate(41.870350, -88.099595), new Coordinate(41.870341, -88.099595),
-                new Coordinate(41.870340, -88.099460), new Coordinate(41.870318, -88.099461), new Coordinate(41.870304, -88.099449),
-                new Coordinate(41.869933, -88.099448), new Coordinate(41.869932, -88.099488), new Coordinate(41.869876, -88.099487),
-                new Coordinate(41.869875, -88.099447), new Coordinate(41.869848, -88.099431), new Coordinate(41.869604, -88.099421),
-                new Coordinate(41.869598, -88.099747), new Coordinate(41.869634, -88.099767), new Coordinate(41.869680, -88.099770),
-                new Coordinate(41.869683, -88.099707)});
-
-        //Jenks
-        newBuilding("Jenks", "jenks", new Coordinate[] {
-                new Coordinate(41.869310, -88.095212), new Coordinate(41.869392, -88.095213), new Coordinate(41.869393, -88.095201),
-                new Coordinate(41.869430, -88.095203), new Coordinate(41.869432, -88.095154), new Coordinate(41.869460, -88.095154),
-                new Coordinate(41.869460, -88.095287), new Coordinate(41.869661, -88.095287), new Coordinate(41.869661, -88.095133),
-                new Coordinate(41.869640, -88.095133), new Coordinate(41.869640, -88.095061), new Coordinate(41.869674, -88.095061),
-                new Coordinate(41.869675, -88.094866), new Coordinate(41.869694, -88.094864), new Coordinate(41.869695, -88.094581),
-                new Coordinate(41.869680, -88.094581), new Coordinate(41.869680, -88.094493), new Coordinate(41.869590, -88.094493),
-                new Coordinate(41.869591, -88.094467), new Coordinate(41.869422, -88.094466), new Coordinate(41.869422, -88.094625),
-                new Coordinate(41.869583, -88.094626), new Coordinate(41.869582, -88.094864), new Coordinate(41.869635, -88.094866),
-                new Coordinate(41.869636, -88.094909), new Coordinate(41.869515, -88.094909), new Coordinate(41.869516, -88.094813),
-                new Coordinate(41.869458, -88.094812), new Coordinate(41.869459, -88.094666), new Coordinate(41.869392, -88.094664),
-                new Coordinate(41.869312, -88.094653)});
 
         // Beamer
         newBuilding("Beamer Center", "beamer", new Coordinate[] {
@@ -476,32 +418,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869317, -88.097421), new Coordinate(41.869412, -88.097425), new Coordinate(41.869414, -88.097456),
                 new Coordinate(41.869678, -88.097455)});
 
-        // SRC
-        newBuilding("SRC", "src", new Coordinate[] {
-                new Coordinate(41.871656, -88.097079), new Coordinate(41.871447, -88.097078), new Coordinate(41.871448, -88.097092),
-                new Coordinate(41.871109, -88.097085), new Coordinate(41.871115, -88.097074), new Coordinate(41.871026, -88.097076),
-                new Coordinate(41.871026, -88.097001), new Coordinate(41.870698, -88.096995), new Coordinate(41.870698, -88.097040),
-                new Coordinate(41.870562, -88.097040), new Coordinate(41.870561, -88.096884), new Coordinate(41.870201, -88.096880),
-                new Coordinate(41.870201, -88.096117), new Coordinate(41.870562, -88.096116), new Coordinate(41.870559, -88.096162),
-                new Coordinate(41.870962, -88.096165), new Coordinate(41.870962, -88.096470), new Coordinate(41.871119, -88.096472),
-                new Coordinate(41.871121, -88.096456), new Coordinate(41.871448, -88.096462), new Coordinate(41.871450, -88.096473),
-                new Coordinate(41.871657, -88.096473), new Coordinate(41.871656, -88.097079)});
-        // Wade
-        newBuilding("Wade", "wade", new Coordinate[] {
-                new Coordinate(41.870513, -88.101319), new Coordinate(41.870704, -88.101316), new Coordinate(41.870709, -88.101033),
-                new Coordinate(41.870645, -88.101031), new Coordinate(41.870643, -88.101044), new Coordinate(41.870582, -88.101045),
-                new Coordinate(41.870583, -88.101065), new Coordinate(41.870532, -88.101065), new Coordinate(41.870530, -88.101166),
-                new Coordinate(41.870545, -88.101167), new Coordinate(41.870544, -88.101241), new Coordinate(41.870512, -88.101240)});
-        // Welcome Center
-        newBuilding("Welcome Center", "welcome", new Coordinate[]{
-                new Coordinate(41.868074, -88.097209), new Coordinate(41.868359, -88.097213), new Coordinate(41.868365, -88.097181),
-                new Coordinate(41.868364, -88.097062), new Coordinate(41.868088, -88.097060), new Coordinate(41.868080, -88.097085),
-                new Coordinate(41.868073, -88.097085)});
-        // Westgate
-        newBuilding("Westgate", "westgate", new Coordinate[]{
-                new Coordinate(41.868259, -88.101602), new Coordinate(41.868358, -88.101600), new Coordinate(41.868360, -88.101590),
-                new Coordinate(41.868369, -88.101565), new Coordinate(41.868369, -88.101387), new Coordinate(41.868255, -88.101387),
-                new Coordinate(41.868246, -88.101413), new Coordinate(41.868241, -88.101563), new Coordinate(41.868258, -88.101561)});
         // BGC
         newBuilding("Billy Graham Center", "bgc", new Coordinate[] {
                 new Coordinate(41.866961, -88.099586), new Coordinate(41.866965, -88.099199), new Coordinate(41.866893, -88.099202),
@@ -519,8 +435,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.866880, -88.099820), new Coordinate(41.866881, -88.099674), new Coordinate(41.866892, -88.099674),
                 new Coordinate(41.866894, -88.099586), new Coordinate(41.866961, -88.099586)});
 
-        //Blanchard
-        newBuilding("Blanchard Hall", "blanchard.txt", new Coordinate[]{
+        // Blanchard
+        newBuilding("Blanchard Hall", "blanchard", new Coordinate[]{
                 new Coordinate(41.868385, -88.099688), new Coordinate(41.868383, -88.099504), new Coordinate(41.868450, -88.099503),
                 new Coordinate(41.868451, -88.099324), new Coordinate(41.868424, -88.099326), new Coordinate(41.868423, -88.099269),
                 new Coordinate(41.868409, -88.099254), new Coordinate(41.868408, -88.099224), new Coordinate(41.868424, -88.099206),
@@ -532,16 +448,58 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.868427, -88.099914), new Coordinate(41.868429, -88.099858), new Coordinate(41.868447, -88.099857),
                 new Coordinate(41.868445, -88.099689)});
 
-        //McAlister Hall
-        newBuilding("McAlister Hall", "mcalister.txt", new Coordinate[]{
-               new Coordinate(41.868630, -88.100865), new Coordinate(41.868631, -88.100735), new Coordinate(41.868624, -88.100734),
+        // Buswell Library
+        newBuilding("Buswell Library", "buswell", new Coordinate[] {
+                new Coordinate(41.869961, -88.099709), new Coordinate(41.869962, -88.099800), new Coordinate(41.870339, -88.099805),
+                new Coordinate(41.870340, -88.099656), new Coordinate(41.870386, -88.099656), new Coordinate(41.870386, -88.099615),
+                new Coordinate(41.870372, -88.099613), new Coordinate(41.870350, -88.099595), new Coordinate(41.870341, -88.099595),
+                new Coordinate(41.870340, -88.099460), new Coordinate(41.870318, -88.099461), new Coordinate(41.870304, -88.099449),
+                new Coordinate(41.869933, -88.099448), new Coordinate(41.869932, -88.099488), new Coordinate(41.869876, -88.099487),
+                new Coordinate(41.869875, -88.099447), new Coordinate(41.869848, -88.099431), new Coordinate(41.869604, -88.099421),
+                new Coordinate(41.869598, -88.099747), new Coordinate(41.869634, -88.099767), new Coordinate(41.869680, -88.099770),
+                new Coordinate(41.869683, -88.099707)});
+
+        // Edman Chapel
+        newBuilding("Edman Chapel", "edman", new Coordinate[] {
+                new Coordinate(41.869605, -88.100807), new Coordinate(41.869659, -88.100813), new Coordinate(41.869663, -88.100896),
+                new Coordinate(41.870147, -88.100909), new Coordinate(41.870147, -88.100885), new Coordinate(41.870258, -88.100888),
+                new Coordinate(41.870258, -88.100796), new Coordinate(41.870290, -88.100794), new Coordinate(41.870294, -88.100552),
+                new Coordinate(41.870262, -88.100544), new Coordinate(41.870264, -88.100450), new Coordinate(41.870158, -88.100442),
+                new Coordinate(41.870156, -88.100134), new Coordinate(41.870172, -88.100129), new Coordinate(41.870176, -88.100019),
+                new Coordinate(41.870009, -88.100016), new Coordinate(41.870007, -88.100126), new Coordinate(41.870025, -88.100126),
+                new Coordinate(41.870017, -88.100418), new Coordinate(41.869669, -88.100397), new Coordinate(41.869669, -88.100485),
+                new Coordinate(41.869611, -88.100483)});
+
+        // Jenks
+        newBuilding("Jenks", "jenks", new Coordinate[] {
+                new Coordinate(41.869310, -88.095212), new Coordinate(41.869392, -88.095213), new Coordinate(41.869393, -88.095201),
+                new Coordinate(41.869430, -88.095203), new Coordinate(41.869432, -88.095154), new Coordinate(41.869460, -88.095154),
+                new Coordinate(41.869460, -88.095287), new Coordinate(41.869661, -88.095287), new Coordinate(41.869661, -88.095133),
+                new Coordinate(41.869640, -88.095133), new Coordinate(41.869640, -88.095061), new Coordinate(41.869674, -88.095061),
+                new Coordinate(41.869675, -88.094866), new Coordinate(41.869694, -88.094864), new Coordinate(41.869695, -88.094581),
+                new Coordinate(41.869680, -88.094581), new Coordinate(41.869680, -88.094493), new Coordinate(41.869590, -88.094493),
+                new Coordinate(41.869591, -88.094467), new Coordinate(41.869422, -88.094466), new Coordinate(41.869422, -88.094625),
+                new Coordinate(41.869583, -88.094626), new Coordinate(41.869582, -88.094864), new Coordinate(41.869635, -88.094866),
+                new Coordinate(41.869636, -88.094909), new Coordinate(41.869515, -88.094909), new Coordinate(41.869516, -88.094813),
+                new Coordinate(41.869458, -88.094812), new Coordinate(41.869459, -88.094666), new Coordinate(41.869392, -88.094664),
+                new Coordinate(41.869312, -88.094653)});
+
+        // McAlister Hall
+        newBuilding("McAlister Hall", "mcalister", new Coordinate[]{
+                new Coordinate(41.868630, -88.100865), new Coordinate(41.868631, -88.100735), new Coordinate(41.868624, -88.100734),
                 new Coordinate(41.868620, -88.100590), new Coordinate(41.868629, -88.100589), new Coordinate(41.868628, -88.100459),
                 new Coordinate(41.868851, -88.100456), new Coordinate(41.868852, -88.100578), new Coordinate(41.868864, -88.100580) ,
                 new Coordinate(41.868864, -88.100752), new Coordinate(41.868851, -88.100751), new Coordinate(41.868848, -88.100873)});
 
+        // Memorial Student Center
+        newBuilding("Memorial Student Center", "msc", new Coordinate[] {
+                new Coordinate(41.869025, -88.098800), new Coordinate(41.869029, -88.098650), new Coordinate(41.869065, -88.098651),
+                new Coordinate(41.869072, -88.098532), new Coordinate(41.869215, -88.098540), new Coordinate(41.869217, -88.098657),
+                new Coordinate(41.869258, -88.098657), new Coordinate(41.869253, -88.098811), new Coordinate(41.869212, -88.098812),
+                new Coordinate(41.869208, -88.098930), new Coordinate(41.869067, -88.098923), new Coordinate(41.869066, -88.098803)});
 
-        //Pierce Memorial
-        newBuilding("Pierce Memorial Chapel", "pierce.txt", new Coordinate[]{
+        // Pierce Memorial
+        newBuilding("Pierce Memorial Chapel", "pierce", new Coordinate[]{
                 new Coordinate(41.868943, -88.100897), new Coordinate(41.868942, -88.100868), new Coordinate(41.868921, -88.100867),
                 new Coordinate(41.868912, -88.100855), new Coordinate(41.868913, -88.100823), new Coordinate(41.868921, -88.100813),
                 new Coordinate(41.868946, -88.100815), new Coordinate(41.868949, -88.100609), new Coordinate(41.868925, -88.100606),
@@ -552,10 +510,60 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869182, -88.100827), new Coordinate(41.869182, -88.100866), new Coordinate(41.869176, -88.100879),
                 new Coordinate(41.869151, -88.100879), new Coordinate(41.869151, -88.100903)});
 
+        // Schell
+        newBuilding("Schell Hall", "schell", new Coordinate[] {
+                new Coordinate(41.869634, -88.099020), new Coordinate(41.869734, -88.099026), new Coordinate(41.869737, -88.098826),
+                new Coordinate(41.869635, -88.098830)});
+
+        // SRC
+        newBuilding("SRC", "src", new Coordinate[] {
+                new Coordinate(41.871656, -88.097079), new Coordinate(41.871447, -88.097078), new Coordinate(41.871448, -88.097092),
+                new Coordinate(41.871109, -88.097085), new Coordinate(41.871115, -88.097074), new Coordinate(41.871026, -88.097076),
+                new Coordinate(41.871026, -88.097001), new Coordinate(41.870698, -88.096995), new Coordinate(41.870698, -88.097040),
+                new Coordinate(41.870562, -88.097040), new Coordinate(41.870561, -88.096884), new Coordinate(41.870201, -88.096880),
+                new Coordinate(41.870201, -88.096117), new Coordinate(41.870562, -88.096116), new Coordinate(41.870559, -88.096162),
+                new Coordinate(41.870962, -88.096165), new Coordinate(41.870962, -88.096470), new Coordinate(41.871119, -88.096472),
+                new Coordinate(41.871121, -88.096456), new Coordinate(41.871448, -88.096462), new Coordinate(41.871450, -88.096473),
+                new Coordinate(41.871657, -88.096473), new Coordinate(41.871656, -88.097079)});
+
+        // Student Health Services
+        newBuilding("Student Health Services", "shs", new Coordinate[] {
+                new Coordinate(41.872973, -88.097991), new Coordinate(41.872972, -88.097378), new Coordinate(41.872400, -88.097379),
+                new Coordinate(41.872395, -88.097502), new Coordinate(41.87242, -88.097506), new Coordinate(41.872422, -88.097707),
+                new Coordinate(41.872373, -88.097711), new Coordinate(41.872372, -88.097980)});
+
+        // Student Services Building
+        newBuilding("Student Services Building", "", new Coordinate[] {
+                new Coordinate(41.869160, -88.097786), new Coordinate(41.869158, -88.097972), new Coordinate(41.869118, -88.097971),
+                new Coordinate(41.869121, -88.098089), new Coordinate(41.868636, -88.098079), new Coordinate(41.868639, -88.097766),
+                new Coordinate(41.869160, -88.097786)});
+
+        // Wade
+        newBuilding("Wade", "wade", new Coordinate[] {
+                new Coordinate(41.870513, -88.101319), new Coordinate(41.870704, -88.101316), new Coordinate(41.870709, -88.101033),
+                new Coordinate(41.870645, -88.101031), new Coordinate(41.870643, -88.101044), new Coordinate(41.870582, -88.101045),
+                new Coordinate(41.870583, -88.101065), new Coordinate(41.870532, -88.101065), new Coordinate(41.870530, -88.101166),
+                new Coordinate(41.870545, -88.101167), new Coordinate(41.870544, -88.101241), new Coordinate(41.870512, -88.101240)});
+        // Welcome Center
+        newBuilding("Welcome Center", "welcome", new Coordinate[]{
+                new Coordinate(41.868074, -88.097209), new Coordinate(41.868359, -88.097213), new Coordinate(41.868365, -88.097181),
+                new Coordinate(41.868364, -88.097062), new Coordinate(41.868088, -88.097060), new Coordinate(41.868080, -88.097085),
+                new Coordinate(41.868073, -88.097085)});
+        // Westgate
+        newBuilding("Westgate", "westgate", new Coordinate[]{
+                new Coordinate(41.868259, -88.101602), new Coordinate(41.868358, -88.101600), new Coordinate(41.868360, -88.101590),
+                new Coordinate(41.868369, -88.101565), new Coordinate(41.868369, -88.101387), new Coordinate(41.868255, -88.101387),
+                new Coordinate(41.868246, -88.101413), new Coordinate(41.868241, -88.101563), new Coordinate(41.868258, -88.101561)});
+
+        // Wyngarden
+        newBuilding("Wyngarden", "wyngarden", new Coordinate[] {
+                new Coordinate(41.870187, -88.098983), new Coordinate(41.870187, -88.098798), new Coordinate(41.869947, -88.098784),
+                new Coordinate(41.869944, -88.098982)});
 
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         //Parking Section
+
 
         //Billy Graham Center Parking Lot
         newParking("Billy Graham Center Parking Lot", new Coordinate[] {
@@ -632,7 +640,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.870859, -88.098105), new Coordinate(41.870801, -88.098104)});
 
         //Initializing Blanchard Parking Lot 1
-        newParking("Blanchard parking 1", new Coordinate[] {
+        newParking("Blanchard Parking 1", new Coordinate[] {
                 new Coordinate(41.868379, -88.098382), new Coordinate(41.868326, -88.098956),
                 new Coordinate(41.868622, -88.098960), new Coordinate(41.868610, -88.098467),
                 new Coordinate(41.868588, -88.097944), new Coordinate(41.868435, -88.097897)});
@@ -710,14 +718,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Housing Section
 
 
-
-        // Williston Hall
-        newHousing("Williston Hall", "Williston", "Upperclassmen", new Coordinate[] {
-                new Coordinate(41.869177, -88.098268), new Coordinate(41.869175, -88.098102),
-                new Coordinate(41.868767, -88.098107), new Coordinate(41.868766, -88.098259),
-                new Coordinate(41.868912, -88.098259), new Coordinate(41.868926, -88.098323),
-                new Coordinate(41.868997, -88.098330), new Coordinate(41.869019, -88.098270)});
-
         // Fischer Hall
         newHousing("Fischer Hall", "Fischer","Underclassmen", new Coordinate[] {
                 new Coordinate(41.873356, -88.096951), new Coordinate(41.872813, -88.096946),
@@ -754,6 +754,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869981, -88.097814), new Coordinate(41.869750, -88.097814),
                 new Coordinate(41.869748, -88.097762), new Coordinate(41.869629, -88.097767)});
 
+        // Williston Hall
+        newHousing("Williston Hall", "Williston", "Upperclassmen", new Coordinate[] {
+                new Coordinate(41.869177, -88.098268), new Coordinate(41.869175, -88.098102),
+                new Coordinate(41.868767, -88.098107), new Coordinate(41.868766, -88.098259),
+                new Coordinate(41.868912, -88.098259), new Coordinate(41.868926, -88.098323),
+                new Coordinate(41.868997, -88.098330), new Coordinate(41.869019, -88.098270)});
+
         // Saint and Elliot
         newHousing("Saint and Elliot 430", "Saint and Elliot","Apartment", new Coordinate[] {
                 new Coordinate(41.869974, -88.092459), new Coordinate( 41.869982, -88.092162),
@@ -764,7 +771,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
          newHousing("Saint and Elliot 418", "Saint and Elliot","Apartment", new Coordinate[] {
                 new Coordinate(41.869601, -88.092459), new Coordinate(41.869602, -88.092170),
                 new Coordinate(41.869443, -88.092164), new Coordinate(41.869452, -88.092456)});
-
 
         // Michigan
         newHousing("Michigan", "Michigan-Crescent","Apartment", new Coordinate[] {
@@ -815,11 +821,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869832, -88.089767), new Coordinate(41.869838, -88.089641),
                 new Coordinate(41.869318, -88.089637), new Coordinate(41.869319, -88.089771)});
 
-        /**
-         * No desc file for any of the houses.
-         */
-        //Houses
-        newHousing("Graham House", "Houses","House", new Coordinate[] {
+        // Houses
+        newHousing("Graham House", "","House", new Coordinate[] {
                 new Coordinate(41.866962, -88.100982), new Coordinate(41.866852, -88.100993),
                 new Coordinate(41.866856, -88.100829), new Coordinate(41.866969, -88.100829)});
         newHousing("Hunter House", "Houses","House", new Coordinate[] {
