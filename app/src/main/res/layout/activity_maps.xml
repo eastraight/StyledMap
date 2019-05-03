@@ -21,8 +21,8 @@
         style="@style/HeaderBar"
         app:theme="@style/ActionBarThemeOverlay"
         app:popupTheme="@style/ActionBarPopupThemeOverlay"
-        android:elevation="4dp">
-        android:weightSum="3"
+        android:elevation="4dp"
+        android:weightSum="3">
 
             <Button
                 android:id="@+id/parking_toggle"
