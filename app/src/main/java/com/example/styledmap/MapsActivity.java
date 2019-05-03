@@ -367,14 +367,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Building Section
 
         // Meyer Science Center
-        newBuilding("Meyer Science Center", "meyer", new Coordinate[] {
+        newBuilding("Meyer Science Center", "Meyer", new Coordinate[] {
                 new Coordinate(41.869850, -88.096759), new Coordinate(41.869851, -88.095732), new Coordinate(41.869282, -88.095713),
                 new Coordinate(41.869283, -88.096073), new Coordinate(41.869634, -88.096077), new Coordinate(41.869653, -88.096746),
                 new Coordinate(41.869850, -88.096759)});
 
 
         // Adams Hall
-        newBuilding("Adams Hall", "adams", new Coordinate[] {
+        newBuilding("Adams Hall", "Adams", new Coordinate[] {
                 new Coordinate(41.869286, -88.100006), new Coordinate(41.869194, -88.100006), new Coordinate(41.869192, -88.100045),
                 new Coordinate(41.869035, -88.100044), new Coordinate(41.869035, -88.099936), new Coordinate(41.868987, -88.099942),
                 new Coordinate(41.868991, -88.099775), new Coordinate(41.869035, -88.099797), new Coordinate(41.869037, -88.099692),
@@ -383,7 +383,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869287, -88.099937)});
 
         // Armerding/Conserv
-        newBuilding("Armerding", "armerding", new Coordinate[] {
+        newBuilding("Armerding", "Armeding", new Coordinate[] {
                 new Coordinate(41.870289, -88.098995), new Coordinate(41.870289, -88.098779), new Coordinate(41.870391, -88.098777),
                 new Coordinate(41.870393, -88.098736), new Coordinate(41.870572, -88.098736), new Coordinate(41.870579, -88.098591),
                 new Coordinate(41.870460, -88.098590), new Coordinate(41.870465, -88.098462), new Coordinate(41.870423, -88.098455),
@@ -394,7 +394,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.870390, -88.099004)});
 
         // Blanchard Hall
-        newBuilding("Blanchard Hall", "blanchard", new Coordinate[] {
+        newBuilding("Blanchard Hall", "Blanchard", new Coordinate[] {
                 new Coordinate(41.868385, -88.099688), new Coordinate(41.868383, -88.099504), new Coordinate(41.868450, -88.099503),
                 new Coordinate(41.868554, -88.099505), new Coordinate(41.868601, -88.099507), new Coordinate(41.868600, -88.099692),
                 new Coordinate(41.868561, -88.099863), new Coordinate(41.868631, -88.099863), new Coordinate(41.868632, -88.100037),
@@ -406,7 +406,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.868627, -88.099155), new Coordinate(41.868628, -88.099325), new Coordinate(41.868555, -88.099327)});
 
         // Beamer
-        newBuilding("Beamer Center", "beamer", new Coordinate[] {
+        newBuilding("Beamer Center", "Beamer", new Coordinate[] {
                 new Coordinate(41.869678, -88.097455), new Coordinate(41.869678, -88.096927), new Coordinate(41.869418, -88.096939),
                 new Coordinate(41.869418, -88.096958), new Coordinate(41.869366, -88.096957), new Coordinate(41.869365, -88.096824),
                 new Coordinate(41.869088, -88.096820), new Coordinate(41.869090, -88.096787), new Coordinate(41.868964, -88.096786),
@@ -418,7 +418,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869678, -88.097455)});
 
         // BGC
-        newBuilding("Billy Graham Center", "bgc", new Coordinate[] {
+        newBuilding("Billy Graham Center", "BGC", new Coordinate[] {
                 new Coordinate(41.866961, -88.099586), new Coordinate(41.866965, -88.099199), new Coordinate(41.866893, -88.099202),
                 new Coordinate(41.866893, -88.099118), new Coordinate(41.866882, -88.099117), new Coordinate(41.866882, -88.098950),
                 new Coordinate(41.866807, -88.098943), new Coordinate(41.866795, -88.098943), new Coordinate(41.866812, -88.098944),
@@ -435,7 +435,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.866894, -88.099586), new Coordinate(41.866961, -88.099586)});
 
         // Blanchard
-        newBuilding("Blanchard Hall", "blanchard", new Coordinate[]{
+        newBuilding("Blanchard Hall", "Blanchard", new Coordinate[]{
                 new Coordinate(41.868385, -88.099688), new Coordinate(41.868383, -88.099504), new Coordinate(41.868450, -88.099503),
                 new Coordinate(41.868451, -88.099324), new Coordinate(41.868424, -88.099326), new Coordinate(41.868423, -88.099269),
                 new Coordinate(41.868409, -88.099254), new Coordinate(41.868408, -88.099224), new Coordinate(41.868424, -88.099206),
@@ -448,7 +448,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.868445, -88.099689)});
 
         // Buswell Library
-        newBuilding("Buswell Library", "buswell", new Coordinate[] {
+        newBuilding("Buswell Library", "Buswell", new Coordinate[] {
                 new Coordinate(41.869961, -88.099709), new Coordinate(41.869962, -88.099800), new Coordinate(41.870339, -88.099805),
                 new Coordinate(41.870340, -88.099656), new Coordinate(41.870386, -88.099656), new Coordinate(41.870386, -88.099615),
                 new Coordinate(41.870372, -88.099613), new Coordinate(41.870350, -88.099595), new Coordinate(41.870341, -88.099595),
@@ -459,7 +459,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869683, -88.099707)});
 
         // Edman Chapel
-        newBuilding("Edman Chapel", "edman", new Coordinate[] {
+        newBuilding("Edman Chapel", "Edman", new Coordinate[] {
                 new Coordinate(41.869605, -88.100807), new Coordinate(41.869659, -88.100813), new Coordinate(41.869663, -88.100896),
                 new Coordinate(41.870147, -88.100909), new Coordinate(41.870147, -88.100885), new Coordinate(41.870258, -88.100888),
                 new Coordinate(41.870258, -88.100796), new Coordinate(41.870290, -88.100794), new Coordinate(41.870294, -88.100552),
@@ -470,7 +470,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869611, -88.100483)});
 
         // Jenks
-        newBuilding("Jenks", "jenks", new Coordinate[] {
+        newBuilding("Jenks", "Jenks", new Coordinate[] {
                 new Coordinate(41.869310, -88.095212), new Coordinate(41.869392, -88.095213), new Coordinate(41.869393, -88.095201),
                 new Coordinate(41.869430, -88.095203), new Coordinate(41.869432, -88.095154), new Coordinate(41.869460, -88.095154),
                 new Coordinate(41.869460, -88.095287), new Coordinate(41.869661, -88.095287), new Coordinate(41.869661, -88.095133),
@@ -484,21 +484,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869312, -88.094653)});
 
         // McAlister Hall
-        newBuilding("McAlister Hall", "mcalister", new Coordinate[]{
+        newBuilding("McAlister Hall", "Mcalister", new Coordinate[]{
                 new Coordinate(41.868630, -88.100865), new Coordinate(41.868631, -88.100735), new Coordinate(41.868624, -88.100734),
                 new Coordinate(41.868620, -88.100590), new Coordinate(41.868629, -88.100589), new Coordinate(41.868628, -88.100459),
                 new Coordinate(41.868851, -88.100456), new Coordinate(41.868852, -88.100578), new Coordinate(41.868864, -88.100580) ,
                 new Coordinate(41.868864, -88.100752), new Coordinate(41.868851, -88.100751), new Coordinate(41.868848, -88.100873)});
 
         // Memorial Student Center
-        newBuilding("Memorial Student Center", "msc", new Coordinate[] {
+        newBuilding("Memorial Student Center", "MSC", new Coordinate[] {
                 new Coordinate(41.869025, -88.098800), new Coordinate(41.869029, -88.098650), new Coordinate(41.869065, -88.098651),
                 new Coordinate(41.869072, -88.098532), new Coordinate(41.869215, -88.098540), new Coordinate(41.869217, -88.098657),
                 new Coordinate(41.869258, -88.098657), new Coordinate(41.869253, -88.098811), new Coordinate(41.869212, -88.098812),
                 new Coordinate(41.869208, -88.098930), new Coordinate(41.869067, -88.098923), new Coordinate(41.869066, -88.098803)});
 
         // Pierce Memorial
-        newBuilding("Pierce Memorial Chapel", "pierce", new Coordinate[]{
+        newBuilding("Pierce Memorial Chapel", "Pierce", new Coordinate[]{
                 new Coordinate(41.868943, -88.100897), new Coordinate(41.868942, -88.100868), new Coordinate(41.868921, -88.100867),
                 new Coordinate(41.868912, -88.100855), new Coordinate(41.868913, -88.100823), new Coordinate(41.868921, -88.100813),
                 new Coordinate(41.868946, -88.100815), new Coordinate(41.868949, -88.100609), new Coordinate(41.868925, -88.100606),
@@ -510,7 +510,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869151, -88.100879), new Coordinate(41.869151, -88.100903)});
 
         // Schell
-        newBuilding("Schell Hall", "schell", new Coordinate[] {
+        newBuilding("Schell Hall", "Schell", new Coordinate[] {
                 new Coordinate(41.869634, -88.099020), new Coordinate(41.869734, -88.099026), new Coordinate(41.869737, -88.098826),
                 new Coordinate(41.869635, -88.098830)});
 
@@ -526,7 +526,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.871657, -88.096473), new Coordinate(41.871656, -88.097079)});
 
         // Student Health Services
-        newBuilding("Student Health Services", "shs", new Coordinate[] {
+        newBuilding("Student Health Services", "SHS", new Coordinate[] {
                 new Coordinate(41.872973, -88.097991), new Coordinate(41.872972, -88.097378), new Coordinate(41.872400, -88.097379),
                 new Coordinate(41.872395, -88.097502), new Coordinate(41.87242, -88.097506), new Coordinate(41.872422, -88.097707),
                 new Coordinate(41.872373, -88.097711), new Coordinate(41.872372, -88.097980)});
@@ -544,18 +544,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.870583, -88.101065), new Coordinate(41.870532, -88.101065), new Coordinate(41.870530, -88.101166),
                 new Coordinate(41.870545, -88.101167), new Coordinate(41.870544, -88.101241), new Coordinate(41.870512, -88.101240)});
         // Welcome Center
-        newBuilding("Welcome Center", "welcome", new Coordinate[]{
+        newBuilding("Welcome Center", "Welcome", new Coordinate[]{
                 new Coordinate(41.868074, -88.097209), new Coordinate(41.868359, -88.097213), new Coordinate(41.868365, -88.097181),
                 new Coordinate(41.868364, -88.097062), new Coordinate(41.868088, -88.097060), new Coordinate(41.868080, -88.097085),
                 new Coordinate(41.868073, -88.097085)});
         // Westgate
-        newBuilding("Westgate", "westgate", new Coordinate[]{
+        newBuilding("Westgate", "Westgate", new Coordinate[]{
                 new Coordinate(41.868259, -88.101602), new Coordinate(41.868358, -88.101600), new Coordinate(41.868360, -88.101590),
                 new Coordinate(41.868369, -88.101565), new Coordinate(41.868369, -88.101387), new Coordinate(41.868255, -88.101387),
                 new Coordinate(41.868246, -88.101413), new Coordinate(41.868241, -88.101563), new Coordinate(41.868258, -88.101561)});
 
         // Wyngarden
-        newBuilding("Wyngarden", "wyngarden", new Coordinate[] {
+        newBuilding("Wyngarden", "Wyngarden", new Coordinate[] {
                 new Coordinate(41.870187, -88.098983), new Coordinate(41.870187, -88.098798), new Coordinate(41.869947, -88.098784),
                 new Coordinate(41.869944, -88.098982)});
 
