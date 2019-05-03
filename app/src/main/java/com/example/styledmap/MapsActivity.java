@@ -705,7 +705,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
          */
 
         // Williston Hall
-        newHousing("Williston Hall", "", "Upperclassmen", new Coordinate[] {
+        newHousing("Williston Hall", "Williston", "Upperclassmen", new Coordinate[] {
                 new Coordinate(41.869177, -88.098268), new Coordinate(41.869175, -88.098102),
                 new Coordinate(41.868767, -88.098107), new Coordinate(41.868766, -88.098259),
                 new Coordinate(41.868912, -88.098259), new Coordinate(41.868926, -88.098323),
