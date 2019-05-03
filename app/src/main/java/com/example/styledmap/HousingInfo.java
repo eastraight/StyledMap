@@ -3,6 +3,7 @@ package com.example.styledmap;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,6 +58,7 @@ public class HousingInfo extends AppCompatActivity {
 
         // Capture the layout's TextView and set the string as its text
         TextView output = findViewById(R.id.textView);
+        output.setMovementMethod(new ScrollingMovementMethod());
         output.setText(text);
 
         testButton = findViewById(R.id.button3);
