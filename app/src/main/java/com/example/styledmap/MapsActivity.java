@@ -526,13 +526,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.871657, -88.096473), new Coordinate(41.871656, -88.097079)});
 
         // Student Health Services
-        newBuilding("Student Health Services", "SHS", new Coordinate[] {
+        newBuilding("North Harrison Hall", "SHS", new Coordinate[] {
                 new Coordinate(41.872973, -88.097991), new Coordinate(41.872972, -88.097378), new Coordinate(41.872400, -88.097379),
                 new Coordinate(41.872395, -88.097502), new Coordinate(41.87242, -88.097506), new Coordinate(41.872422, -88.097707),
                 new Coordinate(41.872373, -88.097711), new Coordinate(41.872372, -88.097980)});
 
         // Student Services Building
-        newBuilding("Student Services Building", "", new Coordinate[] {
+        newBuilding("Student Services Building", "ssb", new Coordinate[] {
                 new Coordinate(41.869160, -88.097786), new Coordinate(41.869158, -88.097972), new Coordinate(41.869118, -88.097971),
                 new Coordinate(41.869121, -88.098089), new Coordinate(41.868636, -88.098079), new Coordinate(41.868639, -88.097766),
                 new Coordinate(41.869160, -88.097786)});
