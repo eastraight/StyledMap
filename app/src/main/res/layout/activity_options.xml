@@ -14,7 +14,7 @@
         android:layout_marginTop="400dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Houses"
+        android:text=""
         android:textColor="@color/colorPrimaryDark"
         android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,7 +110,7 @@
             android:id="@+id/housing_options_heading"
             android:layout_width="match_parent"
             android:layout_height="63dp"
-            android:text="@string/h_options"
+            android:text="Housing Options"
             android:textColor="@color/white" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
