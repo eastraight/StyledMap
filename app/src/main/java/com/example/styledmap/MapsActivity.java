@@ -697,7 +697,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         newParking("Welcome Center Parking 2", new Coordinate[] {
                 new Coordinate(41.868284, -88.097713), new Coordinate(41.868284, -88.097651),
                 new Coordinate(41.867971, -88.097652), new Coordinate(41.867970, -88.097709)});
-
+        //Jenks Parking
+        newParking("Jenks Parking", new Coordinate[]{
+                new Coordinate(41.869734, -88.095412), new Coordinate(41.869916, -88.095400),
+                new Coordinate(41.869941, -88.094102), new Coordinate(41.869888, -88.094097),
+                new Coordinate(41.869887, -88.094026), new Coordinate(41.869472, -88.094036),
+                new Coordinate(41.869472, -88.094036), new Coordinate(41.869355, -88.094284),
+                new Coordinate(41.869355, -88.094466), new Coordinate(41.869764, -88.094470),
+                new Coordinate(41.869733, -88.094682), new Coordinate(41.869744, -88.094916)});
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         // Housing Section
