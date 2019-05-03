@@ -12,7 +12,7 @@
         android:layout_width="214dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
         android:background="@color/colorAccent"
         android:text="@string/housing_option_underclassmen"
@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/housing_option_toolbar" />
 
     <Button
         android:id="@+id/upperButton"
@@ -85,13 +85,16 @@
         app:layout_constraintTop_toBottomOf="@+id/housingButton"
         app:layout_constraintVertical_bias="0.99" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="519dp"
-        android:layout_height="96dp"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/housing_option_toolbar"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

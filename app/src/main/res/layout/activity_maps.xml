@@ -41,10 +41,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:autofillHints=""
                         android:ems="10"
+                        android:text="Search"
                         android:textColor="@color/white"
-                        android:visibility="visible"
-                        android:autofillHints="" />
+                        android:visibility="visible" />
 
 
                     <ImageButton

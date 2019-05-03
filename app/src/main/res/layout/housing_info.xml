@@ -40,11 +40,11 @@
     <LinearLayout
         android:id="@+id/header_layout"
         android:layout_width="0dp"
-        android:layout_height="83dp"
+        android:layout_height="63dp"
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
