@@ -1,6 +1,7 @@
 package com.example.styledmap;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -115,6 +116,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 return true;
                             case R.id.housing_options:
                                 Intent housingIntent = new Intent(navigationView.getContext(), HousingInfo.class);
+                                housingIntent.putExtra("DESC_File", "Houses");
                                 startActivity(housingIntent);
                                 return true;
                             case R.id.campus_events:
@@ -700,9 +702,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //--------------------------------------------------------------------------------------------------------------------------------------------------
         // Housing Section
 
-        /**
-         * No desc file for any of the houses.
-         */
+
 
         // Williston Hall
         newHousing("Williston Hall", "Williston", "Upperclassmen", new Coordinate[] {
@@ -712,14 +712,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.868997, -88.098330), new Coordinate(41.869019, -88.098270)});
 
         // Fischer Hall
-        newHousing("Fischer Hall", "","Underclassmen", new Coordinate[] {
+        newHousing("Fischer Hall", "Fischer","Underclassmen", new Coordinate[] {
                 new Coordinate(41.873356, -88.096951), new Coordinate(41.872813, -88.096946),
                 new Coordinate(41.872813, -88.096557), new Coordinate(41.873372, -88.096571),
                 new Coordinate(41.873367, -88.096357), new Coordinate(41.872650, -88.096363),
                 new Coordinate(41.872657, -88.097130), new Coordinate(41.873372, -88.097123)});
 
         // Smith-Traber Hall
-        newHousing("Smith-Traber Hall", "","Underclassmen", new Coordinate[] {
+        newHousing("Smith-Traber Hall", "Smith-Traber","Underclassmen", new Coordinate[] {
                 new Coordinate(41.870361, -88.094306), new Coordinate(41.870321, -88.094452),
                 new Coordinate(41.870687, -88.094663), new Coordinate(41.870660, -88.094756),
                 new Coordinate(41.870625, -88.094819), new Coordinate(41.870667, -88.094875),
@@ -735,7 +735,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.870361, -88.094306)});
 
         // McManis-Evans Hall
-        newHousing("McManis-Evans", "","Upperclassmen", new Coordinate[] {
+        newHousing("McManis-Evans", "McManis-Evans","Upperclassmen", new Coordinate[] {
                 new Coordinate(41.869627, -88.098021), new Coordinate(41.869751, -88.098021),
                 new Coordinate(41.869751, -88.097972), new Coordinate(41.869979, -88.097973),
                 new Coordinate(41.869979, -88.097993), new Coordinate(41.870091, -88.097997),
@@ -748,26 +748,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.869748, -88.097762), new Coordinate(41.869629, -88.097767)});
 
         // Saint and Elliot
-        newHousing("Saint and Elliot 430", "","Apartment", new Coordinate[] {
+        newHousing("Saint and Elliot 430", "Saint and Elliot","Apartment", new Coordinate[] {
                 new Coordinate(41.869974, -88.092459), new Coordinate( 41.869982, -88.092162),
                 new Coordinate(41.869841, -88.092175), new Coordinate(41.869826, -88.092456)});
-        newHousing("Saint and Elliot 424", "","Apartment", new Coordinate[] {
+        newHousing("Saint and Elliot 424", "Saint and Elliot","Apartment", new Coordinate[] {
                 new Coordinate(41.869777, -88.092449), new Coordinate(41.869780, -88.092180),
                 new Coordinate(41.869653, -88.092176), new Coordinate(41.869651, -88.092445)});
-         newHousing("Saint and Elliot 418", "","Apartment", new Coordinate[] {
+         newHousing("Saint and Elliot 418", "Saint and Elliot","Apartment", new Coordinate[] {
                 new Coordinate(41.869601, -88.092459), new Coordinate(41.869602, -88.092170),
                 new Coordinate(41.869443, -88.092164), new Coordinate(41.869452, -88.092456)});
 
 
         // Michigan
-        newHousing("Michigan", "","Apartment", new Coordinate[] {
+        newHousing("Michigan", "Michigan-Crescent","Apartment", new Coordinate[] {
                 new Coordinate( 41.865870, -88.096228), new Coordinate( 41.865877, -88.095568),
                 new Coordinate( 41.865719, -88.095573), new Coordinate(41.865717, -88.095730),
                 new Coordinate(41.865739, -88.095732), new Coordinate(41.865733, -88.096062),
                 new Coordinate(41.865713, -88.096064), new Coordinate(41.865710, -88.096221),
                 new Coordinate( 41.865870, -88.096228 )});
         // Crescent
-        newHousing("Crescent", "","Apartment", new Coordinate[] {
+        newHousing("Crescent", "Michigan-Crescent","Apartment", new Coordinate[] {
                 new Coordinate(41.866074, -88.096241), new Coordinate(41.866105, -88.096090),
                 new Coordinate(41.866083, -88.096080), new Coordinate(41.866147, -88.095759),
                 new Coordinate(41.866169, -88.095767), new Coordinate(41.866200, -88.095614),
@@ -775,79 +775,101 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Coordinate(41.866074, -88.096241)});
 
         // College Ave
-        newHousing("College Ave 802", "","Apartment", new Coordinate[] {
+        newHousing("College Ave 802", "College Ave","Apartment", new Coordinate[] {
                 new Coordinate(41.868377, -88.095459), new Coordinate(41.868374, -88.095309),
                 new Coordinate(41.868326, -88.095308), new Coordinate(41.868327, -88.095328),
                 new Coordinate(41.868073, -88.095327), new Coordinate(41.868073, -88.095310),
                 new Coordinate(41.868008, -88.095308), new Coordinate(41.868001, -88.095457)});
-        newHousing("College Ave 814", "","Apartment", new Coordinate[] {
+        newHousing("College Ave 814", "College Ave","Apartment", new Coordinate[] {
                 new Coordinate(41.868410, -88.094954), new Coordinate(41.868410, -88.094783),
                 new Coordinate(41.868059, -88.094779), new Coordinate(41.868050, -88.094949)});
-        newHousing("College Ave 818", "","Apartment", new Coordinate[] {
+        newHousing("College Ave 818", "College Ave","Apartment", new Coordinate[] {
                 new Coordinate(41.868379, -88.094702), new Coordinate(41.868391, -88.094589),
                 new Coordinate(41.868185, -88.094548), new Coordinate(41.868169, -88.094730),
                 new Coordinate(41.868252, -88.094747), new Coordinate(41.868260, -88.094679)});
-        newHousing("College Ave 904", "","Apartment", new Coordinate[] {
+        newHousing("College Ave 904", "College Ave","Apartment", new Coordinate[] {
                 new Coordinate(41.868567, -88.093646), new Coordinate(41.868565, -88.093480),
                 new Coordinate(41.868270, -88.093475), new Coordinate(41.868271, -88.093644)});
-        newHousing("College Ave 916", "","Apartment", new Coordinate[] {
+        newHousing("College Ave 916", "College Ave","Apartment", new Coordinate[] {
                 new Coordinate(41.868598, -88.093367), new Coordinate(41.868599, -88.093199),
                 new Coordinate(41.868303, -88.093197), new Coordinate(41.868302, -88.093363)});
 
         // Terrace
-        newHousing("Terrace 1047", "","Apartment", new Coordinate[] {
+        newHousing("Terrace 1047", "Terrace","Apartment", new Coordinate[] {
                 new Coordinate(41.869824, -88.090319), new Coordinate(41.869822, -88.090182),
                 new Coordinate(41.869246, -88.090192), new Coordinate(41.869243, -88.090322)});
-        newHousing("Terrace 1051", "","Apartment", new Coordinate[] {
+        newHousing("Terrace 1051", "Terrace","Apartment", new Coordinate[] {
                 new Coordinate(41.869849, -88.090122), new Coordinate(41.869849, -88.089988),
                 new Coordinate(41.869275, -88.089994), new Coordinate(41.869276, -88.090128)});
-        newHousing("Terrace 1055", "","Apartment", new Coordinate[] {
+        newHousing("Terrace 1055", "Terrace","Apartment", new Coordinate[] {
                 new Coordinate(41.869812, -88.089954), new Coordinate(41.869811, -88.089821),
                 new Coordinate(41.869294, -88.089824), new Coordinate(41.869295, -88.089958)});
-        newHousing("Terrace 1057", "","Apartment", new Coordinate[] {
+        newHousing("Terrace 1057", "Terrace","Apartment", new Coordinate[] {
                 new Coordinate(41.869832, -88.089767), new Coordinate(41.869838, -88.089641),
                 new Coordinate(41.869318, -88.089637), new Coordinate(41.869319, -88.089771)});
 
+        /**
+         * No desc file for any of the houses.
+         */
         //Houses
-        newHousing("Graham House", "","House", new Coordinate[] {
+        newHousing("Graham House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.866962, -88.100982), new Coordinate(41.866852, -88.100993),
                 new Coordinate(41.866856, -88.100829), new Coordinate(41.866969, -88.100829)});
-        newHousing("Hunter House", "","House", new Coordinate[] {
+        newHousing("Hunter House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.871124, -88.099025), new Coordinate(41.871125, -88.98809),
                 new Coordinate(41.871039, -88.098809), new Coordinate(41.871036, -88.099029)});
-        newHousing("Kay House", "","House", new Coordinate[] {
+        newHousing("Kay House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.870717, -88.095972), new Coordinate(41.870718, -88.095736),
                 new Coordinate(41.870658, -88.095737), new Coordinate(41.870653, -88.095971)});
-        newHousing("Outreach House", "","House", new Coordinate[] {
+        newHousing("Outreach House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.872375, -88.098996), new Coordinate(41.872376, -88.098690),
                 new Coordinate(41.872282, -88.098690), new Coordinate(41.872294, -88.098998)});
-        newHousing("Teresa House", "","House", new Coordinate[] {
+        newHousing("Teresa House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.870878, -88.101163), new Coordinate(41.870881, -88.101017),
                 new Coordinate(41.870813, -88.101018), new Coordinate(41.870810, -88.101162)});
-        newHousing("White House", "","House", new Coordinate[] {
+        newHousing("White House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.868822, -88.094928), new Coordinate(41.868822, -88.094822),
                 new Coordinate(41.868753, -88.094807), new Coordinate(41.868752, -88.094927)});
-        newHousing("Shalom Community Perkins House", "","House", new Coordinate[] {
+        newHousing("Shalom Community Perkins House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.871953, -88.098131), new Coordinate(41.871861, -88.098103),
                 new Coordinate(41.871840, -88.098300), new Coordinate(41.871905, -88.098327)});
-        newHousing("Fellowship House", "","House", new Coordinate[] {
+        newHousing("Fellowship House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.870555, -88.095925), new Coordinate(41.870559, -88.095793),
                 new Coordinate(41.870460, -88.095790), new Coordinate(41.870456, -88.095924)});
-        newHousing("Fine Arts House", "","House", new Coordinate[] {
+        newHousing("Fine Arts House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.871156, -88.098593), new Coordinate(41.871139, -88.098474),
                 new Coordinate(41.871040, -88.098470), new Coordinate(41.871038, -88.098597)});
-        newHousing("Hearth House", "","House", new Coordinate[] {
+        newHousing("Hearth House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.871853, -88.098972), new Coordinate(41.871855, -88.098795),
                 new Coordinate(41.871743, -88.098791), new Coordinate(41.871737, -88.098970)});
-        newHousing("Kilby House", "","House", new Coordinate[] {
+        newHousing("Kilby House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.871121, -88.101226), new Coordinate(41.871120, -88.101010),
                 new Coordinate(41.871034, -88.101017), new Coordinate(41.871026, -88.101223)});
-        newHousing("Mathetai House", "","House", new Coordinate[] {
+        newHousing("Mathetai House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.870416, -88.096015), new Coordinate(41.870419, -88.095794),
                 new Coordinate(41.870309, -88.095792), new Coordinate(41.870300, -88.096013)});
-        newHousing("Phoenix House", "","House", new Coordinate[] {
+        newHousing("Phoenix House", "Houses","House", new Coordinate[] {
                 new Coordinate(41.871502, -88.098935), new Coordinate(41.871505, -88.098839),
                 new Coordinate(41.871388, -88.098834), new Coordinate(41.871386, -88.098927)});
+        newHousing("Campbell House Duplex", "Houses","House", new Coordinate[] {
+                new Coordinate(41.873250, -88.099015), new Coordinate(41.873248, -88.098867),
+                new Coordinate(41.873152, -88.098867), new Coordinate(41.873153, -88.099012)});
+        newHousing("Swartz House Duplex", "Houses","House", new Coordinate[] {
+                new Coordinate(41.873393, -88.099005), new Coordinate(41.873393, -88.098865),
+                new Coordinate(41.873291, -88.098862), new Coordinate(41.873293, -88.099020)});
+        newHousing("Batson House", "Houses","House", new Coordinate[] {
+                new Coordinate(41.873414, -88.098785), new Coordinate(41.873401, -88.098701),
+                new Coordinate(41.873269, -88.098701), new Coordinate(41.873271, -88.098782)});
+        newHousing("Best House", "Houses","House", new Coordinate[] {
+                new Coordinate(41.873399, -88.098646), new Coordinate(41.873411, -88.098562),
+                new Coordinate(41.873269, -88.098565), new Coordinate(41.873270, -88.098647)});
+        newHousing("Wright House", "Houses","House", new Coordinate[] {
+                new Coordinate(41.873403, -88.098517), new Coordinate(41.873396, -88.098440),
+                new Coordinate(41.873264, -88.098437), new Coordinate(41.873261, -88.098520)});
+        newHousing("Hollatz House Duplex", "Houses","House", new Coordinate[] {
+                new Coordinate(41.872023, -88.098933), new Coordinate(41.872027, -88.098801),
+                new Coordinate(41.871921, -88.098796), new Coordinate(41.871917, -88.098926)});
+
 
 
         mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener(){

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Housing extends LocationSpaces {
 
-    private File description;
+    private String description;
     private String category;
 
     public Housing(Activity m, GoogleMap mMap, Polygon shape, String name, String category, String descFile){
@@ -25,7 +25,7 @@ public class Housing extends LocationSpaces {
         super.mMap = mMap;
         super.m = m;
         super.clicks = 1;
-        description = new File(descFile);
+        description = descFile;
     }
 
     public void doClick() {
@@ -55,6 +55,9 @@ public class Housing extends LocationSpaces {
         intent.putExtra("DESC_FILE", description);
         m.startActivity(intent);
 
-        zoom();
+        if(!description.equals("Houses")){
+            zoom();
+        }
+
     }
 }
