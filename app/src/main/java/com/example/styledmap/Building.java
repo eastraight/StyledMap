@@ -7,7 +7,6 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Polygon;
 
 import java.util.List;
@@ -50,7 +49,7 @@ public class Building extends LocationSpaces {
     }
 
     private void info(){
-        Intent intent = new Intent(m, HousingInfo.class);
+        Intent intent = new Intent(m, LocationInfo.class);
         intent.putExtra("DESC_FILE", description);
         m.startActivity(intent);
 

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class OptionsActivity extends AppCompatActivity {
     private Button housesButton;
@@ -32,7 +31,7 @@ public class OptionsActivity extends AppCompatActivity {
         housesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent housingIntent = new Intent(OptionsActivity.this, HousingInfo.class);
+                Intent housingIntent = new Intent(OptionsActivity.this, LocationInfo.class);
                 housingIntent.putExtra("DESC_FILE", "Houses");
                 startActivity(housingIntent);
             }
@@ -42,7 +41,7 @@ public class OptionsActivity extends AppCompatActivity {
         underButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent housingIntent = new Intent(OptionsActivity.this, HousingInfo.class);
+                Intent housingIntent = new Intent(OptionsActivity.this, LocationInfo.class);
                 housingIntent.putExtra("DESC_FILE", "UnderClassHousing");
                 startActivity(housingIntent);
             }
@@ -52,7 +51,7 @@ public class OptionsActivity extends AppCompatActivity {
         upperButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent housingIntent = new Intent(OptionsActivity.this, HousingInfo.class);
+                Intent housingIntent = new Intent(OptionsActivity.this, LocationInfo.class);
                 housingIntent.putExtra("DESC_FILE", "UpperClassHousing");
                 startActivity(housingIntent);
             }
@@ -62,7 +61,7 @@ public class OptionsActivity extends AppCompatActivity {
         apartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent housingIntent = new Intent(OptionsActivity.this, HousingInfo.class);
+                Intent housingIntent = new Intent(OptionsActivity.this, LocationInfo.class);
                 housingIntent.putExtra("DESC_FILE", "Apartments");
                 startActivity(housingIntent);
             }

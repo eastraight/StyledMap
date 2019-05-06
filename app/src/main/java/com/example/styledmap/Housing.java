@@ -9,7 +9,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polygon;
 
-import java.io.File;
 import java.util.List;
 
 public class Housing extends LocationSpaces {
@@ -51,7 +50,7 @@ public class Housing extends LocationSpaces {
     }
 
     private void info(){
-        Intent intent = new Intent(m.getApplicationContext(), HousingInfo.class);
+        Intent intent = new Intent(m.getApplicationContext(), LocationInfo.class);
         intent.putExtra("DESC_FILE", description);
         m.startActivity(intent);
         zoom();

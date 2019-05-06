@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class HousingInfo extends AppCompatActivity {
+public class LocationInfo extends AppCompatActivity {
 
     private StringBuilder text = new StringBuilder();
     private Button testButton;
