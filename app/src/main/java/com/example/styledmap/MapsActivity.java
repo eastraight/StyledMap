@@ -2,8 +2,6 @@ package com.example.styledmap;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -48,7 +46,6 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import android.location.Location;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 
@@ -209,9 +206,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 hVisible = !hVisible;
             }
         });
-//        diningButton = findViewById(R.id.dining_button);
-//        diningButton.setMenuItemClickListener(new MenuItem.OnMenuItemClickListener())
-
 
         //location stuff:
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
